@@ -1,0 +1,42 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto
+
+# Text files
+*.txt text
+*.md text
+*.yml text
+*.yaml text
+*.json text
+*.js text
+*.ts text
+*.jsx text
+*.tsx text
+*.py text
+*.rb text
+*.php text
+*.sh text
+*.css text
+*.scss text
+*.html text
+*.xml text
+*.svg text
+
+# Files that are truly binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# These files are text and should have LF line endings on checkout
+.gitattributes text
+.gitignore text
+.gitmodules text
