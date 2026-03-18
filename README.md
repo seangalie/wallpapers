@@ -10,7 +10,7 @@ This repository is an archival collection of desktop wallpapers gathered from al
 - Images are provided as-is for use as desktop backgrounds on personal devices.
 
 ## Usage
-- Browse repository folders and download images for personal use or visit [seangalie.github.io/wallpapers](seangalie.github.io/wallpapers).
+- Browse [repository](https://github.com/seangalie/wallpapers) and download images for personal use or [visit seangalie.github.io/wallpapers](https://seangalie.github.io/wallpapers).
 - Use as desktop backgrounds, lock screens, or in personal projects (no attribution required for private use).
 - For public reuse, check the original creator's terms.
 
