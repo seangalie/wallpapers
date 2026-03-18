@@ -1,7 +1,7 @@
 # Desktop Wallpapers
 A semi-curated collection of Desktop, Dual Monitor, Triple Monitor, and Mobile Wallpapers gathered over a long period of time from sources across the internet.
 
-## Purpose
+## Overview
 This repository is an archival collection of desktop wallpapers gathered from all over the internet over years and years... My goal is to preserve and share a broad set of high-quality backgrounds for personal use and enjoyment (and easy downloading to some of my own devices).
 
 ## Contents
@@ -10,7 +10,7 @@ This repository is an archival collection of desktop wallpapers gathered from al
 - Images are provided as-is for use as desktop backgrounds on personal devices.
 
 ## Usage
-- Browse folders and download images for personal use.
+- Browse repository folders and download images for personal use or visit [seangalie.github.io/wallpapers](seangalie.github.io/wallpapers).
 - Use as desktop backgrounds, lock screens, or in personal projects (no attribution required for private use).
 - For public reuse, check the original creator's terms.
 
