@@ -6,6 +6,82 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			#filters {
+				position: fixed;
+				top: 3.5em;
+				left: 0;
+				right: 0;
+				z-index: 10000;
+				background: rgba(30, 30, 30, 0.95);
+				backdrop-filter: blur(8px);
+				padding: 0.75em 1.5em;
+				border-bottom: 1px solid rgba(255,255,255,0.1);
+			}
+			#filters .filter-row {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.5em;
+				margin-bottom: 0.5em;
+			}
+			#filters .filter-row:last-child {
+				margin-bottom: 0;
+			}
+			#filters .filter-label {
+				font-size: 0.7em;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.15em;
+				color: rgba(255,255,255,0.4);
+				margin-right: 0.5em;
+				min-width: 4em;
+			}
+			#filters button {
+				background: rgba(255,255,255,0.05);
+				border: 1px solid rgba(255,255,255,0.15);
+				color: rgba(255,255,255,0.6);
+				padding: 0.35em 0.85em;
+				border-radius: 2em;
+				font-size: 0.75em;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				font-family: inherit;
+			}
+			#filters button:hover {
+				color: #fff;
+				border-color: rgba(255,255,255,0.4);
+			}
+			#filters button.active {
+				background: rgba(255,255,255,0.15);
+				border-color: rgba(255,255,255,0.5);
+				color: #fff;
+			}
+			#filters .count {
+				font-size: 0.85em;
+				opacity: 0.6;
+				margin-left: 0.3em;
+			}
+			#status-bar {
+				position: fixed;
+				top: 3.5em;
+				right: 1.5em;
+				z-index: 10001;
+				font-size: 0.7em;
+				color: rgba(255,255,255,0.35);
+				pointer-events: none;
+			}
+			body.content-active #filters {
+				display: none;
+			}
+			@media screen and (max-width: 980px) {
+				#filters { top: 2.75em; padding: 0.5em 1em; }
+			}
+			@media screen and (max-width: 736px) {
+				#filters { top: 2.5em; padding: 0.4em 0.75em; }
+				#filters button { padding: 0.25em 0.6em; font-size: 0.7em; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 			<div id="wrapper">
@@ -17,68 +93,21 @@
 							</ul>
 						</nav>
 					</header>
-					<div id="main">
-						<article class="thumb">
-							<a href="sample/01.jpg" class="image"><img src="sample/01.jpg" alt="" /></a>
-							<h2>sample/01.jpg</h2>
-							<p>Download: <a href="sample/01.jpg">01.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/02.jpg" class="image"><img src="sample/02.jpg" alt="" /></a>
-							<h2>sample/02.jpg</h2>
-							<p>Download: <a href="sample/02.jpg">02.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/03.jpg" class="image"><img src="sample/03.jpg" alt="" /></a>
-							<h2>sample/03.jpg</h2>
-							<p>Download: <a href="sample/03.jpg">03.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/04.jpg" class="image"><img src="sample/04.jpg" alt="" /></a>
-							<h2>sample/04.jpg</h2>
-							<p>Download: <a href="sample/04.jpg">04.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/05.jpg" class="image"><img src="sample/05.jpg" alt="" /></a>
-							<h2>sample/05.jpg</h2>
-							<p>Download: <a href="sample/05.jpg">05.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/06.jpg" class="image"><img src="sample/06.jpg" alt="" /></a>
-							<h2>sample/06.jpg</h2>
-							<p>Download: <a href="sample/06.jpg">06.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/07.jpg" class="image"><img src="sample/07.jpg" alt="" /></a>
-							<h2>sample/07.jpg</h2>
-							<p>Download: <a href="sample/07.jpg">07.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/08.jpg" class="image"><img src="sample/08.jpg" alt="" /></a>
-							<h2>sample/08.jpg</h2>
-							<p>Download: <a href="sample/08.jpg">08.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/09.jpg" class="image"><img src="sample/09.jpg" alt="" /></a>
-							<h2>sample/09.jpg</h2>
-							<p>Download: <a href="sample/09.jpg">09.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/10.jpg" class="image"><img src="sample/10.jpg" alt="" /></a>
-							<h2>sample/10.jpg</h2>
-							<p>Download: <a href="sample/10.jpg">10.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/11.jpg" class="image"><img src="sample/11.jpg" alt="" /></a>
-							<h2>sample/11.jpg</h2>
-							<p>Download: <a href="sample/11.jpg">11.jpg</a></p>
-						</article>
-						<article class="thumb">
-							<a href="sample/12.jpg" class="image"><img src="sample/12.jpg" alt="" /></a>
-							<h2>sample/12.jpg</h2>
-							<p>Download: <a href="sample/12.jpg">12.jpg</a></p>
-						</article>
+
+					<div id="filters">
+						<div class="filter-row">
+							<span class="filter-label">Layout</span>
+							<div id="layoutFilters"></div>
+						</div>
+						<div class="filter-row">
+							<span class="filter-label">Tags</span>
+							<div id="tagFilters"></div>
+						</div>
 					</div>
+
+					<div id="main">
+					</div>
+
 					<footer id="footer" class="panel">
 						<div class="inner split">
 							<div>
@@ -102,7 +131,7 @@
 								<section>
 									<h2>Usage</h2>
 									<ul>
-										<li>Browse <a href="https://github.com/seangalie/wallpapers"></a>repository</a> and download images for personal use or <a href="https://seangalie.github.io/wallpapers">visit seangalie.github.io/wallpapers</a>.</li>
+										<li>Browse <a href="https://github.com/seangalie/wallpapers">repository</a> and download images for personal use or <a href="https://seangalie.github.io/wallpapers">visit seangalie.github.io/wallpapers</a>.</li>
 										<li>Use as desktop backgrounds, lock screens, or in personal projects (no attribution required for private use).</li>
 										<li>For public reuse, check the original creator's terms when known.</li>
 									</ul>
@@ -125,5 +154,175 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+			(function() {
+				var DATA = {"desktop":{"art":["art_abstract-boxes.jpg","art_abstract-core.jpg","art_abstract-geometric.jpg","art_abstract-orbits.jpg","art_all-seeing-eye.jpg","art_angled-pattern.jpg","art_blue-and-orange-smoke.jpg","art_bokeh-celebration.jpg","art_bonsai-plant.png","art_brush-emergence.jpg","art_brush-expression.jpg","art_cat-silhouette.png","art_circle-great-wave-blue.png","art_circle-great-wave.png","art_color-wall.jpg","art_dark-spark-motion.jpg","art_dark-star.jpg","art_deer-aesthetic.jpg","art_deer-lunar-eclipse.jpg","art_deer-pine-forest.jpg","art_desert-red-sun.jpg","art_design-abstraction.jpg","art_digital-mountain-sunset.png","art_drawn-night-street.png","art_drawn-vertical-tiles.jpg","art_evening-moonscape.jpg","art_falling-fiber-lines.jpg","art_glass-flower.jpg","art_golden-horizon.jpg","art_home-under-pink-moonlight.png","art_illustrated-ancient-village.jpg","art_illustrated-bird-and-cat.jpg","art_illustrated-blue-mushroom.jpg","art_illustrated-cherry-blossom-tree-dark.png","art_illustrated-cherry-blossom-tree-light.png","art_illustrated-deep-forest.jpg","art_illustrated-sunset-room.png","art_illustrated-tabletop.jpg","art_illustrated-train-waterfall.jpg","art_illustrated-tree.jpg","art_illustrated-well.jpg","art_illustrated-window.png","art_illustrated_starlit_sky.png","art_japanese-backyard-garden.png","art_japanese-house-garden.png","art_kurzgesagt-black-hole.png","art_kurzgesagt-cityscape.png","art_kurzgesagt-galaxy.png","art_kurzgesagt-lunar-surface.png","art_kurzgesagt-planets.jpg","art_kurzgesagt-solar-system.png","art_lakeside.jpg","art_library-view.png","art_light-sign.jpg","art_linear-polygon-stag.jpg","art_liquid-colors.jpg","art_liquid-spirals.jpg","art_lofi-cafe.png","art_lofi-chill-room.png","art_lofi-chill-studio.jpeg","art_lofi-desk-cat.png","art_lofi-desk-glow.png","art_lookout-tower.jpg","art_metro-style-lines.jpg","art_moonrise-tree.jpg","art_mountain-orb.jpg","art_mountain-sunrise.jpg","art_mountain-sunset.jpg","art_mountainscape.jpg","art_multicolor-waves.jpg","art_neon-circle-mountain.jpeg","art_neon-diamond.jpg","art_neon-pink-ring.png","art_neon-rectangle.jpg","art_neon-square.jpg","art_night-landscape.png","art_orange-desert.jpg","art_orbital-balloon.jpg","art_paint-splash-headphones.jpg","art_painted-classroom.jpg","art_painted-desert-landscape.png","art_painted-pink-landscape.jpg","art_painted-sunset-landscape.jpg","art_painting-fall-echoes.png","art_painting-lakeside.jpg","art_pale-blue-swirl.jpg","art_pink-white-ink-splash.jpg","art_planetrise-landscape.jpg","art_plasma-waves.png","art_plunging-into-water.jpg","art_poly-desert-mountains.jpg","art_poly-forest-mountains.png","art_poly-mountains.jpg","art_purple-bedroom.jpg","art_red-eclipse.jpg","art_red-japanese-temple.jpg","art_retro-mountain-sunset.jpg","art_retro-room.png","art_samurai-village.jpg","art_solitary-peak.jpg","art_sphere-textured.jpg","art_spilled-paint.jpg","art_staircase-neon.png","art_standing-on-dunes.jpg","art_street-glow.jpg","art_study-table.png","art_summer-scene-dark.png","art_summer-scene-light.png","art_sunset-field.png","art_sunset-horizon.png","art_sunset-lookout-tower.jpg","art_sunset-mountains.png","art_sunset-nature.jpg","art_sunset_girl.jpg","art_vintage-ascent.jpg","art_winter-dawn-lineart.png","art_woodcut-mountains.png","art_woodland-guru.jpg"],"cars":["cars_drawn-corner-stop.png","cars_drawn-desert-road-trip.jpg","cars_drawn-mazda.png","cars_drawn-parked-coupe.png","cars_drawn-retro-truck.png","cars_illustrated-iceroad-red-moon.jpg","cars_illustrated-martian-roadtrip.jpg","cars_illustrated-sunset-forest-drive.jpg","cars_retro-race.jpg"],"fantasy":["fantasy_archer-and-golem.jpg","fantasy_blood-rock-steppes.png","fantasy_butterflies.png","fantasy_castle-stronghold.jpg","fantasy_cliffside-tree.jpg","fantasy_dark-nature.png","fantasy_dark-spirits.jpg","fantasy_dragon-attack.jpg","fantasy_dragon-pink-mountain.jpg","fantasy_dragon-tea.png","fantasy_drawn-borderlands.jpg","fantasy_flat-earth-edge.jpg","fantasy_gateway-between-worlds.png","fantasy_gateway-portal.png","fantasy_green-landscape-view.png","fantasy_hobbit-art.jpg","fantasy_hobbit-door.jpg","fantasy_hooded-figure.jpg","fantasy_lunar-eclipse-landscape.png","fantasy_magic-mountain-sky.jpg","fantasy_moon-over-cherry-blossoms.png","fantasy_moon-over-landscape-illustration.jpg","fantasy_mountain-lake.jpg","fantasy_mountain-two-moons.jpg","fantasy_mountainscape.jpg","fantasy_new-worlds.png","fantasy_purple-arch-landscape.jpg","fantasy_purple-moon-faire.png","fantasy_purple-tree.png","fantasy_red-eclipse.png","fantasy_red_samurai.png","fantasy_robed-skull.jpg","fantasy_snow-hill-landscape.png","fantasy_sunset-tree.jpg","fantasy_tree-of-life-starfield.jpg","fantasy_voxel-temple-ruins.png","fantasy_waterfall-palace.png","fantasy_wizard-desert.jpg"],"gaming":["gaming_apex-octane.jpg","gaming_arcraiders-dark.png","gaming_arcraiders-light.png","gaming_art-cyberpunk.png","gaming_assassins-creed-3.jpg","gaming_battlefield-airstrike.jpg","gaming_blackstreets.jpg","gaming_braid.jpg","gaming_fallout-glowing-nukacola.jpg","gaming_fallout-welcome-home.png","gaming_firewatch-colorful-lookout.jpg","gaming_firewatch-colorful-night-tower.jpg","gaming_firewatch-colorful-tower.jpg","gaming_firewatch-dawn-landscape.jpg","gaming_firewatch-deer-dawn.jpg","gaming_firewatch-deer-dusk-ultrawide.jpg","gaming_firewatch-deer-dusk.jpg","gaming_firewatch-fire-landscape.jpg","gaming_firewatch-fire-tower.jpg","gaming_firewatch-night-tower.jpg","gaming_firewatch-ultrawide.jpg","gaming_firewatch-wide-lookout.png","gaming_firewatch-wide-wilderness.jpg","gaming_firewatch-wilderness-lookout.jpg","gaming_firewatch-wilderness.png","gaming_fortnite-end-of-the-chaos-queen.jpg","gaming_fortnite-island-stylized.jpg","gaming_fortnite-void-camping.png","gaming_gta-landscape-illustrated.png","gaming_hollow-knight.jpg","gaming_masseffect-citadel.jpg","gaming_masseffect-normandy.jpg","gaming_masseffect-omega-station.jpg","gaming_medieval-tavern.png","gaming_minecraft-creeper.png","gaming_minecraft-diamond-blocks.jpg","gaming_minecraft-got-wall.jpg","gaming_minecraft-grass-beach.jpg","gaming_minecraft-landscape-sunset.jpg","gaming_minecraft-single-grass-block.png","gaming_minecraft-sunset.png","gaming_minecraft-world.jpg","gaming_minimal-starfield.png","gaming_phone-snake.png","gaming_portal-glados-outside-aperture.jpg","gaming_retro-controller.png","gaming_skyrim-bridge-duel.jpg","gaming_snap-hunt-camping.png","gaming_starcitizen-dying-star.jpg","gaming_starfield-constellation.png","gaming_starfield-dust-cloud.jpeg","gaming_starfield-frontier-asteroid-field.png","gaming_starfield-frontier-gear-stowed.jpg","gaming_starfield-frontier-new-atlantis.png","gaming_starfield-planetscape-dark-horizon.png","gaming_starfield-planetscape-dark-vista.jpeg","gaming_starfield-planetscape-dawn-arch.jpeg","gaming_starfield-planetscape-exploration-suit.jpeg","gaming_starfield-planetscape-generators.png","gaming_starfield-planetscape.png","gaming_starfield-temple-entrance.jpeg","gaming_starfield-temple.png","gaming_starfield-xbox.png","gaming_starfield.png","gaming_steam-deck.png","gaming_tetris.jpg","gaming_witcher-sunset.png","gaming_yellow-steam-logo.png"],"history":["history_art-kojiro.png","history_atomic-test-mushroom-cloud.jpg","history_f15-eagle.jpg","history_f15-eagles.jpg","history_f16-falcon.jpg","history_f18-hornet.jpg","history_f18-hornets.jpg","history_f22-raptor.jpg","history_f22-raptors.jpg","history_fw190-painting.jpg","history_p51-mustang-painting.jpg","history_p51-mustangs-painting.jpg","history_pirate-cove.jpg","history_pirate-flag.jpg","history_pirate-ship.jpg","history_spitfire-painting.jpg","history_swordsman-painting.png","history_wright-brothers.jpg"],"local":["local_nj-friendship-field.jpg","local_nj-friendship-ruins.jpg","local_nj-friendship.jpg","local_nj-harrisville-papermill-ruins.jpg","local_nj-harrisville-ruins.jpg","local_nj-wharton-forest-road.jpg"],"minimal":["minimal_adwaita-dark.jpg","minimal_adwaita-light.jpg","minimal_block-grid.jpg","minimal_blue-gradient.png","minimal_dark-flow-lights.png","minimal_dark-motion-waves.jpg","minimal_dark-open-door.jpg","minimal_dark-waves.jpg","minimal_digital-grid-highlands.jpg","minimal_gradient-blue-dark.png","minimal_gradient-blue.png","minimal_gradient-gray-dark.png","minimal_gradient-gray.png","minimal_gradient-orange-dark.png","minimal_gradient-orange.png","minimal_gradient-pink.png","minimal_grey-honeycomb.jpg","minimal_grey-vignette.jpg","minimal_grey-wood-grain.jpg","minimal_palette-blue-dark.png","minimal_palette-orange-dark.png","minimal_palette-orange.png","minimal_palette-pink.png","minimal_palette-purple-dark.png","minimal_pattern.jpg","minimal_patterns.png","minimal_shattered-polygons.png","minimal_solar-dunes.png","minimal_solar-reflection.png","minimal_squares.png","minimal_stars.jpg","minimal_sunset.png","minimal_waveform-abstract.png","minimal_waves.jpg"],"music":["music_bow-string.png","music_cello.jpg","music_guitar.jpg","music_piano-keys.jpg","music_piano.jpg","music_string-family.png","music_violin.jpg"],"outdoors":["outdoors_art-african-light.jpg","outdoors_art-mountain-sunset.png","outdoors_autumn-hues.png","outdoors_beached-hull.jpg","outdoors_blue-flower.jpg","outdoors_blueberries.jpg","outdoors_coast-dark.jpg","outdoors_coast-light.jpg","outdoors_coastal-fortress.jpg","outdoors_copper-mountain.jpg","outdoors_crater-lake.png","outdoors_dark-mountainscape.png","outdoors_dark-torii.jpg","outdoors_desert-day.png","outdoors_desert-night.png","outdoors_endless-sand.jpg","outdoors_fish.jpg","outdoors_floating-flower.png","outdoors_flower-vase.png","outdoors_flower.png","outdoors_foggy-forest.png","outdoors_foggy-mountains.png","outdoors_foggy-mountainside.jpg","outdoors_foggy-ravine.jpg","outdoors_foggy-rural-road.jpg","outdoors_forest-gloom.jpg","outdoors_forest-haunts.jpg","outdoors_forest-railroad-tracks.jpg","outdoors_forest-railroad-trestle.jpg","outdoors_forest-valley.jpg","outdoors_garden.png","outdoors_glowing-dew.jpg","outdoors_golden-hour-lake.jpg","outdoors_green-dirt-tracks.jpg","outdoors_green-hut.jpg","outdoors_green-path.jpg","outdoors_grove-old-trees.jpg","outdoors_hidden-waterfall.jpg","outdoors_iceberg-night.jpg","outdoors_illustrated-breaking-waves.png","outdoors_illustrated-forest-dark.png","outdoors_illustrated-forest-light.png","outdoors_illustrated-garden-park.png","outdoors_illustrated-garden-waterfall.png","outdoors_illustrated-japanese-village-pond.jpeg","outdoors_illustrated-lake-bridge.png","outdoors_illustrated-lake-path.png","outdoors_illustrated-mountain-dark.png","outdoors_illustrated-mountain-light.png","outdoors_illustrated-sunset-forest.png","outdoors_ireland-hills.jpg","outdoors_island-village-dark.png","outdoors_island-village-light.png","outdoors_italian-mountains.png","outdoors_jagged-peaks.jpg","outdoors_japanese-mountain-retreat.png","outdoors_koi-pond.png","outdoors_lake-landscape.png","outdoors_little-owl.jpg","outdoors_lofoten-dusk.jpg","outdoors_lofoten-twilight.jpg","outdoors_lofoten.jpg","outdoors_monstera-leaves.png","outdoors_mountain-coast-view.jpg","outdoors_mountain-fog.png","outdoors_mountain-lake-reflections.jpg","outdoors_mountain-lake-vista.png","outdoors_mountain-lake.jpg","outdoors_mountain-landscape.jpg","outdoors_mountain-snow.jpg","outdoors_mountain-sunrise.jpg","outdoors_mountain-sunset.jpg","outdoors_mountain-waters.jpg","outdoors_mountain-winter-clouds.jpg","outdoors_mountain-winter-sun-full.jpg","outdoors_mountain-winter-sun-top.jpg","outdoors_mountain-winter.jpg","outdoors_mountain.jpg","outdoors_mountains-and-valleys.jpg","outdoors_mountains-over-lake.jpg","outdoors_mountains-with-sky.jpg","outdoors_mountaintop.jpg","outdoors_northern-lights-forest.png","outdoors_northern-lights-glacier.jpg","outdoors_northern-lights-illustrated.png","outdoors_northern-lights-landscape.jpg","outdoors_northern-lights-mountains.jpg","outdoors_northern-lights-ocean.jpg","outdoors_northern-lights-reflection.jpg","outdoors_northern-lights.jpg","outdoors_painted-forest-mountain.jpg","outdoors_peaceful-mountain-valley.jpg","outdoors_peaceful-snowy-road.png","outdoors_rainy-road.jpg","outdoors_remote-bridge-mountain.jpg","outdoors_river-walkway.png","outdoors_rocky-flats.jpg","outdoors_rusted-chevrolet.jpg","outdoors_rusted-horseshoe.jpg","outdoors_seascape.jpg","outdoors_snowy-forest.jpg","outdoors_snowy-road.jpg","outdoors_spooky-forest-road.jpg","outdoors_sunset-bogs.jpg","outdoors_sunset-forest-hills.jpg","outdoors_sunset-lake.jpg","outdoors_sunset-wheatfield.jpg","outdoors_tracks-through-green-forest.png","outdoors_trail-sign.png","outdoors_truck-in-field.jpg","outdoors_volcano.jpg"],"popculture":["popculture_brown-pint.png","popculture_calvin-and-hobbes.jpg","popculture_calvin-hobbes-spaceship.jpg","popculture_comics-batman-stainedglass.png","popculture_comics-batman.jpg","popculture_comics-captain-america-shield.jpg","popculture_comics-captain-america-splash.jpg","popculture_comics-iron-man-arc-reactor.jpg","popculture_comics-spiderwoman.jpg","popculture_cute-cat-3d.png","popculture_danger-close.jpg","popculture_drawn-vagabond.jpg","popculture_evil-monkey.jpg","popculture_kitty-dark.png","popculture_kitty-light.png","popculture_life-instructions.jpg","popculture_logos-tapestry.jpg","popculture_lotm-cards.png","popculture_magnificent-seven.png","popculture_matrix-stream.jpg","popculture_multicolor-groot.jpg","popculture_remain-calm-trust-science.jpg","popculture_retro-galaxy-blue.jpg","popculture_retro-galaxy-gray.jpg","popculture_retro-galaxy-magenta.jpg","popculture_retro-galaxy-orange.jpg","popculture_retro-galaxy-violet.jpg","popculture_rick-and-morty-sunset.png","popculture_stranger-things-starcourt-mall.png","popculture_stranger-things.jpg","popculture_take-risk.jpg"],"scifi":["scifi_archscape-planet-rings.jpg","scifi_artistic-spaceship-over-planet.jpg","scifi_artistic-spaceship.png","scifi_asteroid-travelers.jpg","scifi_astronaut-jellyfish.jpg","scifi_astronaut-nebula.png","scifi_astronaut-pill.jpg","scifi_astronaut-sharks.jpg","scifi_astronaut-skateboard.jpg","scifi_astronaut-station.png","scifi_astronaut-suit.png","scifi_astronaut.png","scifi_astronaut_escape_velocity.jpg","scifi_astronaut_neon_portal.jpg","scifi_astronaut_shards.jpg","scifi_battlestar-galactica.jpg","scifi_black-hole.png","scifi_building-remote.jpg","scifi_city_landing_pad.jpg","scifi_crashed-spaceship.jpg","scifi_cyber-city-neon-car.jpg","scifi_cyber-city-neon-cityscape.jpg","scifi_cyber-city-neon-office.jpg","scifi_cyber-fuel-station.jpg","scifi_cyber-tower-forest.jpg","scifi_cyberpunk-city.jpg","scifi_cyberpunk-foggy-night.jpg","scifi_docked-shuttle.jpg","scifi_drawn-spaceship-deck.jpg","scifi_drawn-spaceship-engineering.jpg","scifi_firefly-serenity-credo.png","scifi_firefly-serenity.jpg","scifi_futuristic-bridge-wreck.jpg","scifi_futuristic-city-gate.jpg","scifi_futuristic-city.jpg","scifi_futuristic-cityscape.jpg","scifi_illustrated-cyber-city-room.png","scifi_illustrated-cyber-city-street-dark.jpg","scifi_illustrated-cyber-city-street-light.jpg","scifi_japanese-cyber-city-street.png","scifi_mega-city-dusk.jpg","scifi_midnight-on-ocean.jpg","scifi_mountains-moons.jpg","scifi_no-mans-land.jpg","scifi_paris-cyber-future.jpg","scifi_planet-spires.jpg","scifi_ship-landing-building.jpg","scifi_space-earth.jpg","scifi_space-moon.jpg","scifi_space-planetrise.jpg","scifi_spaceship-launch.jpg","scifi_sphere-landed.jpg","scifi_sphere-reflective.png","scifi_standing-in-orbit.jpg","scifi_steampunk-workshop.jpg","scifi_the-expanse-rocinante-widescreen.jpg","scifi_the-expanse.jpg","scifi_tron-ares.jpg","scifi_tron-legacy-cycle-battle.jpg","scifi_tron-legacy-cycle-motion.jpg","scifi_tron-legacy-lightcycle.jpg","scifi_tron-legacy-warrior.jpg","scifi_tron-lightcycle.jpg"],"space":["space_art-nasa-voyager.png","space_art-planets.png","space_art-shuttle-launch.png","space_art-solar-system.png","space_art-spaceship-launch.jpg","space_black-hole.jpg","space_carina-nebula.png","space_earth-curve-with-sun.jpg","space_earth-curve.jpg","space_europe-from-orbit.jpg","space_event-horizon.png","space_everest-starscape.jpg","space_galaxy-messier82.jpg","space_hubble-deep-field.png","space_illustrated-launch.jpg","space_milky-way-starscape.jpg","space_milky-way-tiltshift.jpg","space_moon-clouds.jpg","space_moon-red.jpg","space_moon-through-aurora.jpg","space_moon.jpg","space_nebula-blue.jpg","space_nebula-colorful.jpg","space_nebula-core.jpg","space_nebula-edge.jpg","space_nebula-multicolor.jpg","space_nebula-orion.jpg","space_nebula-purple.jpg","space_nebula-red.jpeg","space_nebula-tarantula.jpg","space_nebula-yellow.jpg","space_orbital-dawn.jpg","space_orbital-view.jpg","space_painted-shuttle-landing.png","space_planet-from-moon.jpg","space_planetary-rings.jpg","space_rocket-launch-tiltshift.jpg","space_rocket-launch.png","space_rocket-tiltshift.jpg","space_shuttle-launch.png","space_solar-eclipse.jpg","space_solar-system.png","space_space-station.jpg","space_spaceport-launch.jpg","space_starfield-nebula.jpg","space_starfield-purple.jpg","space_starfield.jpg","space_starlight-debris.jpg","space_stars-colored-blades.png","space_stars.jpg"],"startrek":["startrek_enterprise-desert-crash.png","startrek_enterprise-illustrated.png","startrek_enterprise-in-orbit.jpg","startrek_enterprise-leaving-moon.jpg","startrek_enterprise-reliant-battle.jpg","startrek_intrepid-wrecked.jpg","startrek_lcars-defiant.png","startrek_lcars-voyager.jpg","startrek_new-enterprise-orbit.jpg","startrek_new-enterprise-ringed-planet.jpg","startrek_new-enterprise.jpg"],"starwars":["starwars_city-bounty-hunter.jpg","starwars_clone-commando-squad.jpg","starwars_clone-commando.jpg","starwars_darth-vader-grasp.jpg","starwars_darth-vader-silhouette.jpg","starwars_first-order-trooper.jpg","starwars_first-order-troops.jpg","starwars_jakku-battle.jpg","starwars_painted-darth-vader.jpg","starwars_rebel-alliance.jpg","starwars_second-death-star.jpg","starwars_star-destroyer-burning.jpg","starwars_star-destroyer-over-city.jpg","starwars_star-destroyers-over-naboo.jpg","starwars_star-destroyers.jpg","starwars_stormtrooper-battle.jpg","starwars_stormtrooper.jpg","starwars_tie-pilot-stranded.jpg","starwars_walker-fallen.jpg","starwars_xwing-batuu.jpg","starwars_xwing-illustration.jpg","starwars_xwings.jpg"],"tech":["tech_apple-logo-outline.jpg","tech_apple-logo-solid.jpg","tech_arch-color.png","tech_arch-linux.png","tech_ascii-apple.jpg","tech_ascii-arch-blue.png","tech_ascii-debian-portrait.png","tech_ascii-debian-red.png","tech_asop-portrait-dark.png","tech_asop-portrait-light.png","tech_chip-heatsink.jpg","tech_code-eat-sleep-repeat.jpg","tech_code-if-success-function.png","tech_code-spectrum.jpg","tech_code-wall.jpg","tech_color-debian.png","tech_color-ubuntu.png","tech_debian-blue-logo.jpg","tech_debian-pink-artistic.png","tech_fedora-logo.jpg","tech_fedora-workstation.png","tech_hyprland.jpg","tech_linux-arch-logo.png","tech_linux-arch-outline.png","tech_linux-arch.png","tech_linux-debian.png","tech_linux-endeavour-logo.png","tech_linux-fedora-logo.png","tech_linux-fedora-symbol.png","tech_linux-fedora.png","tech_linux-kde-blue.png","tech_linux-kde-green.png","tech_linux-kde-purple.png","tech_linux-kde-yellow.png","tech_linux-mint-logo.png","tech_linux-mint.png","tech_linux-ubuntu-dark.png","tech_linux-ubuntu.png","tech_minimal-arch.png","tech_minimal-arco.png","tech_minimal-dark.png","tech_minimal-debian.png","tech_minimal-elementary.png","tech_minimal-endeavour.png","tech_minimal-fedora.png","tech_minimal-freebsd.png","tech_minimal-garuda.png","tech_minimal-gentoo.png","tech_minimal-light.png","tech_minimal-mac.png","tech_minimal-manjaro.png","tech_minimal-mint.png","tech_minimal-nix.png","tech_minimal-openbsd.png","tech_minimal-opensuse.png","tech_minimal-pop.png","tech_minimal-qubes.png","tech_minimal-ubuntu.png","tech_minimal-windows.png","tech_minimal-zorin.png","tech_miracleos-dark.jpg","tech_miracleos-light.jpg","tech_motherboard-neon-city.png","tech_penguin-icon.png","tech_penguin-linux-stripes.jpg","tech_penguin-stylized.png","tech_retro-collection.jpg","tech_retro-commodore.jpg","tech_retro-keyboard.jpg","tech_retro-tapes.png","tech_server-racks.jpg","tech_terminal-dark-icon.png","tech_terminal-light-icon.png","tech_tower-3d.jpg","tech_ubuntu-colorful.png","tech_ubuntu-glitch.jpg","tech_ubuntu-logo.png","tech_wall-interface.jpg"],"urban":["urban_aerial-city-block.jpg","urban_aerial-view-angle.jpg","urban_aerial-view.jpg","urban_beton-building.jpg","urban_brooklyn-bridge.jpg","urban_busy-intersection.jpg","urban_cityscape-timelapse.jpg","urban_drawn-arcade-red.png","urban_dubai-tiltshift.jpg","urban_foggy-canal.jpg","urban_illustrated-city-skyline.png","urban_illustrated-city-waterfront-night.png","urban_illustrated-japanese-city-night.png","urban_illustrated-japanese-street.png","urban_illustrated-rain-night-street.png","urban_illustrated-rainy-street.png","urban_japan-night-in-town.jpg","urban_japan-riverside-dark.png","urban_japan-riverside-light.png","urban_japan-street-dark.png","urban_japan-street-light.png","urban_manhattan-aerial-blue.jpg","urban_manhattan-aerial-midtown-night.jpg","urban_manhattan-aerial-night.jpg","urban_manhattan-skyline.jpg","urban_marina-bay-sands.png","urban_melbourne-three-rivers.jpg","urban_neon-gas-station.jpg","urban_newyorkcity-tiltshift.jpg","urban_newyorkcity-timelapse.jpg","urban_night-street-lights.jpg","urban_orange-tower.jpg","urban_philadelphia-ben-franklin-bridge-view.jpg","urban_philadelphia-ben-franklin-bridge.jpg","urban_philadelphia-center-city.jpg","urban_philadelphia-night.jpg","urban_philadelphia-skyline-waterfront.jpg","urban_philadelphia.jpg","urban_rain-city.png","urban_rainy-city-street.jpg","urban_rainy-cityscape.jpg","urban_rainy-window.jpg","urban_resthouse.png","urban_solitary-building.png","urban_timelapse-busy-street.jpg","urban_tokyo-street-in-pink.png"]},"dual":{"art":["art_black-pattern.jpg","art_blue-arrow-red-arrow.jpg","art_blue-line-on-green-clouds.jpg","art_color-rainbow.jpg","art_dark-cracked-pattern.jpg","art_designs-above.jpg","art_red-orange-colorscape.png","art_spheres-on-ground.jpg","art_white-bricks.jpg"],"cars":["cars_exotic-collection.jpg","cars_lamborghini-miura-pair.jpg"],"fantasy":["fantasy_barbarian-archer.jpg","fantasy_battlefield-aftermath.jpg","fantasy_gameofthrones-greyjoy-tyrell.jpg","fantasy_gameofthrones-rival-houses.jpg"],"gaming":["gaming_firewatch-dawn-tower-dual-left.jpg","gaming_firewatch-dawn-tower-dual-right.jpg","gaming_firewatch-dawn-tower-dual.png","gaming_firewatch-dawn-tower.jpg","gaming_firewatch-night-landscape.jpg","gaming_firewatch-night-tower-dual.png","gaming_firewatch-night-tower-left.jpg","gaming_firewatch-night-tower-right.jpg","gaming_firewatch-night-tower.jpg","gaming_firewatch-tower-dual.png","gaming_firewatch-tower-left.jpg","gaming_firewatch-tower-right.jpg","gaming_firewatch-tower-yellow.jpg","gaming_firewatch-tower.jpg","gaming_masseffect-normandy.jpg","gaming_minecraft-forest-village.jpg","gaming_portal-faded-logo-edge.png","gaming_portal-logo-centered.jpg","gaming_portal-logo-edge.jpg"],"history":["history_atomic-bomb.jpg","history_jolly-rodger.jpg"],"outdoors":["outdoors_barren-landscape.jpg","outdoors_bent-tree-in-field.jpg","outdoors_cloudy-field-and-trees.jpg","outdoors_dawn-over-distance.jpg","outdoors_desert-plains-and-mountains.jpg","outdoors_desert-scrub-landscape.jpg","outdoors_earth-flattened.jpg","outdoors_forest-stand.jpg","outdoors_forest-swamp.jpg","outdoors_grasslands-before-mountains.jpg","outdoors_hot-air-balloons-over-desert.jpg","outdoors_illustrated-dark-leaves-on-wind.jpg","outdoors_jungle-mountains.jpg","outdoors_lights-in-night-sky.jpg","outdoors_meteor-shower.jpg","outdoors_mountain-lake-with-rock.jpg","outdoors_mountain-peak.jpg","outdoors_mountain-river.jpg","outdoors_mountain-stream.jpg","outdoors_mountain-top-caldera-lake.jpg","outdoors_mountain.jpg","outdoors_northern-lights.jpg","outdoors_pale-blue-mountain-lake.jpg","outdoors_park-lake.jpg","outdoors_rocky-beach-on-pale-blue-lake.jpg","outdoors_rocky-landscape.jpg","outdoors_snowy-trees.jpg","outdoors_soft-lit-mountain-tops.jpg","outdoors_steep-sided-valley.jpg","outdoors_sunlight-through-the-forest.jpg","outdoors_tire-tracks-in-field.jpg","outdoors_top-of-the-mountain.jpg","outdoors_tree-in-the-field.jpg","outdoors_twilight-lakefront.jpg"],"popculture":["popculture_comics-iron-man.jpg","popculture_daft-punk.jpg","popculture_matrix-code.jpg","popculture_wall-e.jpg"],"science":["science_ball-machine.jpg","science_neuron.jpg"],"scifi":["scifi_alien-blue-world.jpg","scifi_future-cityscape.jpg","scifi_light-rays-from-tower.jpg","scifi_on-approach.jpg"],"space":["space_astronaut-waving.jpg","space_atmosphere-edge.jpg","space_curve-of-the-earth.jpg","space_earth-moon-and-mars.jpg","space_edge-of-the-moon.jpg","space_ice-cap-from-orbit.jpg","space_jupiter-and-moon.jpg","space_milky-way-galaxy.jpg","space_moonscape.jpg","space_nebula-cloud.jpg","space_northern-lights-in-atmosphere.jpg","space_phases-of-the-moon.jpg","space_red-blue-moon.jpg","space_saturn.jpg","space_sky-full-of-stars.jpg","space_stars-and-nebula.jpg","space_sun-over-earth.jpg"],"starwars":["starwars_boba-fett-visor.jpg"],"urban":["urban_bergen-night.jpg","urban_chicago-lakefront.jpg","urban_hongkong.jpg","urban_landmarks-brooklyn-bridge.jpg","urban_landmarks-chernobyl-ruins.jpg","urban_landmarks-golden-gate-bridge.jpg","urban_newyorkcity-waterfront-night.jpg","urban_newyorkcity-waterfront.jpg","urban_sanfrancisco-1906.jpg","urban_sydney-harbor.jpg"]},"triple":{"art":["art_abstract-mosaic.jpg","art_day-and-night-in-the-desert.png","art_inspired-mountains.jpg","art_stitch-in-space.png","art_view-across-grid-field.jpg"],"gaming":["gaming_assassins-creed-black-flag-beach.jpg","gaming_assassins-creed-black-flag-jungle.jpg","gaming_assassins-creed-black-flag.jpg","gaming_firewatch-stylized.png","gaming_firewatch-tower.png","gaming_minecraft-alpine-village.jpg","gaming_overwatch-angel.png","gaming_portal-aperture-science.png"],"outdoors":["outdoors_black-and-white-desert.jpg","outdoors_field-crossing.jpg","outdoors_field-of-pebbles.jpg","outdoors_forest-of-trees.jpg","outdoors_green-canyon.jpg","outdoors_mountain-forest.jpg","outdoors_mountain-lake-beach.jpg","outdoors_mountain-landscape.jpg","outdoors_mountainscape.jpg","outdoors_sepia-landscape.jpg","outdoors_snowy-mountains.jpg","outdoors_stars-falling-over-field.jpg","outdoors_sunrise-landscape.jpg","outdoors_sunset-lake.jpg","outdoors_sunset-landscape.jpg","outdoors_sunset-over-the-mountains.jpg","outdoors_swamp.jpg","outdoors_tiered-hill-farm.jpg"],"popculture":["popculture_rick-and-morty.jpg"],"scifi":["scifi_abstract-descent.jpg"],"space":["space_atlantis-nebula.png","space_earth-rise.jpg","space_earth-view.jpg","space_frontier-expanse.png","space_jupiter.jpg","space_lunar-landscape.jpg","space_milky-way-skyscape.jpg","space_monochrome-cloud.jpg","space_monochrome-planetrise.png","space_nebula.jpg","space_planets-in-front-of-nebula.jpg","space_slice-of-fire.jpg","space_spacescape.jpg","space_starburst-in-galaxy-m82.jpg"],"starwars":["starwars_rebel-alliance.jpg","starwars_super-star-destroyer.jpg","starwars_tie-interceptors.jpg"]},"mobile":{"art":["art_abstract-rays.jpg","art_black-3d-faces.jpg","art_black-waves.jpg","art_black-weathered-wallpaper.jpg","art_bokeh-over-wet-street.jpg","art_color-gradiant-over-stars.jpg","art_colorful-bokeh.jpg","art_colorful-flower-waves.jpg","art_colorful-lines.jpg","art_dark-artistic-circles.png","art_dark-bokeh-with-light.jpg","art_dark-with-blue-and-purple-lines.jpg","art_feather-textures.jpg","art_gaia-alari.jpg","art_green-wallpaper-over-rust.jpg","art_inside-out-man.jpg","art_neon-mountains.jpg","art_orbit.png","art_painting-of-couple.jpg","art_purple-planet.png","art_sitting-creekside.jpg","art_square-rods-of-color.jpg","art_tech-pattern.jpg","art_triangles.jpg"],"cars":["cars_lamborghini.jpg"],"fantasy":["fantasy_cave-living.jpg","fantasy_floating-city.png","fantasy_floating-pillars.jpg","fantasy_flooded-ruins.jpg","fantasy_fourth-horseman.jpg","fantasy_overgrown-city.jpg","fantasy_painting-archology.jpg","fantasy_skeleton-electric-chair.jpg","fantasy_skull-revolvers.jpg","fantasy_skull-spider.jpg","fantasy_smoking-skull.jpg","fantasy_spider-crab.jpg","fantasy_zodiac-monster-1.jpg","fantasy_zodiac-monster-2.jpg"],"gaming":["gaming_Lineage-goddess.jpg","gaming_aion-asmodian.jpg","gaming_aion-ranger.jpg","gaming_army-of-two.jpg","gaming_assassinscreed-conner.jpg","gaming_assassinscreed-ezio.jpg","gaming_atari-joystick.png","gaming_battlefield-soldier.jpg","gaming_civilization-v.jpg","gaming_dark-souls.jpg","gaming_darksiders.jpg","gaming_deus-ex-logo.png","gaming_deus-ex.jpg","gaming_dota-2-water.jpg","gaming_dota-2.jpg","gaming_fallout-brotherhood.jpg","gaming_hitman.jpg","gaming_mortal-kombat-raiden.jpg","gaming_mortal-kombat-subzero.jpg","gaming_portal-aperture-science.png","gaming_portal.jpg","gaming_space-invaders-briefing.jpg","gaming_uncharted.jpg","gaming_world-of-warcraft.jpg"],"outdoors":["outdoors_Leaves.png","outdoors_bear-woodcut.jpg","outdoors_big-forest.jpg","outdoors_bliss-meadow.jpg","outdoors_dark-clouds.jpg","outdoors_foggy-trees.png","outdoors_frog-leaf.jpg","outdoors_large-mountain.jpg","outdoors_lighthouse-coast.jpg","outdoors_lunar-eclipse.jpg","outdoors_mountain-peak-over-valley.png","outdoors_ocean-waves.jpg","outdoors_rain-falling.jpg","outdoors_red-cabin-on-mountain.jpg","outdoors_rocky-coast.png","outdoors_rocky-shore.png","outdoors_snowy-trees.jpg","outdoors_starry-sky-over-mountain-lake.jpg","outdoors_starry-sky-over-mountain-outline.jpg","outdoors_stars-over-mountain-meadow.jpg","outdoors_steam-engine.jpg","outdoors_steep-valley.jpg","outdoors_sunset-palms.jpg","outdoors_tree-on-water.jpg","outdoors_wildfire-in-distance.jpg","outdoors_winter-forest-fog.jpg"],"popculture":["popculture_comics-calvin-and-hobbes-faces.png","popculture_comics-calvin-and-hobbes.jpg","popculture_comics-captain-america-shield.jpg","popculture_comics-deadpool-splat.jpg","popculture_comics-deadpool-teddy-bear.jpg","popculture_comics-dredd-officer.jpg","popculture_comics-iron-man-stark.jpg","popculture_comics-lightspeed.jpg","popculture_comics-mcu-avengers.jpg","popculture_comics-snoopy-joe-cool.jpg","popculture_comics-spiderman.jpg","popculture_funny-404.jpg","popculture_funny-bananas-floor-sign.jpg","popculture_funny-cat-astronauts.jpg","popculture_funny-chicken-egg.jpg","popculture_funny-digital-pirate.jpg","popculture_funny-evolution-wtf.jpg","popculture_funny-explosive-match.jpg","popculture_funny-flag-ball-russia.jpg","popculture_funny-flaming-astronaut.jpg","popculture_funny-flash-speeding-ticket.jpg","popculture_funny-follow-the-leader.jpg","popculture_funny-giraffe-wat.jpg","popculture_funny-hecknology.jpg","popculture_funny-in-godzilla-we-trust.jpg","popculture_funny-life-loading.jpg","popculture_funny-middle-finger-xray.jpg","popculture_funny-nature-speedometer.jpg","popculture_funny-no-messages.jpg","popculture_funny-panda-in-costume.jpg","popculture_funny-procrastination.jpg","popculture_funny-racing-cart.jpg","popculture_funny-reading-test.jpg","popculture_funny-sparta-caution.jpg","popculture_funny-squirrel-stickup.jpg","popculture_funny-unicorn-rainbow-saw.jpg","popculture_inspiration-today-tomorrow.jpg","popculture_movies-avengers-black-widow.jpg","popculture_movies-dark-knight.jpg","popculture_movies-interstellar-tars.png","popculture_movies-jurassic-world.jpg","popculture_movies-matrix-code.jpg","popculture_movies-minion-brothers.jpg","popculture_movies-minion-hitman.jpg","popculture_movies-minions.jpg","popculture_movies-nightmare-before-christmas.jpg","popculture_movies-transformers.jpg","popculture_movies-tron.jpg","popculture_movies-winnie-the-pooh.jpg","popculture_movies-yellow-brick-road.jpg","popculture_tv-adventure-time-jake.png","popculture_tv-better-call-saul.jpg","popculture_tv-breaking-bad.jpg","popculture_tv-futurama-bender.jpg","popculture_tv-homer-simpson.jpg"],"science":["science_dna-helix.jpg","science_drop-of-mercury.jpg"],"scifi":["scifi_battle-robot.jpg","scifi_empty-astronaut-suit.png","scifi_future-cityscape.jpg","scifi_massive-city.jpg","scifi_nebula-over-mountaintop.jpg","scifi_planet-explorer.jpg","scifi_planet-scout.jpg","scifi_robot-native.jpg","scifi_robot-warrior.jpg","scifi_sketched-explorer-pack.jpg"],"space":["space_artistic-planets-aligned.jpg","space_dark-starfield.jpg","space_field-of-stars.jpg","space_galaxy.jpg","space_giant-moon.jpg","space_looking-up-at-stars.jpg","space_milky-way-in-the-sky.jpg","space_planets-aligned.jpg","space_red-blue-nebula-cloud.jpg","space_starfield.jpg"],"starwars":["starwars_darth-maul.jpg","starwars_darth-vader.jpg","starwars_death-star.png","starwars_empire-propaganda.jpg","starwars_fear-and-loathing-in-mos-eisley.jpg","starwars_join-the-empire.jpg","starwars_sith-credo.jpg","starwars_sketched-clone-troopers.jpg"],"tech":["tech_circuit-board.jpg"],"urban":["urban_chicago-river-at-night.jpg","urban_newyork-skyscraper.jpg","urban_newyork-streets.jpg","urban_newyork-streets.png","urban_seaside-cliff.jpg","urban_skyline-through-stair-cage.jpg","urban_tilt-shift-building-mesa.jpg","urban_underground-tunnel.jpg"]}};
+
+				var LAYOUT_LABELS = {
+					desktop: 'Desktop',
+					dual: 'Dual Desktop',
+					triple: 'Triple Desktop',
+					mobile: 'Mobile'
+				};
+
+				var activeLayout = 'desktop';
+				var activeTag = 'all';
+
+				function capitalize(s) {
+					return s.charAt(0).toUpperCase() + s.slice(1);
+				}
+
+				function prettyName(filename) {
+					return filename
+						.replace(/\.[^.]+$/, '')
+						.replace(/^[^_]+_/, '')
+						.replace(/[-_]/g, ' ')
+						.replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+				}
+
+				function renderLayoutFilters() {
+					var container = document.getElementById('layoutFilters');
+					container.innerHTML = '';
+					for (var key in LAYOUT_LABELS) {
+						if (!LAYOUT_LABELS.hasOwnProperty(key)) continue;
+						var label = LAYOUT_LABELS[key];
+						var tags = DATA[key] || {};
+						var total = 0;
+						for (var t in tags) { if (tags.hasOwnProperty(t)) total += tags[t].length; }
+						var btn = document.createElement('button');
+						btn.className = (key === activeLayout) ? 'active' : '';
+						btn.innerHTML = label + '<span class="count">' + total + '</span>';
+						btn.setAttribute('data-layout', key);
+						btn.onclick = function() {
+							activeLayout = this.getAttribute('data-layout');
+							activeTag = 'all';
+							renderLayoutFilters();
+							renderTagFilters();
+							renderGrid();
+						};
+						container.appendChild(btn);
+					}
+				}
+
+				function renderTagFilters() {
+					var container = document.getElementById('tagFilters');
+					container.innerHTML = '';
+					var tags = DATA[activeLayout] || {};
+					var totalImages = 0;
+					for (var t in tags) { if (tags.hasOwnProperty(t)) totalImages += tags[t].length; }
+
+					var allBtn = document.createElement('button');
+					allBtn.className = (activeTag === 'all') ? 'active' : '';
+					allBtn.innerHTML = 'All<span class="count">' + totalImages + '</span>';
+					allBtn.onclick = function() { activeTag = 'all'; renderTagFilters(); renderGrid(); };
+					container.appendChild(allBtn);
+
+					var sortedTags = Object.keys(tags).sort();
+					for (var i = 0; i < sortedTags.length; i++) {
+						var tag = sortedTags[i];
+						var files = tags[tag];
+						var btn = document.createElement('button');
+						btn.className = (tag === activeTag) ? 'active' : '';
+						btn.innerHTML = capitalize(tag) + '<span class="count">' + files.length + '</span>';
+						btn.setAttribute('data-tag', tag);
+						btn.onclick = function() {
+							activeTag = this.getAttribute('data-tag');
+							renderTagFilters();
+							renderGrid();
+						};
+						container.appendChild(btn);
+					}
+				}
+
+				function renderGrid() {
+					var $main = $('#main');
+
+					// Clear existing poptrox instance
+					if ($main[0]._poptrox) {
+						delete $main[0]._poptrox;
+					}
+
+					$main.empty();
+
+					var tags = DATA[activeLayout] || {};
+					var images = [];
+
+					if (activeTag === 'all') {
+						var sortedTags = Object.keys(tags).sort();
+						for (var i = 0; i < sortedTags.length; i++) {
+							var tag = sortedTags[i];
+							var files = tags[tag];
+							for (var j = 0; j < files.length; j++) {
+								images.push({ tag: tag, file: files[j] });
+							}
+						}
+					} else if (tags[activeTag]) {
+						var files = tags[activeTag];
+						for (var j = 0; j < files.length; j++) {
+							images.push({ tag: activeTag, file: files[j] });
+						}
+					}
+
+					for (var k = 0; k < images.length; k++) {
+						var img = images[k];
+						var path = activeLayout + '/' + img.tag + '/' + img.file;
+						var name = prettyName(img.file);
+						var article = $(
+							'<article class="thumb">' +
+								'<a href="' + path + '" class="image"><img src="' + path + '" alt="' + name + '" loading="lazy" /></a>' +
+								'<h2>' + name + '</h2>' +
+								'<p>' + capitalize(img.tag) + ' &bull; <a href="' + path + '" download>Download</a></p>' +
+							'</article>'
+						);
+						$main.append(article);
+					}
+
+					// Re-initialize thumbs (background image swap from main.js)
+					$main.children('.thumb').each(function() {
+						var $this = $(this),
+							$image = $this.find('.image'),
+							$image_img = $image.children('img'),
+							x;
+						if ($image.length == 0) return;
+						$image.css('background-image', 'url(' + $image_img.attr('src') + ')');
+						if (x = $image_img.data('position'))
+							$image.css('background-position', x);
+						$image_img.hide();
+					});
+
+					// Re-initialize poptrox
+					$main.poptrox({
+						baseZIndex: 20000,
+						caption: function($a) {
+							var s = '';
+							$a.nextAll().each(function() { s += this.outerHTML; });
+							return s;
+						},
+						fadeSpeed: 300,
+						onPopupClose: function() { $('body').removeClass('modal-active'); },
+						onPopupOpen: function() { $('body').addClass('modal-active'); },
+						overlayOpacity: 0,
+						popupCloserText: '',
+						popupHeight: 150,
+						popupLoaderText: '',
+						popupSpeed: 300,
+						popupWidth: 150,
+						selector: '.thumb > a.image',
+						usePopupCaption: true,
+						usePopupCloser: true,
+						usePopupDefaultStyling: false,
+						usePopupForceClose: true,
+						usePopupLoader: true,
+						usePopupNav: true,
+						windowMargin: 50
+					});
+				}
+
+				// Initial render
+				renderLayoutFilters();
+				renderTagFilters();
+				renderGrid();
+			})();
+			</script>
 	</body>
 </html>
