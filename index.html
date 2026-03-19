@@ -237,9 +237,8 @@
 				function renderGrid() {
 					var $main = $('#main');
 
-					// Destroy existing poptrox instance
+					// Clear existing poptrox instance
 					if ($main[0]._poptrox) {
-						$main[0]._poptrox.destroy();
 						delete $main[0]._poptrox;
 					}
 
