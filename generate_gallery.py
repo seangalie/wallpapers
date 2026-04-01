@@ -24,10 +24,10 @@ LIB_LABELS = {
 }
 
 LIB_DESC = {
-    "desktop": "Single-monitor widescreen wallpapers (16:9)",
-    "dual": "Panoramic wallpapers spanning two monitors (32:9)",
-    "mobile": "Portrait wallpapers for phones and tablets (9:16)",
-    "triple": "Ultra-wide wallpapers spanning three monitors (48:9)",
+    "desktop": "Single-monitor wallpapers",
+    "dual": "Panoramic wallpapers spanning two monitors",
+    "mobile": "Portrait wallpapers for phones and tablets",
+    "triple": "Ultra-wide wallpapers spanning three monitors",
 }
 
 LIB_ICON = {
@@ -352,7 +352,7 @@ def site_header(crumbs: list[tuple[str, str | None]], root: str = "") -> str:
 def page_foot() -> str:
     return """<footer>
   <p>A semi-curated archive of desktop wallpapers for personal use.<br>
-  <a href="https://github.com/seangalie/wallpapers">View on GitHub</a> &nbsp;·&nbsp; MIT License</p>
+  <a href="https://github.com/seangalie/wallpapers">View on GitHub</a> &nbsp;·&nbsp; <a href="https://choosealicense.com/licenses/mit/">MIT License</a></p>
 </footer>
 </body>
 </html>
