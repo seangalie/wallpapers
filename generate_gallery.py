@@ -325,7 +325,7 @@ def page_head(title: str, css_depth: int = 0) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} — Wallpapers</title>
+  <title>{title} — Sean's Wallpaper Repository</title>
   <link rel="stylesheet" href="{css_path}">
 </head>
 <body>
@@ -343,7 +343,7 @@ def site_header(crumbs: list[tuple[str, str | None]], root: str = "") -> str:
         else:
             parts += f'<span class="cur">{label}</span>'
     return f"""<header class="site-header">
-  <a class="logo" href="{root}index.html">Wallpapers</a>
+  <a class="logo" href="{root}index.html">Sean's Wallpaper Repository</a>
   <nav class="breadcrumb">{parts}</nav>
 </header>
 """
@@ -394,7 +394,7 @@ def gen_index() -> str:
         + site_header([])
         + f"""<main>
   <div class="hero">
-    <h2>Desktop Wallpapers</h2>
+    <h2>Sean's Wallpaper Repository</h2>
     <p>A semi-curated archive of high-quality wallpapers gathered over the years,
        organized by display layout and theme.</p>
     <div class="hero-stats">

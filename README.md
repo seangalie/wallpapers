@@ -1,4 +1,4 @@
-# Desktop Wallpapers
+# Sean's Wallpaper Repository
 A semi-curated collection of Desktop, Dual Monitor, Triple Monitor, and Mobile Wallpapers gathered over a long period of time from sources across the internet.
 
 ## Overview
