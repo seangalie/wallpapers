@@ -11,6 +11,8 @@ Produces:
     gallery.css                     — shared stylesheet
 """
 
+import argparse
+import html
 from pathlib import Path
 
 BASE = Path(__file__).parent
@@ -316,6 +318,42 @@ def pretty_name(filename: str) -> str:
     return stem.replace("-", " ").replace("_", " ").title()
 
 
+def validate_filenames() -> list[tuple[str, str]]:
+    """Return a list of filename issues with suggested fixes."""
+    issues: list[tuple[str, str]] = []
+    for lib in LIBS:
+        for cat in get_cats(lib):
+            folder = BASE / lib / cat
+            for file in sorted(folder.iterdir()):
+                if not file.is_file():
+                    continue
+
+                name = file.name
+                rel = file.relative_to(BASE).as_posix()
+                lower_name = name.lower()
+
+                if file.suffix.lower() == ".html":
+                    continue
+
+                if file.suffix.lower() not in IMAGE_EXTS:
+                    if file.suffix == "":
+                        issues.append((rel, "missing extension (for example: .jpg or .png)"))
+                    else:
+                        issues.append((rel, f"unsupported extension: {file.suffix}"))
+                    continue
+
+                if not name.startswith(f"{cat}_"):
+                    issues.append((rel, f"expected '{cat}_' prefix"))
+
+                if name != lower_name:
+                    issues.append((rel, "contains uppercase letters; use lowercase for consistency"))
+
+                if "widescreenpng" in lower_name:
+                    issues.append((rel, "looks like a typo; likely missing a dot before png"))
+
+    return issues
+
+
 # ── HTML fragments ────────────────────────────────────────────────────────────
 
 def page_head(title: str, css_depth: int = 0) -> str:
@@ -466,12 +504,14 @@ def gen_cat(lib: str, cat: str) -> str:
     items = ""
     for img in img_list:
         name = pretty_name(img)
+        safe_name = html.escape(name)
+        safe_img = html.escape(img)
         items += f"""
   <div class="img-item">
-    <a href="{img}" target="_blank" rel="noopener" title="{name}">
-      <img src="{img}" loading="lazy" alt="{name}">
+    <a href="{safe_img}" target="_blank" rel="noopener" title="{safe_name}">
+      <img src="{safe_img}" loading="lazy" alt="{safe_name}">
     </a>
-    <div class="name">{img}</div>
+    <div class="name">{safe_img}</div>
   </div>"""
 
     return (
@@ -500,6 +540,24 @@ def gen_cat(lib: str, cat: str) -> str:
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate wallpaper gallery pages.")
+    parser.add_argument(
+        "--check-names",
+        action="store_true",
+        help="Check wallpaper filenames for consistency and print issues.",
+    )
+    args = parser.parse_args()
+
+    if args.check_names:
+        issues = validate_filenames()
+        if not issues:
+            print("No filename issues found.")
+            return
+        print("Filename issues:")
+        for rel, issue in issues:
+            print(f"  - {rel}: {issue}")
+        return
+
     # Shared stylesheet
     (BASE / "gallery.css").write_text(CSS, encoding="utf-8")
     print("  wrote  gallery.css")
