@@ -14,6 +14,46 @@ This repository is an archival collection of desktop wallpapers gathered from al
 - Use as desktop backgrounds, lock screens, or in personal projects (no attribution required for private use).
 - For public reuse, check the original creator's terms.
 
+## Gallery Generation
+This repository includes a Python-based static site generator:
+
+```bash
+python3 generate_gallery.py
+```
+
+That command regenerates:
+- `index.html` (root landing page)
+- `{library}/index.html` (library category pages)
+- `{library}/{category}/index.html` (image gallery pages)
+- `gallery.css` (shared stylesheet)
+
+### Filename consistency check
+You can run a filename audit before regenerating pages:
+
+```bash
+python3 generate_gallery.py --check-names
+```
+
+This check reports files with:
+- missing/unsupported extensions,
+- category prefix mismatches (example: `space_...` in `scifi/`),
+- uppercase characters in filenames,
+- known typo patterns (for example, a missing dot before `.png`).
+
+## File Naming Convention
+For consistency and easier indexing, image files should generally follow:
+
+```text
+{category}_{descriptive-slug}.{ext}
+```
+
+Examples:
+- `space_nebula-orion.jpg`
+- `scifi_neon-city-window.jpg`
+- `outdoors_mountain-lake-vista.png`
+
+Using lowercase and hyphenated slugs keeps sorting and generated labels predictable.
+
 ## Copyright & Intellectual Property
 - Copyright and intellectual property rights in individual images remain with their respective creators and rights holders.
 - These wallpapers were sourced from across the internet and are shared here without conditions by the collector. Sharing or redistributing an image does not transfer ownership or grant additional rights.
