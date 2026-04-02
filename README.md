@@ -36,7 +36,7 @@ python3 generate_gallery.py --check-names
 
 This check reports files with:
 - missing/unsupported extensions,
-- category prefix mismatches (example: `space_...` in `space/`),
+- category prefix mismatches (example: `space_...` in `scifi/`),
 - uppercase characters in filenames,
 - known typo patterns (for example, a missing dot before `.png`).
 
