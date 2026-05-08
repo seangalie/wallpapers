@@ -85,3 +85,12 @@ pnpm-lock.yaml      text eol=lf -diff
 
 # Other
 *.exe   filter=lfs diff=lfs merge=lfs -text
+
+# -----------------------
+# Generated site (no LFS)
+# -----------------------
+
+# The /docs tree is built by generate_gallery.py and served by GitHub Pages,
+# which does not resolve LFS pointers. Keep everything under docs/ as regular
+# git blobs so thumbnails and medium previews actually render.
+docs/**         !filter !diff !merge

@@ -1,22 +1,53 @@
 #!/usr/bin/env python3
-"""Generate static HTML gallery pages for the wallpapers repository.
+"""Generate a static HTML gallery for the wallpapers repository.
 
-Run from the repository root:
-    python3 generate_gallery.py
+Run from the repository root (use the project venv so Pillow is available):
+    .venv/bin/python generate_gallery.py
 
-Produces:
-    index.html                      — welcome/landing page
-    {lib}/index.html                — category menu for each library
-    {lib}/{cat}/index.html          — image grid for each category
-    gallery.css                     — shared stylesheet
+Outputs everything under ./docs/ — the GitHub Pages serving root:
+
+    docs/index.html                       — landing page
+    docs/gallery.css                      — shared stylesheet
+    docs/{lib}/index.html                 — per-library category menu
+    docs/{lib}/{cat}/index.html           — per-category image grid
+    docs/thumbnails/{lib}/{cat}/*.jpg     — small previews used in grids
+    docs/medium/{lib}/{cat}/*.jpg         — medium previews opened on click
+
+The original wallpapers stay in /{lib}/{cat}/ and remain Git-LFS-tracked.
+The download-original links bypass Pages and hit GitHub's LFS-resolving CDN.
 """
 
 import argparse
 import html
+import sys
 from pathlib import Path
 
+try:
+    from PIL import Image, ImageOps
+except ImportError:
+    sys.exit(
+        "Pillow is required. Install it into the project venv:\n"
+        "    python3 -m venv .venv && .venv/bin/pip install Pillow\n"
+        "Then run:\n"
+        "    .venv/bin/python generate_gallery.py"
+    )
+
 BASE = Path(__file__).parent
+OUT = BASE / "docs"
+THUMB_DIR = OUT / "thumbnails"
+MEDIUM_DIR = OUT / "medium"
+
 LIBS = ["desktop", "dual", "mobile", "triple"]
+
+REPO = "seangalie/wallpapers"
+BRANCH = "main"
+ORIGINAL_URL = f"https://media.githubusercontent.com/media/{REPO}/{BRANCH}"
+
+THUMB_LONG = 600
+MEDIUM_LONG = 1920
+JPEG_QUALITY_THUMB = 80
+JPEG_QUALITY_MEDIUM = 82
+FLATTEN_BG = (13, 13, 13)
 
 LIB_LABELS = {
     "desktop": "Desktop",
@@ -251,17 +282,36 @@ main { max-width: 1440px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
   transition: border-color .2s;
 }
 .img-item:hover { border-color: #444; }
-.img-item a { display: block; }
+.img-item > a { display: block; }
 .img-item img { display: block; width: 100%; height: 175px; object-fit: cover; transition: transform .3s; }
 .img-item:hover img { transform: scale(1.04); }
-.img-item .name {
+
+.img-item .meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
   padding: .4rem .65rem;
+}
+.img-item .name {
   font-size: .68rem;
   color: var(--muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
 }
+.img-item .orig {
+  font-size: .68rem;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .15rem .45rem;
+  flex-shrink: 0;
+  transition: border-color .15s, color .15s;
+}
+.img-item .orig:hover { border-color: var(--accent); color: var(--text); }
 
 /* ── Footer ── */
 footer {
@@ -286,10 +336,12 @@ footer a:hover { color: var(--text); }
 """
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Filesystem helpers ───────────────────────────────────────────────────────
 
 def get_images(lib: str, cat: str) -> list[str]:
     folder = BASE / lib / cat
+    if not folder.is_dir():
+        return []
     return sorted(
         f.name for f in folder.iterdir()
         if f.is_file() and f.suffix.lower() in IMAGE_EXTS
@@ -298,6 +350,8 @@ def get_images(lib: str, cat: str) -> list[str]:
 
 def get_cats(lib: str) -> list[str]:
     folder = BASE / lib
+    if not folder.is_dir():
+        return []
     return sorted(d.name for d in folder.iterdir() if d.is_dir())
 
 
@@ -318,6 +372,154 @@ def pretty_name(filename: str) -> str:
     return stem.replace("-", " ").replace("_", " ").title()
 
 
+def thumb_name(filename: str) -> str:
+    """Map a source filename to its preview filename (always JPEG).
+
+    JPEG sources keep their stem; other formats include the source extension
+    in the stem so that two sources differing only by extension (e.g.
+    `foo.jpg` and `foo.png` in the same folder) don't collide on the same
+    preview file.
+    """
+    p = Path(filename)
+    suffix = p.suffix.lower()
+    if suffix in (".jpg", ".jpeg"):
+        return p.stem + ".jpg"
+    return f"{p.stem}-{suffix.lstrip('.')}.jpg"
+
+
+def rel(depth: int, *parts: str) -> str:
+    """Build a relative URL from a doc page at the given depth."""
+    return "../" * depth + "/".join(parts)
+
+
+def original_url(lib: str, cat: str, name: str) -> str:
+    return f"{ORIGINAL_URL}/{lib}/{cat}/{name}"
+
+
+# ── Preview generation ──────────────────────────────────────────────────────
+
+def _resize(src: Path, dest: Path, long_edge: int, quality: int) -> bool:
+    """Write a JPEG preview at most `long_edge` px on the longer side.
+
+    Returns True if a new file was written, False if up-to-date.
+    """
+    if dest.exists() and dest.stat().st_mtime >= src.stat().st_mtime:
+        return False
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(src) as im:
+        im = ImageOps.exif_transpose(im)
+        im.thumbnail((long_edge, long_edge), Image.Resampling.LANCZOS)
+        if im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info):
+            bg = Image.new("RGB", im.size, FLATTEN_BG)
+            bg.paste(im.convert("RGBA"), mask=im.convert("RGBA").split()[-1])
+            im = bg
+        elif im.mode != "RGB":
+            im = im.convert("RGB")
+        im.save(dest, "JPEG", quality=quality, optimize=True, progressive=True)
+    return True
+
+
+def expected_previews() -> dict[Path, Path]:
+    """Return a mapping of every expected preview path → its source path."""
+    expected: dict[Path, Path] = {}
+    for lib in LIBS:
+        for cat in get_cats(lib):
+            for name in get_images(lib, cat):
+                src = BASE / lib / cat / name
+                tn = thumb_name(name)
+                expected[THUMB_DIR / lib / cat / tn] = src
+                expected[MEDIUM_DIR / lib / cat / tn] = src
+    return expected
+
+
+def detect_collisions() -> list[str]:
+    """Detect source filenames that would map to the same preview filename."""
+    issues: list[str] = []
+    for lib in LIBS:
+        for cat in get_cats(lib):
+            seen: dict[str, str] = {}
+            for name in get_images(lib, cat):
+                tn = thumb_name(name)
+                if tn in seen:
+                    issues.append(
+                        f"{lib}/{cat}/{name} and {lib}/{cat}/{seen[tn]} "
+                        f"both map to preview '{tn}' — rename one"
+                    )
+                else:
+                    seen[tn] = name
+    return issues
+
+
+def cleanup_orphans(expected: dict[Path, Path]) -> int:
+    """Remove preview files that no longer correspond to any source."""
+    removed = 0
+    for root in (THUMB_DIR, MEDIUM_DIR):
+        if not root.exists():
+            continue
+        for path in root.rglob("*.jpg"):
+            if path not in expected:
+                path.unlink()
+                removed += 1
+        for d in sorted(
+            (p for p in root.rglob("*") if p.is_dir()),
+            key=lambda p: len(p.parts),
+            reverse=True,
+        ):
+            try:
+                d.rmdir()
+            except OSError:
+                pass
+    return removed
+
+
+def build_previews() -> tuple[int, int, int, int]:
+    """Generate thumbnail and medium previews for every original.
+
+    Returns (built, skipped, failed, cleaned).
+    """
+    collisions = detect_collisions()
+    if collisions:
+        print("  ERROR  preview-name collisions:", file=sys.stderr)
+        for c in collisions:
+            print(f"         {c}", file=sys.stderr)
+        sys.exit(1)
+
+    expected = expected_previews()
+    cleaned = cleanup_orphans(expected)
+    if cleaned:
+        print(f"  clean  removed {cleaned} orphaned preview file(s)")
+
+    built = skipped = failed = 0
+    total = len(expected) // 2
+    print(f"  scan   {total} originals")
+
+    i = 0
+    for lib in LIBS:
+        for cat in get_cats(lib):
+            for name in get_images(lib, cat):
+                i += 1
+                src = BASE / lib / cat / name
+                t_dest = THUMB_DIR / lib / cat / thumb_name(name)
+                m_dest = MEDIUM_DIR / lib / cat / thumb_name(name)
+                try:
+                    a = _resize(src, t_dest, THUMB_LONG, JPEG_QUALITY_THUMB)
+                    b = _resize(src, m_dest, MEDIUM_LONG, JPEG_QUALITY_MEDIUM)
+                except Exception as e:
+                    failed += 1
+                    print(f"  FAIL   {lib}/{cat}/{name}: {e}", file=sys.stderr)
+                    continue
+                if a or b:
+                    built += 1
+                else:
+                    skipped += 1
+                if i % 100 == 0:
+                    print(f"  ...    {i}/{total} processed (built={built}, skipped={skipped})")
+
+    return built, skipped, failed, cleaned
+
+
+# ── Filename validation ─────────────────────────────────────────────────────
+
 def validate_filenames() -> list[tuple[str, str]]:
     """Return a list of filename issues with suggested fixes."""
     issues: list[tuple[str, str]] = []
@@ -329,7 +531,7 @@ def validate_filenames() -> list[tuple[str, str]]:
                     continue
 
                 name = file.name
-                rel = file.relative_to(BASE).as_posix()
+                relpath = file.relative_to(BASE).as_posix()
                 lower_name = name.lower()
 
                 if file.suffix.lower() == ".html":
@@ -337,51 +539,50 @@ def validate_filenames() -> list[tuple[str, str]]:
 
                 if file.suffix.lower() not in IMAGE_EXTS:
                     if file.suffix == "":
-                        issues.append((rel, "missing extension (for example: .jpg or .png)"))
+                        issues.append((relpath, "missing extension (for example: .jpg or .png)"))
                     else:
-                        issues.append((rel, f"unsupported extension: {file.suffix}"))
+                        issues.append((relpath, f"unsupported extension: {file.suffix}"))
                     continue
 
                 if not name.startswith(f"{cat}_"):
-                    issues.append((rel, f"expected '{cat}_' prefix"))
+                    issues.append((relpath, f"expected '{cat}_' prefix"))
 
                 if name != lower_name:
-                    issues.append((rel, "contains uppercase letters; use lowercase for consistency"))
+                    issues.append((relpath, "contains uppercase letters; use lowercase for consistency"))
 
                 if "widescreenpng" in lower_name:
-                    issues.append((rel, "looks like a typo; likely missing a dot before png"))
+                    issues.append((relpath, "looks like a typo; likely missing a dot before png"))
 
     return issues
 
 
-# ── HTML fragments ────────────────────────────────────────────────────────────
+# ── HTML fragments ──────────────────────────────────────────────────────────
 
-def page_head(title: str, css_depth: int = 0) -> str:
-    css_path = "../" * css_depth + "gallery.css"
+def page_head(title: str, depth: int = 0) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — Sean's Wallpaper Repository</title>
-  <link rel="stylesheet" href="{css_path}">
+  <link rel="stylesheet" href="{rel(depth, 'gallery.css')}">
 </head>
 <body>
 """
 
 
-def site_header(crumbs: list[tuple[str, str | None]], root: str = "") -> str:
-    """crumbs: list of (label, href) — None href means current page."""
+def site_header(crumbs: list[tuple[str, str | None]], depth: int = 0) -> str:
+    """crumbs: list of (label, href) pairs; href=None marks the current page."""
     parts = ""
     for i, (label, href) in enumerate(crumbs):
         if i:
             parts += '<span class="sep">›</span>'
         if href is not None:
-            parts += f'<a href="{root}{href}">{label}</a>'
+            parts += f'<a href="{rel(depth, href)}">{label}</a>'
         else:
             parts += f'<span class="cur">{label}</span>'
     return f"""<header class="site-header">
-  <a class="logo" href="{root}index.html">Sean's Wallpaper Repository</a>
+  <a class="logo" href="{rel(depth, 'index.html')}">Sean's Wallpaper Repository</a>
   <nav class="breadcrumb">{parts}</nav>
 </header>
 """
@@ -397,7 +598,7 @@ def page_foot() -> str:
 """
 
 
-# ── Page generators ───────────────────────────────────────────────────────────
+# ── Page generators ─────────────────────────────────────────────────────────
 
 def gen_index() -> str:
     total = sum(
@@ -413,8 +614,10 @@ def gen_index() -> str:
         img_count = sum(len(get_images(lib, cat)) for cat in lib_cats)
         preview_cat = largest_cat(lib)
         preview_img = first_image(lib, preview_cat) if preview_cat else None
-        preview_src = f"{lib}/{preview_cat}/{preview_img}" if preview_img else ""
-        thumb_html = f'<img src="{preview_src}" loading="lazy" alt="">' if preview_src else ""
+        thumb_html = ""
+        if preview_img:
+            src = rel(0, "thumbnails", lib, preview_cat, thumb_name(preview_img))
+            thumb_html = f'<img src="{src}" loading="lazy" alt="">'
 
         cards += f"""
   <a class="lib-card" href="{lib}/index.html">
@@ -428,8 +631,8 @@ def gen_index() -> str:
   </a>"""
 
     return (
-        page_head("Gallery", css_depth=0)
-        + site_header([])
+        page_head("Gallery", depth=0)
+        + site_header([], depth=0)
         + f"""<main>
   <div class="hero">
     <h2>Sean's Wallpaper Repository</h2>
@@ -468,7 +671,10 @@ def gen_lib(lib: str) -> str:
         count = len(img_list)
         label = CAT_LABELS.get(cat, cat.replace("-", " ").title())
         first = img_list[0] if img_list else None
-        thumb_html = f'<img src="{cat}/{first}" loading="lazy" alt="">' if first else ""
+        thumb_html = ""
+        if first:
+            src = rel(1, "thumbnails", lib, cat, thumb_name(first))
+            thumb_html = f'<img src="{src}" loading="lazy" alt="">'
         cards += f"""
   <a class="cat-card" href="{cat}/index.html">
     <div class="thumb">{thumb_html}</div>
@@ -479,10 +685,10 @@ def gen_lib(lib: str) -> str:
   </a>"""
 
     return (
-        page_head(LIB_LABELS[lib], css_depth=1)
+        page_head(LIB_LABELS[lib], depth=1)
         + site_header(
             [("Home", "index.html"), (LIB_LABELS[lib], None)],
-            root="../"
+            depth=1,
         )
         + f"""<main>
   <div class="section-head">
@@ -506,28 +712,34 @@ def gen_cat(lib: str, cat: str) -> str:
         name = pretty_name(img)
         safe_name = html.escape(name)
         safe_img = html.escape(img)
+        thumb_src = rel(2, "thumbnails", lib, cat, thumb_name(img))
+        medium_src = rel(2, "medium", lib, cat, thumb_name(img))
+        orig_href = html.escape(original_url(lib, cat, img))
         items += f"""
   <div class="img-item">
-    <a href="{safe_img}" target="_blank" rel="noopener" title="{safe_name}">
-      <img src="{safe_img}" loading="lazy" alt="{safe_name}">
+    <a href="{medium_src}" target="_blank" rel="noopener" title="{safe_name}">
+      <img src="{thumb_src}" loading="lazy" alt="{safe_name}">
     </a>
-    <div class="name">{safe_img}</div>
+    <div class="meta">
+      <span class="name">{safe_img}</span>
+      <a class="orig" href="{orig_href}" target="_blank" rel="noopener" title="Download original">Original</a>
+    </div>
   </div>"""
 
     return (
-        page_head(f"{label} — {LIB_LABELS[lib]}", css_depth=2)
+        page_head(f"{label} — {LIB_LABELS[lib]}", depth=2)
         + site_header(
             [
                 ("Home", "index.html"),
                 (LIB_LABELS[lib], f"{lib}/index.html"),
                 (label, None),
             ],
-            root="../../"
+            depth=2,
         )
         + f"""<main>
   <div class="section-head">
     <h2>{label}</h2>
-    <p>{LIB_LABELS[lib]} &nbsp;·&nbsp; {len(img_list)} wallpapers — click any image to open full size</p>
+    <p>{LIB_LABELS[lib]} &nbsp;·&nbsp; {len(img_list)} wallpapers — click any image for a larger preview, or "Original" for the full-resolution file</p>
   </div>
   <div class="img-grid">{items}
   </div>
@@ -537,7 +749,7 @@ def gen_cat(lib: str, cat: str) -> str:
     )
 
 
-# ── Entry point ───────────────────────────────────────────────────────────────
+# ── Entry point ─────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="Generate wallpaper gallery pages.")
@@ -545,6 +757,11 @@ def main():
         "--check-names",
         action="store_true",
         help="Check wallpaper filenames for consistency and print issues.",
+    )
+    parser.add_argument(
+        "--no-previews",
+        action="store_true",
+        help="Skip thumbnail/medium generation; only re-emit HTML and CSS.",
     )
     args = parser.parse_args()
 
@@ -554,28 +771,36 @@ def main():
             print("No filename issues found.")
             return
         print("Filename issues:")
-        for rel, issue in issues:
-            print(f"  - {rel}: {issue}")
+        for relpath, issue in issues:
+            print(f"  - {relpath}: {issue}")
         return
 
-    # Shared stylesheet
-    (BASE / "gallery.css").write_text(CSS, encoding="utf-8")
-    print("  wrote  gallery.css")
+    OUT.mkdir(exist_ok=True)
 
-    # Root landing page
-    (BASE / "index.html").write_text(gen_index(), encoding="utf-8")
-    print("  wrote  index.html")
+    if not args.no_previews:
+        built, skipped, failed, cleaned = build_previews()
+        print(
+            f"  done   previews: built={built}, skipped={skipped}, "
+            f"failed={failed}, cleaned={cleaned}"
+        )
+
+    (OUT / "gallery.css").write_text(CSS, encoding="utf-8")
+    print("  wrote  docs/gallery.css")
+
+    (OUT / "index.html").write_text(gen_index(), encoding="utf-8")
+    print("  wrote  docs/index.html")
 
     for lib in LIBS:
-        lib_dir = BASE / lib
-
-        # Library index (e.g. desktop/index.html)
+        lib_dir = OUT / lib
+        lib_dir.mkdir(parents=True, exist_ok=True)
         (lib_dir / "index.html").write_text(gen_lib(lib), encoding="utf-8")
-        print(f"  wrote  {lib}/index.html")
+        print(f"  wrote  docs/{lib}/index.html")
 
         for cat in get_cats(lib):
-            (lib_dir / cat / "index.html").write_text(gen_cat(lib, cat), encoding="utf-8")
-            print(f"  wrote  {lib}/{cat}/index.html")
+            cat_dir = lib_dir / cat
+            cat_dir.mkdir(parents=True, exist_ok=True)
+            (cat_dir / "index.html").write_text(gen_cat(lib, cat), encoding="utf-8")
+            print(f"  wrote  docs/{lib}/{cat}/index.html")
 
     print("\nDone.")
 

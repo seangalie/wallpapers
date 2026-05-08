@@ -22,25 +22,61 @@ This repository is an archival collection of desktop wallpapers gathered from al
 
 ## Gallery Generation
 
-This repository includes a Python-based static site generator:
+This repository includes a Python-based static site generator that emits a
+self-contained site under `docs/`, which is what GitHub Pages serves.
+
+### Why a generated site
+
+Original wallpapers are stored in Git LFS to keep clones reasonable. GitHub
+Pages does not resolve LFS pointers, so the generator builds two non-LFS
+preview tiers under `docs/` that Pages can serve as real bytes:
+
+- `docs/thumbnails/` — small JPEGs (≤600 px on the long side) used in grids.
+- `docs/medium/` — larger JPEGs (≤1920 px) opened when a thumbnail is clicked.
+
+Each grid item also carries a small "Original" link that points at GitHub's
+LFS-resolving CDN, so users who want the true full-resolution file get it
+without the gallery itself paying the LFS bandwidth cost on every page view.
+
+### Setup
+
+The generator depends on [Pillow](https://pypi.org/project/Pillow/). The
+project uses a local virtualenv:
 
 ```bash
-python3 generate_gallery.py
+python3 -m venv .venv
+.venv/bin/pip install Pillow
 ```
 
-That command regenerates:
+The `.venv/` directory is gitignored.
 
-- `index.html` (root landing page)
-- `{library}/index.html` (library category pages)
-- `{library}/{category}/index.html` (image gallery pages)
-- `gallery.css` (shared stylesheet)
+### Running the generator
+
+```bash
+.venv/bin/python generate_gallery.py
+```
+
+That command:
+
+- Generates thumbnail and medium JPEG previews for every wallpaper under
+  `desktop/`, `dual/`, `mobile/`, `triple/`. Previews are skipped if their
+  destination is newer than the source, so re-runs are fast.
+- Removes orphaned previews whose source no longer exists.
+- Writes `docs/index.html`, `docs/{library}/index.html`,
+  `docs/{library}/{category}/index.html`, and `docs/gallery.css`.
+
+To re-emit only HTML and CSS without rebuilding previews:
+
+```bash
+.venv/bin/python generate_gallery.py --no-previews
+```
 
 ### Filename consistency check
 
-You can run a filename audit before regenerating pages:
+You can run a filename audit:
 
 ```bash
-python3 generate_gallery.py --check-names
+.venv/bin/python generate_gallery.py --check-names
 ```
 
 This check reports files with:
