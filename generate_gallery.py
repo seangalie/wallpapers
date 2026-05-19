@@ -87,6 +87,7 @@ CAT_LABELS = {
     "startrek": "Star Trek",
     "starwars": "Star Wars",
     "tech": "Tech",
+    "themes": "Themes",
     "urban": "Urban",
 }
 
