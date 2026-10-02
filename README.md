@@ -1,148 +1,116 @@
 <div align="center">
-
-# wallpapers
-A short description of wallpapers goes here.
-
-  <a href="https://github.com/seangalie/wallpapers/issues/new?assignees=&labels=bug&template=01_bug_report.yml&title=bug%3A+">Report a Bug</a>
-  ·
-  <a href="https://github.com/seangalie/wallpapers/issues/new?assignees=&labels=enhancement&template=02_feature_request.yml&title=feat%3A+">Request a Feature</a>
-  ·
-  <a href="https://github.com/seangalie/wallpapers/discussions">Ask a Question</a>
+  <img src="docs/wallpapers_landscape.jpg" alt="Colorful paint rollers in a landscape layout" width="640">
+  <h1>Sean's Wallpaper Archive</h1>
+  <p>A collection of desktop, multi-desktop, and mobile wallpapers gathered from all over the internet</p>
+  <p>
+    <a href="wallpapers/">Browse the archive</a>
+    · <a href="docs/CONTRIBUTING.md">Contribute</a>
+    · <a href="CHANGELOG.md">Changelog</a>
+  </p>
 </div>
-<div align="center">
-
-[![Project license](https://img.shields.io/github/license/seangalie/wallpapers.svg?style=flat-square)](LICENSE) [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/seangalie/wallpapers/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) [![code with love by seangalie](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-seangalie-ff1414.svg?style=flat-square)](https://github.com/seangalie)
-
-  <a href="https://github.com/seangalie/wallpapers">
-    <img src="docs/logo.svg" alt="Terminal Placeholder for the Logo" width="640" height="360">
-  </a>
-</div>
-
-<details open="open">
-<summary>Table of Contents</summary>
-
-- [About](#about)
-  - [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Changelog](#changelog)
-- [Support](#support)
-- [Project assistance](#project-assistance)
-- [Contributing](#contributing)
-- [Authors & contributors](#authors--contributors)
-- [Security](#security)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
-
-</details>
 
 ## About
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+Sean's Wallpaper Archive brings together wallpapers for single desktops,
+multiple monitors, ultrawide displays, mobile devices, and square layouts.
+The collection includes photography, illustrations, abstract designs, retro
+graphics, games, science fiction, and coordinated themes.
+
+Images are organized first by display format, then by a flat category. Browse
+by the subject or style you want, download an image, and use your device's
+wallpaper settings to apply it. There is no application to install or build.
+
+The initial collection contains **1,252 images** across six display formats.
+
+## Browse by display format
+
+| Format | Intended layout | Images in the initial collection |
+| --- | --- | ---: |
+| [Desktops](wallpapers/desktops/) | Single desktop displays | 965 |
+| [Ultrawide](wallpapers/ultrawide/) | Wide single-display layouts | 65 |
+| [Dual](wallpapers/dual/) | Two-monitor panoramas and matching panel pairs | 109 |
+| [Triple](wallpapers/triple/) | Three-monitor panoramas | 47 |
+| [Mobile](wallpapers/mobile/) | Portrait displays and phones | 58 |
+| [Square](wallpapers/square/) | Square images and flexible crops | 8 |
+
+Formats describe the intended layout; individual resolutions and aspect ratios
+vary. For panel pairs, filenames ending in `-left-panel` and `-right-panel`
+identify the image for each monitor.
+
+Categories include `abstract`, `art`, `cars`, `fantasy`, `gaming`, `history`,
+`inspiration`, `minimal`, `music`, `original`, `outdoors`, `pop-culture`,
+`retro`, `science`, `scifi`, `space`, `star-trek`, `star-wars`, `tech`,
+`themes`, and `urban`. Category contents vary by display format.
+
+See the [organization guide](docs/ORGANIZATION.md) for category definitions,
+illustration placement, retro styles, and filename conventions.
 
 <details>
-<summary>Screenshots</summary>
-<br>
+<summary>Portrait and square previews</summary>
 
-> **[?]**
-> Please provide your screenshots here.
-
-|                               Home Page                               |                               Login Page                               |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/screenshot.png" title="Home Page" width="100%"> | <img src="docs/screenshot.png" title="Login Page" width="100%"> |
+<p align="center">
+  <img src="docs/wallpapers_portrait.jpg" alt="Colorful paint rollers in a portrait layout" width="180">
+  <img src="docs/wallpapers_square.jpg" alt="Colorful paint rollers in a square layout" width="320">
+</p>
 
 </details>
 
-### Built With
+## Download and use
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+Browse [wallpapers/](wallpapers/) and download individual images from their file
+pages. Wallpaper images are stored with [Git LFS](https://git-lfs.com/).
+Install Git LFS before cloning a local copy of the entire collection:
 
-## Getting Started
+```sh
+git lfs install
+git clone https://github.com/seangalie/wallpapers.git
+cd wallpapers
+git lfs pull
+```
 
-### Prerequisites
+`git lfs pull` downloads the actual images if your checkout contains small LFS
+pointer files. See [GitHub's Git LFS setup guide](https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)
+for more details.
 
-> **[?]**
-> What are the project requirements/dependencies?
+Downloadable wallpaper ZIP files are still being planned for the first 1.0.0
+release. GitHub's automatic **Download ZIP** archives contain LFS pointers by
+default unless the repository setting to include LFS objects is enabled; see
+[GitHub's archive documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-git-lfs-objects-in-archives-of-your-repository).
 
-### Installation
+Choose an image that suits your screen dimensions, then select it in your
+desktop or mobile wallpaper settings. A spanning panorama works best when its
+aspect ratio matches the combined monitor layout; panel pairs can be applied
+to each display separately.
 
-> **[?]**
-> Describe how to install and get started with the project.
+## Contribute and get help
 
-## Usage
+New wallpapers, filename and category corrections, source credits, and
+documentation improvements are welcome. Start with the
+[contributing guide](docs/CONTRIBUTING.md).
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
-
-## Roadmap
-
-See the [open issues](https://github.com/seangalie/wallpapers/issues) for a list of proposed features (and known issues).
-
-- [Top Feature Requests](https://github.com/seangalie/wallpapers/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Top Bugs](https://github.com/seangalie/wallpapers/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Newest Bugs](https://github.com/seangalie/wallpapers/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+For questions and suggestions, see the [support guide](docs/SUPPORT.md) or
+[open an issue](https://github.com/seangalie/wallpapers/issues).
+Report security concerns using the [security policy](docs/SECURITY.md).
+Community participation follows the [code of conduct](docs/CODE_OF_CONDUCT.md).
 
 ## Changelog
 
-Notable changes to each release are recorded in [CHANGELOG.md](CHANGELOG.md).
+Collection additions, organization changes, and corrections are recorded in
+[CHANGELOG.md](CHANGELOG.md). Work awaiting a release is listed under
+**Unreleased**, which is the working record for the planned 1.0.0 release.
 
-## Support
+## Credits and license
 
-See [our support guide](docs/SUPPORT.md) for where to ask what, and what to expect.
+The archive is maintained by [Sean Galie](https://github.com/seangalie).
+Thanks to the artists, photographers, and communities whose work appears in
+the collection. If you can identify a missing or incorrect credit, please
+include the image's path and original source in an issue or pull request.
 
-> **[?]**
-> Add any other ways to reach the maintainers here -- a chat channel, a mailing
-> list, an email address.
+Wallpaper and preview image copyrights remain with their original creators
+and rights holders. Most image license terms are unknown; inclusion here does
+not grant permission to reuse an image. The Apache license does not cover them.
 
-The quickest routes are this repository's [discussions](https://github.com/seangalie/wallpapers/discussions) and the maintainer's [GitHub profile](https://github.com/seangalie).
-
-## Project assistance
-
-If you want to say **thank you** and/or support active development of wallpapers:
-
-- Add a [GitHub Star](https://github.com/seangalie/wallpapers) to the project.
-- Post about wallpapers on X/Twitter, BlueSky, Mastodon, or your favorite social channels.
-- Share more about wallpapers with your favorite communities or on your personal blog.
-
-Together, we can make wallpapers **better**!
-
-## Contributing
-
-First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
-
-Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
-
-## Authors & contributors
-
-The original setup of this repository is by [Sean Galie](https://github.com/seangalie).
-
-For a full list of all authors and contributors, see [the contributors page](https://github.com/seangalie/wallpapers/contributors).
-
-## Security
-
-wallpapers follows good practices of security, but 100% security cannot be assured.
-wallpapers is provided **"as is"** without any **warranty**. Use at your own risk.
-
-_For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
-
-## License
-
-This project is licensed under the **Apache 2.0 license**.
-
-See [LICENSE](LICENSE) for more information.
-
-## Acknowledgements
-
-> **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
+Repository-authored documentation, configuration, and code use the
+[Apache License 2.0](LICENSE-APACHE), with existing third-party notices retained.
+See [LICENSE](LICENSE) for the full licensing scope and how to submit credits
+or rights-holder requests.

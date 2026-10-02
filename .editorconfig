@@ -37,7 +37,7 @@ trim_trailing_whitespace = false
 # fixed step, so there is no single indent size to enforce.
 indent_size = unset
 
-[LICENSE]
+[LICENSE{,-APACHE}]
 # Verbatim license text; its layout is not ours to change.
 indent_style = unset
 indent_size = unset

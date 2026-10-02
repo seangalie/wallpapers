@@ -1,61 +1,89 @@
-# Contributing
+# Contributing to Sean's Wallpaper Archive
 
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
-Please note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+New wallpapers and corrections are welcome. You can help by adding images,
+improving names or categories, identifying sources and creators, or updating
+the documentation. Please follow the [code of conduct](CODE_OF_CONDUCT.md).
 
-## Development environment setup
+## Get started
 
-> **[?]**
-> Proceed to describe how to setup local development environment.
-> e.g:
+Fork the repository and clone your fork. The archive consists of image files
+and Markdown documentation, so no application dependencies or build are required.
+Install Git and [Git LFS](https://git-lfs.com/) for a local checkout, then run:
 
-To set up a development environment, please follow these steps:
+```sh
+git lfs install
+git clone https://github.com/YOUR-USERNAME/wallpapers.git
+cd wallpapers
+git lfs pull
+```
 
-1. Clone the repo
+The repository's [`.gitattributes`](../.gitattributes) routes wallpaper image
+formats through LFS when you stage them with `git add`. README previews in
+`docs/` stay in regular Git. Add an LFS rule when introducing a new image format.
 
-   ```sh
-   git clone https://github.com/seangalie/wallpapers
-   ```
+Keep a pull request focused on one addition or a related set of changes.
+Discuss a new category, a large import, or a bulk reorganization in an
+[issue](https://github.com/seangalie/wallpapers/issues) before preparing it.
 
-2. TODO
+## Add wallpapers
 
-## Issues and feature requests
+- Choose the display format and category using the
+  [organization guide](ORGANIZATION.md).
+- Keep images directly inside `wallpapers/<format>/<category>/`. Categories
+  stay flat; describe styles, variants, and panels in filenames.
+- Use a descriptive filename and preserve the image's actual format. Changing
+  an extension does not convert the file.
+- Open the image and confirm that its subject, dimensions, and filename agree.
+- Include the creator, original source URL, and any known license or permission
+  information in the pull request. Mark unknown details as unknown.
+- Check for an identical image already in the archive. Distinct resolutions,
+  crops, color variants, and paired panels can be useful; explain the difference.
+- Preserve the supplied image quality. Explain any cropping, resizing, or
+  conversion you propose.
 
-You've found a bug in the source code, a mistake in the documentation or maybe you'd like a new feature? You can help us by [submitting an issue on GitHub](https://github.com/seangalie/wallpapers/issues). Before you create an issue, make sure to search the issue archive -- your issue may have already been addressed!
+## Correct names, categories, or credits
 
-Please try to create bug reports that are:
+Identify the current file path and explain the correction. For a rename or
+move, include the proposed destination. For a subject, character, location, or
+creator identification, include a source that supports it when available.
 
-- _Reproducible._ Include steps to reproduce the problem.
-- _Specific._ Include as much detail as possible: which version, what environment, etc.
-- _Unique._ Do not duplicate existing opened issues.
-- _Scoped to a Single Bug._ One bug per report.
+For bulk changes, provide an old-to-new path list for review. Check that every
+destination is unique and free before moving files, keep a rollback mapping,
+and verify that image contents and file counts are preserved afterward.
 
-**Even better: Submit a pull request with a fix or new feature!**
+## Submit a pull request
 
-### How to submit a Pull Request
+1. Create a branch in your fork.
+2. Add or update the relevant files and documentation.
+3. Record user-visible changes under `## [Unreleased]` in
+   [CHANGELOG.md](../CHANGELOG.md).
+4. Run `git diff --check` and review the images and paths you changed. After
+   staging wallpaper additions, use `git lfs status` and `git lfs ls-files`
+   to confirm that the images are tracked by LFS.
+5. Use a [Conventional Commit](https://www.conventionalcommits.org/) message,
+   such as `feat: add forest wallpapers` or `fix: correct galaxy filenames`.
+6. Push your branch and open a pull request using the repository's template.
 
-1. Search our repository for open or closed
-   [Pull Requests](https://github.com/seangalie/wallpapers/pulls)
-   that relate to your submission. You don't want to duplicate effort.
-2. Fork the project
-3. Create your feature branch (`git checkout -b feat/amazing_feature`)
-4. Commit your changes (`git commit -m 'feat: add amazing_feature'`) wallpapers uses [conventional commits](https://www.conventionalcommits.org), so please follow the specification in your commit messages.
-5. Push to the branch (`git push origin feat/amazing_feature`)
-6. [Open a Pull Request](https://github.com/seangalie/wallpapers/compare?expand=1)
+Pull requests need at least one of these labels: `breaking-change`, `bugfix`,
+`documentation`, `enhancement`, `refactor`, `performance`, `new-feature`,
+`maintenance`, `ci`, or `dependencies`. A maintainer can add a label if needed.
 
-### Pull request requirements
+## Checks
 
-A few checks run automatically on every pull request:
+Text files follow [`.editorconfig`](../.editorconfig). The Lint workflow checks
+text formatting and runs shellcheck on tracked shell scripts. Workflow changes
+are checked by actionlint and zizmor. The general CI workflow currently has a
+placeholder step; it does not validate the wallpaper collection.
 
-- **A label is required.** Your PR must carry at least one of `breaking-change`,
-  `bugfix`, `documentation`, `enhancement`, `refactor`, `performance`,
-  `new-feature`, `maintenance`, `ci`, or `dependencies`. A maintainer can add one
-  if you are unable to.
-- **Lint must pass.** The Lint workflow runs shellcheck over the shell scripts
-  and checks every file against the [`.editorconfig`](../.editorconfig) rules.
-- **Add a changelog entry.** Note user-visible changes under `## [Unreleased]` in
-  [CHANGELOG.md](../CHANGELOG.md). Internal-only changes do not need one.
-- **Keep commits conventional.** See [conventional commits](https://www.conventionalcommits.org).
+For image changes, manually verify that files open, dimensions match the
+intended format, categories remain flat, and filenames distinguish variants.
+For documentation changes, check local links and keep counts and examples
+consistent with the archive.
 
-By contributing, you agree that your contributions will be licensed under the
-same [license](../LICENSE) as this project.
+Repository-authored non-image contributions use the
+[Apache License 2.0](../LICENSE-APACHE), subject to existing third-party notices.
+Wallpapers and preview images retain the rights and terms of their original
+creators; they are excluded from the Apache license. Do not infer permission
+from an image's presence in the archive. Include known source and licensing
+information for wallpaper contributions and clearly mark unknown details.
+See [LICENSE](../LICENSE) for the complete licensing scope.

@@ -1,21 +1,20 @@
 ---
 name: 🛠 Codebase Improvement
-description: Suggest a better algorithm, structure, tool, or developer workflow
+description: Suggest organization, tooling, or maintenance improvements for Sean's Wallpaper Archive
 title: "dev: "
 labels: ["enhancement", "refactor"]
 body:
   - type: markdown
     attributes:
       value: |
-        Use this for changes that improve the codebase without changing what
-        wallpapers does for its users -- refactors, tooling, build times,
-        test coverage, developer ergonomics.
+        Use this for archive organization, tooling, or maintenance improvements.
+        Include an old-to-new path list when proposing bulk file changes.
 
   - type: textarea
     id: area
     attributes:
-      label: What part of the codebase?
-      description: Files, modules, or workflows this concerns. Links to lines are welcome.
+      label: What part of the archive?
+      description: The folders, files, documentation, or workflows this concerns.
     validations:
       required: true
 

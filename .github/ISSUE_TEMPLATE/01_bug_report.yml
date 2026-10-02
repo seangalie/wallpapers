@@ -1,6 +1,6 @@
 ---
 name: 🐛 Bug Report
-description: Report a defect so that wallpapers can be fixed
+description: Report an image, filename, category, or documentation problem in Sean's Wallpaper Archive
 title: "bug: "
 labels: ["bug"]
 body:
@@ -17,23 +17,23 @@ body:
       options:
         - label: I searched the open and closed issues and this has not been reported yet.
           required: true
-        - label: I am running the most recent version of wallpapers.
+        - label: I checked the current archive and the problem is still present.
           required: true
 
   - type: input
     id: version
     attributes:
-      label: Version
-      description: The release tag or commit SHA you are running.
-      placeholder: "v1.2.3, or 0a1b2c3"
+      label: Revision or download date
+      description: The commit, release tag, or approximate date of the copy you downloaded.
+      placeholder: "main, 0a1b2c3, or 2026-10-02"
     validations:
       required: true
 
   - type: textarea
     id: current
     attributes:
-      label: Current behavior
-      description: What happens today? Describe how the bug manifests.
+      label: Image path and problem
+      description: Include the full repository path and describe the image, name, category, or documentation problem.
     validations:
       required: true
 
@@ -61,14 +61,14 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Operating system, runtime version, browser -- whatever is relevant here.
+      description: For display issues, include your operating system, screen resolution, and monitor layout.
     validations:
       required: false
 
   - type: textarea
     id: logs
     attributes:
-      label: Relevant logs, errors, or code
+      label: Relevant errors
       description: This is rendered as a code block automatically, so no backticks are needed.
       render: shell
     validations:
@@ -78,6 +78,6 @@ body:
     id: context
     attributes:
       label: Anything else?
-      description: Related issues, suggested fixes, links to discussions elsewhere.
+      description: Source URLs, creator credits, suggested paths, or related issues.
     validations:
       required: false

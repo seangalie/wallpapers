@@ -1,6 +1,6 @@
 ---
 name: ✨ Feature Request
-description: Suggest an idea for wallpapers
+description: Suggest wallpapers or improvements for Sean's Wallpaper Archive
 title: "feat: "
 labels: ["enhancement"]
 body:
@@ -24,7 +24,7 @@ body:
     id: solution
     attributes:
       label: Preferred solution
-      description: A clear description of what you would like to happen.
+      description: Describe the addition or improvement. For wallpapers, include source URLs and the suggested display format and category.
     validations:
       required: true
 
@@ -40,7 +40,7 @@ body:
     id: context
     attributes:
       label: Additional context
-      description: Use cases, example code, screenshots, links to prior art.
+      description: Image previews, creator credits, source or license details, and related collections.
     validations:
       required: false
 

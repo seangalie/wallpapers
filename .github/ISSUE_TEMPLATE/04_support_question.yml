@@ -1,6 +1,6 @@
 ---
 name: ❓ Support Question
-description: Ask how to use wallpapers
+description: Ask how to browse or use Sean's Wallpaper Archive
 title: "support: "
 labels: ["question"]
 body:
@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Open-ended conversation is usually a better fit for Discussions. Use this
-        form when you have a specific question about using wallpapers.
+        form when you have a specific question about using Sean's Wallpaper Archive.
 
   - type: checkboxes
     id: preflight
@@ -32,7 +32,7 @@ body:
     id: tried
     attributes:
       label: What have you tried so far?
-      description: Commands, configuration, or code you have already attempted.
+      description: Images, display settings, or download steps you have already tried.
       render: shell
     validations:
       required: false
@@ -40,8 +40,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Version
-      description: The release tag or commit SHA you are running.
-      placeholder: "v1.2.3, or 0a1b2c3"
+      label: Revision or download date
+      description: The commit, release tag, or approximate date of the copy you downloaded.
+      placeholder: "main, 0a1b2c3, or 2026-10-02"
     validations:
       required: false

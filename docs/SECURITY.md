@@ -1,49 +1,23 @@
-# Security Policy
+# Security policy for Sean's Wallpaper Archive
 
-## Supported versions
+## Scope
 
-> **[?]**
-> Replace this table with the versions of wallpapers that receive security
-> fixes. If only the latest release is supported, say so plainly.
+This repository is a static image archive. Security reports should identify the
+affected file, repository configuration, or GitHub Actions workflow. Reports
+against the current `main` branch are the most useful; include a commit or
+release reference when reporting an older copy.
 
-| Version | Supported |
-| --- | --- |
-| Latest release | ✅ |
-| Older releases | ❌ |
+## Report a vulnerability
 
-## Reporting a vulnerability
+Please report security vulnerabilities privately using
+[GitHub's private vulnerability reporting](https://github.com/seangalie/wallpapers/security/advisories/new).
+Private reporting must be enabled for that link to work. Do not include an
+undisclosed vulnerability in a public issue, discussion, pull request, or
+commit message.
 
-**Please do not report security vulnerabilities through public GitHub issues,
-discussions, or pull requests.**
+Include the affected path or workflow, steps to reproduce the issue, its
+potential impact, and a suggested fix if you have one. Reports are handled on
+a best-effort basis; there is no guaranteed response time.
 
-Report them privately using [GitHub's private vulnerability reporting](https://github.com/seangalie/wallpapers/security/advisories/new).
-This creates a draft advisory that only you and the maintainers can see.
-
-> **[?]**
-> If you prefer to be reached by email instead, add the address here. Private
-> vulnerability reporting must be enabled in Settings → Security for the link
-> above to work.
-
-Please include as much of the following as you can:
-
-- The type of issue, and which component or file it affects
-- The steps or proof-of-concept needed to reproduce it
-- The version or commit affected, and any configuration required to trigger it
-- The impact: what an attacker could do with it
-- A suggested fix, if you have one
-
-## What happens next
-
-1. Your report is acknowledged, normally within a few days.
-2. The report is evaluated and its severity assessed. You may be asked for more
-   detail during this step.
-3. A fix or mitigation is prepared and released. You will be told the outcome
-   either way, including if the report is declined and why.
-4. You are credited in the advisory unless you ask not to be.
-
-Please keep the vulnerability private until a fix has been released. Once it has
-been published, or the report has been declined, you are free to disclose it.
-
-wallpapers follows good security practices, but no software can be guaranteed
-secure. It is provided **"as is"**, without warranty, under the terms of its
-[license](../LICENSE).
+Ordinary image, naming, category, and credit corrections belong in the channels
+listed in the [support guide](SUPPORT.md).
