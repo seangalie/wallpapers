@@ -1,15 +1,3 @@
-# TEMPLATE-NOTICE:START
-# /--------------------------------------------------------------------------\
-# | This file is part of a project template. Review it to add or remove the  |
-# | sections this repository actually needs.                                 |
-# |                                                                          |
-# | The canonical copy of this template is maintained at                     |
-# | https://github.com/seangalie/template                                    |
-# |                                                                          |
-# | The Template Bootstrap workflow deletes this notice automatically.       |
-# \--------------------------------------------------------------------------/
-# TEMPLATE-NOTICE:END
-
 # Normalize all text files to LF in the repository AND on checkout, so that
 # every platform sees the same bytes. Without the explicit eol=lf, a Windows
 # checkout would convert these back to CRLF and contradict .editorconfig.

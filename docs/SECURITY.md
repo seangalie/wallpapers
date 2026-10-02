@@ -3,7 +3,7 @@
 ## Supported versions
 
 > **[?]**
-> Replace this table with the versions of PROJECT_NAME that receive security
+> Replace this table with the versions of wallpapers that receive security
 > fixes. If only the latest release is supported, say so plainly.
 
 | Version | Supported |
@@ -16,7 +16,7 @@
 **Please do not report security vulnerabilities through public GitHub issues,
 discussions, or pull requests.**
 
-Report them privately using [GitHub's private vulnerability reporting](https://github.com/GITHUB_USERNAME/REPO_SLUG/security/advisories/new).
+Report them privately using [GitHub's private vulnerability reporting](https://github.com/seangalie/wallpapers/security/advisories/new).
 This creates a draft advisory that only you and the maintainers can see.
 
 > **[?]**
@@ -44,6 +44,6 @@ Please include as much of the following as you can:
 Please keep the vulnerability private until a fix has been released. Once it has
 been published, or the report has been declined, you are free to disclose it.
 
-PROJECT_NAME follows good security practices, but no software can be guaranteed
+wallpapers follows good security practices, but no software can be guaranteed
 secure. It is provided **"as is"**, without warranty, under the terms of its
 [license](../LICENSE).

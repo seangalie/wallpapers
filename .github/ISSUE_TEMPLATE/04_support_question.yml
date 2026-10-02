@@ -1,6 +1,6 @@
 ---
 name: ❓ Support Question
-description: Ask how to use PROJECT_NAME
+description: Ask how to use wallpapers
 title: "support: "
 labels: ["question"]
 body:
@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Open-ended conversation is usually a better fit for Discussions. Use this
-        form when you have a specific question about using PROJECT_NAME.
+        form when you have a specific question about using wallpapers.
 
   - type: checkboxes
     id: preflight

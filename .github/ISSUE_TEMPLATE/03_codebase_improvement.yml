@@ -8,7 +8,7 @@ body:
     attributes:
       value: |
         Use this for changes that improve the codebase without changing what
-        PROJECT_NAME does for its users -- refactors, tooling, build times,
+        wallpapers does for its users -- refactors, tooling, build times,
         test coverage, developer ergonomics.
 
   - type: textarea

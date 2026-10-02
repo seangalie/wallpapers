@@ -1,72 +1,19 @@
-<!-- TEMPLATE-SETUP:START -->
-> ### 🧰 You are looking at a template repository
->
-> Press **Use this template** to create your own repository from it. On the first
-> push to `main`, the [Template Bootstrap](.github/workflows/template-bootstrap.yml)
-> workflow replaces the `GITHUB_USERNAME`, `REPO_SLUG`, `PROJECT_NAME`, and
-> `FULL_NAME` placeholders across every file, strips the template notices, opens a
-> checklist issue covering the parts that still need a human, applies the
-> labels from `.github/labels.yml`.
->
-> It commits directly when repository rules allow that; otherwise it preserves
-> the changes on a setup branch and opens a pull request, and if repository
-> policy blocks automated pull requests too, the checklist issue links to that
-> branch. It also tries to delete its own workflow files, but GitHub normally
-> refuses to let `GITHUB_TOKEN` write under `.github/workflows`, so expect a
-> comment on the checklist issue asking you to delete `template-bootstrap.yml`
-> and `template-test.yml` by hand. They are harmless until you do: once the
-> personalization lands, the bootstrap finds nothing left to change.
->
-> If it did not run, start it by hand from **Actions → Template Bootstrap → Run
-> workflow**.
->
-> <details>
-> <summary>Setting up without GitHub Actions</summary>
->
-> From a clone of the new repository, with Bash and Perl available:
->
-> 1. Run the file edits the workflow would make. They replace the placeholders,
->    write `.github/CODEOWNERS`, and remove every template notice, including
->    this one. Use `OWNER_TYPE=Organization` for an organization account.
->
->    ```sh
->    OWNER=your-login REPO=your-repo FULL_NAME="Your Name" OWNER_TYPE=User \
->      bash .github/scripts/template-bootstrap.sh
->    ```
->
-> 2. Open an issue from `.github/TEMPLATE_CHECKLIST.md` (or keep it as your own
->    to-do list), then delete the template-only files:
->
->    ```sh
->    git rm -r .github/TEMPLATE_CHECKLIST.md .github/scripts \
->      .github/workflows/template-bootstrap.yml .github/workflows/template-test.yml
->    ```
->
-> 3. Commit and push. This commit does not touch `.github/labels.yml`, so the
->    Sync labels workflow will not start by itself: run it once from **Actions →
->    Sync labels → Run workflow** to create the labels the PR Labels check needs.
->
-> Deleting `template-bootstrap.yml` is what stops it running on every push, so
-> do not skip step 2.
-> </details>
-<!-- TEMPLATE-SETUP:END -->
-
 <div align="center">
 
-# PROJECT_NAME
-A short description of PROJECT_NAME goes here.
+# wallpapers
+A short description of wallpapers goes here.
 
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=bug&template=01_bug_report.yml&title=bug%3A+">Report a Bug</a>
+  <a href="https://github.com/seangalie/wallpapers/issues/new?assignees=&labels=bug&template=01_bug_report.yml&title=bug%3A+">Report a Bug</a>
   ·
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/issues/new?assignees=&labels=enhancement&template=02_feature_request.yml&title=feat%3A+">Request a Feature</a>
+  <a href="https://github.com/seangalie/wallpapers/issues/new?assignees=&labels=enhancement&template=02_feature_request.yml&title=feat%3A+">Request a Feature</a>
   ·
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG/discussions">Ask a Question</a>
+  <a href="https://github.com/seangalie/wallpapers/discussions">Ask a Question</a>
 </div>
 <div align="center">
 
-[![Project license](https://img.shields.io/github/license/GITHUB_USERNAME/REPO_SLUG.svg?style=flat-square)](LICENSE) [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) [![code with love by GITHUB_USERNAME](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-GITHUB_USERNAME-ff1414.svg?style=flat-square)](https://github.com/GITHUB_USERNAME)
+[![Project license](https://img.shields.io/github/license/seangalie/wallpapers.svg?style=flat-square)](LICENSE) [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/seangalie/wallpapers/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) [![code with love by seangalie](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-seangalie-ff1414.svg?style=flat-square)](https://github.com/seangalie)
 
-  <a href="https://github.com/GITHUB_USERNAME/REPO_SLUG">
+  <a href="https://github.com/seangalie/wallpapers">
     <img src="docs/logo.svg" alt="Terminal Placeholder for the Logo" width="640" height="360">
   </a>
 </div>
@@ -139,11 +86,11 @@ A short description of PROJECT_NAME goes here.
 
 ## Roadmap
 
-See the [open issues](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/seangalie/wallpapers/issues) for a list of proposed features (and known issues).
 
-- [Top Feature Requests](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Top Bugs](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
-- [Newest Bugs](https://github.com/GITHUB_USERNAME/REPO_SLUG/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- [Top Feature Requests](https://github.com/seangalie/wallpapers/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Top Bugs](https://github.com/seangalie/wallpapers/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Newest Bugs](https://github.com/seangalie/wallpapers/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ## Changelog
 
@@ -157,17 +104,17 @@ See [our support guide](docs/SUPPORT.md) for where to ask what, and what to expe
 > Add any other ways to reach the maintainers here -- a chat channel, a mailing
 > list, an email address.
 
-The quickest routes are this repository's [discussions](https://github.com/GITHUB_USERNAME/REPO_SLUG/discussions) and the maintainer's [GitHub profile](https://github.com/GITHUB_USERNAME).
+The quickest routes are this repository's [discussions](https://github.com/seangalie/wallpapers/discussions) and the maintainer's [GitHub profile](https://github.com/seangalie).
 
 ## Project assistance
 
-If you want to say **thank you** and/or support active development of PROJECT_NAME:
+If you want to say **thank you** and/or support active development of wallpapers:
 
-- Add a [GitHub Star](https://github.com/GITHUB_USERNAME/REPO_SLUG) to the project.
-- Post about PROJECT_NAME on X/Twitter, BlueSky, Mastodon, or your favorite social channels.
-- Share more about PROJECT_NAME with your favorite communities or on your personal blog.
+- Add a [GitHub Star](https://github.com/seangalie/wallpapers) to the project.
+- Post about wallpapers on X/Twitter, BlueSky, Mastodon, or your favorite social channels.
+- Share more about wallpapers with your favorite communities or on your personal blog.
 
-Together, we can make PROJECT_NAME **better**!
+Together, we can make wallpapers **better**!
 
 ## Contributing
 
@@ -177,14 +124,14 @@ Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you f
 
 ## Authors & contributors
 
-The original setup of this repository is by [FULL_NAME](https://github.com/GITHUB_USERNAME).
+The original setup of this repository is by [Sean Galie](https://github.com/seangalie).
 
-For a full list of all authors and contributors, see [the contributors page](https://github.com/GITHUB_USERNAME/REPO_SLUG/contributors).
+For a full list of all authors and contributors, see [the contributors page](https://github.com/seangalie/wallpapers/contributors).
 
 ## Security
 
-PROJECT_NAME follows good practices of security, but 100% security cannot be assured.
-PROJECT_NAME is provided **"as is"** without any **warranty**. Use at your own risk.
+wallpapers follows good practices of security, but 100% security cannot be assured.
+wallpapers is provided **"as is"** without any **warranty**. Use at your own risk.
 
 _For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
 

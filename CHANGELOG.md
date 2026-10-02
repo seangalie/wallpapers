@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to PROJECT_NAME are documented in this file.
+All notable changes to wallpapers are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -32,4 +32,4 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 - Initial project scaffolding.
 
-[unreleased]: https://github.com/GITHUB_USERNAME/REPO_SLUG/commits/main
+[unreleased]: https://github.com/seangalie/wallpapers/commits/main

@@ -1,26 +1,4 @@
-<!-- TEMPLATE-SETUP:START -->
-> ### 🧰 Working on the template itself
->
-> This is the template repository, not a project generated from it. Everything
-> below this block is the starting point each generated project receives, and
-> the Template Bootstrap workflow deletes this block when it personalizes one.
->
-> - Leave the `GITHUB_USERNAME`, `REPO_SLUG`, `PROJECT_NAME`, and `FULL_NAME`
->   placeholders in place. The bootstrap replaces every occurrence in every
->   file, so never use those strings for anything else.
-> - The bootstrap deletes every block wrapped in `TEMPLATE-SETUP` or
->   `TEMPLATE-NOTICE` start and end markers, in any file.
-> - The file edits live in `.github/scripts/template-bootstrap.sh`. Run
->   `bash .github/scripts/template-bootstrap.test.sh` after changing it, the
->   placeholders, or the notices. The Template test workflow runs it too.
-> - Anything a generated repository still needs a human to do belongs in
->   `.github/TEMPLATE_CHECKLIST.md`, which becomes its setup issue. A new
->   `> **[?]**` prompt anywhere needs a checklist item.
-> - The `> **[?]**` prompts below are for each generated project to answer.
->   Leave them as prompts here.
-<!-- TEMPLATE-SETUP:END -->
-
-# Working on PROJECT_NAME
+# Working on wallpapers
 
 Instructions for AI coding agents. Human contributors should start with
 [CONTRIBUTING.md](docs/CONTRIBUTING.md). `CLAUDE.md` imports this file, so shared
@@ -32,7 +10,7 @@ it out from the code and `.github/workflows/ci.yml` rather than guessing.
 ## Project overview
 
 > **[?]**
-> Two or three sentences: what PROJECT_NAME does, who uses it, and the main
+> Two or three sentences: what wallpapers does, who uses it, and the main
 > languages and frameworks. Link to the README for the rest.
 
 ## Commands
