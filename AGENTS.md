@@ -69,7 +69,8 @@ counts.
 - `wallpapers/<format>/<category>/` -- image assets; each category stays flat.
 - `.gitattributes` -- LFS image rules scoped to `wallpapers/`, plus text formatting.
 - `LICENSE` -- licensing scope; `LICENSE-APACHE` -- unmodified Apache 2.0 terms;
-  `NOTICE` -- copyright notice for repository-authored files.
+  `NOTICE` -- copyright notice for repository-authored files;
+  `LICENSE-ORIGINALS` -- CC BY-NC 4.0 for the listed photographs by Sean Galie.
 - `docs/ORGANIZATION.md` -- category definitions and naming conventions.
 - `docs/` -- contribution, support, security, and conduct policies, plus README images.
 - `.github/` -- issue and PR templates, labels, Dependabot, and workflows.
@@ -132,8 +133,11 @@ because those downloads do count. See the [archive documentation](https://docs.g
   `.env.example` if variables are introduced.
 - Preserve the standard Apache text in `LICENSE-APACHE` and third-party notices.
   Follow the scope in `LICENSE`: image rights remain with original creators and
-  rights holders; repository-authored non-image files use Apache 2.0. Do not
-  claim permissions for imported artwork without source evidence.
+  rights holders; repository-authored non-image files use Apache 2.0; only the
+  photographs listed in `LICENSE-ORIGINALS` use CC BY-NC 4.0. Keep the
+  Creative Commons legal code there unmodified, and add a photo to its list
+  only when Sean confirms it is his own work. Do not claim permissions for
+  imported artwork without source evidence.
 - Do not weaken checks by skipping or deleting tests, adding blanket lint
   suppressions, or removing CI steps. Fix the cause or report what is failing.
 - Never describe an unfixed security vulnerability in a public issue, pull

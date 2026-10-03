@@ -13,7 +13,9 @@
 # in wallpapers-desktops-space.zip.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
-# image rights notice travels with the downloads. SHA256SUMS.txt lists a
+# image rights notice travels with the downloads. An archive holding any image
+# listed in LICENSE-ORIGINALS also carries that file as LICENSE-ORIGINALS.txt,
+# because those images are licensed under its CC BY-NC 4.0 terms. SHA256SUMS.txt lists a
 # checksum for each archive. Images are stored, not recompressed: they are
 # already compressed, and recompressing them costs time for no gain.
 #
@@ -87,6 +89,10 @@ for format in $FORMATS; do
       cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
       printf '%s\n' "$archive" >> "${STAGE}/archives"
     fi
+    if grep -qxF -- "  ${path}" "${ROOT}/LICENSE-ORIGINALS" \
+      && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
+      cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
+    fi
     ln "${ROOT}/${path}" "${stage}/${entry}" 2> /dev/null \
       || cp -p "${ROOT}/${path}" "${stage}/${entry}"
     count=$((count + 1))
@@ -114,7 +120,7 @@ while IFS= read -r archive; do
     cd "${STAGE}/${archive}"
     find . -type f | sed 's|^\./||' | LC_ALL=C sort | zip -0 -X -q "$zip_path" -@
   )
-  images="$(($(find "${STAGE}/${archive}" -type f | wc -l) - 1))"
+  images="$(find "${STAGE}/${archive}" -type f ! -name 'LICENSE*.txt' | wc -l | tr -d ' ')"
   size="$(wc -c < "$zip_path" | tr -d ' ')"
   echo "${archive}.zip: ${images} images, ${size} bytes"
   if [ "$size" -ge "$ASSET_LIMIT" ]; then

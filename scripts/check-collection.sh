@@ -127,6 +127,20 @@ while IFS= read -r path; do
   fail "Paths differ only by letter case: ${path}"
 done < "${WORK}/collisions"
 
+# LICENSE-ORIGINALS licenses the photographs it lists by path, one per line
+# indented by two spaces. A renamed or removed photo would leave the license
+# naming nothing and the photo unlicensed, so every listed path must be a
+# valid wallpaper in the index.
+if git cat-file -e :LICENSE-ORIGINALS 2> /dev/null; then
+  cut -d' ' -f2- "${WORK}/objects" > "${WORK}/valid-paths"
+  git show :LICENSE-ORIGINALS | sed -n 's|^  \(wallpapers/.*\)$|\1|p' > "${WORK}/licensed"
+  while IFS= read -r path; do
+    if ! grep -qxF -- "$path" "${WORK}/valid-paths"; then
+      fail "LICENSE-ORIGINALS lists a path that is not a valid wallpaper in the index: ${path}"
+    fi
+  done < "${WORK}/licensed"
+fi
+
 # --- Git LFS ----------------------------------------------------------------
 
 git check-attr --cached -z --stdin filter < "${WORK}/paths" > "${WORK}/attributes"

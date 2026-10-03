@@ -146,14 +146,15 @@ jobs:
             echo "## Downloads"
             echo
             echo "Each ZIP holds one display format, or one category of desktop wallpapers,"
-            echo "with \`LICENSE.txt\` explaining the image rights. Built from commit"
+            echo "with \`LICENSE.txt\` explaining the image rights (plus \`LICENSE-ORIGINALS.txt\`"
+            echo "for Sean's own photos). Built from commit"
             echo "[\`${SHA:0:7}\`](${SERVER_URL}/${GH_REPO}/commit/${SHA}). Checksums are in"
             echo "[\`SHA256SUMS.txt\`](${base}/SHA256SUMS.txt)."
             echo
             echo "| Download | Images | Size |"
             echo "| --- | ---: | ---: |"
             for zip in wallpapers-*.zip; do
-              images="$(unzip -Z1 "$zip" | grep -vcx 'LICENSE.txt')"
+              images="$(unzip -Z1 "$zip" | grep -vc '^LICENSE.*\.txt$')"
               size="$(stat -c %s "$zip" | awk '{ printf "%.0f MB", $1 / 1000000 }')"
               echo "| [${zip}](${base}/${zip}) | ${images} | ${size} |"
             done

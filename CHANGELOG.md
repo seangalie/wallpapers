@@ -34,9 +34,12 @@ Work in progress toward **1.0.0**.
 
 ### Added
 
-- Initial collection of 1,252 wallpapers across desktop, ultrawide, dual-monitor,
+- Initial collection of 1,250 wallpapers across desktop, ultrawide, dual-monitor,
   triple-monitor, mobile, and square formats.
 - A flat `retro` category for 25 images with retro graphic styles.
+- A Creative Commons Attribution-NonCommercial 4.0 license for Sean's own
+  photographs in `desktops/original`, listed in `LICENSE-ORIGINALS`. They may
+  be shared and adapted for non-commercial purposes with credit.
 - Archive browsing instructions, category and filename conventions, and guidance
   for contributing new wallpapers, corrections, and source credits.
 - Git LFS tracking for wallpaper image formats, with setup and download
@@ -78,7 +81,9 @@ Work in progress toward **1.0.0**.
 
 ### Removed
 
-- One exact duplicate wallpaper from the initial import.
+- Three duplicate wallpapers from the initial import: one exact copy, and JPEG
+  re-encodes of `dual/gaming/firewatch-tower-dual.png` and
+  `desktops/themes/osaka-jade_shaded-entrance.png`, which remain.
 
 ### Fixed
 
