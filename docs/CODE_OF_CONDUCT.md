@@ -21,10 +21,15 @@ friendly place.
 
 ## Reporting
 
-If someone's behavior concerns you, contact Sean privately using the contact
-details on his [GitHub profile](https://github.com/seangalie). Reports are kept
-confidential. You can also use GitHub's **Report content** option on any
-comment, issue, or pull request.
+If someone's behavior concerns you, contact Sean privately through the
+[contact form](https://www.seangalie.com/contact). You don't need a GitHub
+account, and your report doesn't have to relate to a specific comment, issue,
+or pull request. Sean will keep the details of your report private and share
+them only as needed to address the concern.
+
+To flag a specific comment, issue, or pull request to GitHub's staff, use
+GitHub's **Report content** option on it. GitHub handles those reports under
+its own policies.
 
 ## Enforcement
 
