@@ -46,6 +46,8 @@ Discuss a new category, a large import, or a bulk reorganization in an
 Identify the current file path and explain the correction. For a rename or
 move, include the proposed destination. For a subject, character, location, or
 creator identification, include a source that supports it when available.
+Known creators and sources are recorded in [CREDITS.md](../CREDITS.md), with
+the evidence for each credit.
 
 For bulk changes, provide an old-to-new path list for review. Check that every
 destination is unique and free before moving files, keep a rollback mapping,

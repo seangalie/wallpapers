@@ -74,6 +74,7 @@ counts.
 - `docs/ORGANIZATION.md` -- category definitions and naming conventions.
 - `docs/` -- contribution, support, security, and conduct policies, plus README images.
 - `.github/` -- issue and PR templates, labels, Dependabot, and workflows.
+- `CREDITS.md` -- known creators and sources, each with its evidence.
 - `CHANGELOG.md` -- collection additions, reorganizations, and corrections in
   [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
 - `scripts/` -- collection validation, checker regression tests, and ZIP
@@ -100,7 +101,9 @@ because those downloads do count. See the [archive documentation](https://docs.g
   flat categories, retro styles, illustration placement, and panel suffixes.
 - Use descriptive lowercase hyphenated filenames. Preserve established theme
   prefixes and underscore separators. Retain original image quality unless a
-  transformation is explicitly requested.
+  transformation is explicitly requested. Record any upscaling or other
+  transformation, with the original size and method, under "Modified images"
+  in `CREDITS.md`.
 - Do not infer a creator, franchise, location, or license from a vague filename.
   Record uncertainty and use evidence for specific identifications.
 - Preserve LFS tracking for wallpaper images. When adding an image format,

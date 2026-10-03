@@ -40,6 +40,8 @@ Work in progress toward **1.0.0**.
 - A Creative Commons Attribution-NonCommercial 4.0 license for Sean's own
   photographs in `desktops/original`, listed in `LICENSE-ORIGINALS`. They may
   be shared and adapted for non-commercial purposes with credit.
+- `CREDITS.md`, listing creators and sources found in image metadata, with the
+  evidence for each credit and any uncertainty.
 - Archive browsing instructions, category and filename conventions, and guidance
   for contributing new wallpapers, corrections, and source credits.
 - Git LFS tracking for wallpaper image formats, with setup and download
@@ -78,6 +80,14 @@ Work in progress toward **1.0.0**.
   files.
 - Questions and suggestions now go through issues; the repository does not use
   GitHub Discussions.
+- Renamed seven wallpapers for consistent names: `desktops/space/galaxy-m82`
+  (was `galaxy-messier82`), `desktops/space/earth` and `planetrise` (dropped
+  the redundant `space-` prefix), `dual/urban/san-francisco-1906` (was
+  `sanfrancisco-1906`), and `dual/urban/brooklyn-bridge`, `chernobyl-ruins`,
+  and `golden-gate-bridge` (dropped the `landmarks-` prefix).
+- Enlarged three small images for current displays: `hobbit-art` and
+  `multicolor-groot` to 3840×2160 with Real-ESRGAN, and `blue-gradient` to
+  4096×3072 by reconstructing the gradient. `CREDITS.md` records each method.
 
 ### Removed
 
