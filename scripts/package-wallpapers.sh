@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
-# Packages the tracked wallpapers into one flat ZIP per display format.
+# Packages the tracked wallpapers into flat ZIP archives for release downloads.
 #
-# Each archive holds its files directly at the root, named
-# <category>_<filename>, so wallpapers/dual/gaming/firewatch-tower-left-panel.jpg
-# becomes gaming_firewatch-tower-left-panel.jpg in wallpapers-dual.zip. Every
-# archive also carries the repository's LICENSE as LICENSE.txt, so the image
-# rights notice travels with the downloads. Images are stored, not
-# recompressed: they are already compressed, and recompressing them costs time
-# for no gain.
+# Most display formats become one archive, wallpapers-<format>.zip, with each
+# image at the root named <category>_<filename>: so
+# wallpapers/dual/gaming/firewatch-tower-left-panel.jpg becomes
+# gaming_firewatch-tower-left-panel.jpg in wallpapers-dual.zip.
+#
+# Formats listed in SPLIT_FORMATS are too large for one archive, so they become
+# one archive per category instead, wallpapers-<format>-<category>.zip, with
+# each image at the root under its own filename: so
+# wallpapers/desktops/space/galaxy-messier82.jpg becomes galaxy-messier82.jpg
+# in wallpapers-desktops-space.zip.
+#
+# Every archive also carries the repository's LICENSE as LICENSE.txt, so the
+# image rights notice travels with the downloads. SHA256SUMS.txt lists a
+# checksum for each archive. Images are stored, not recompressed: they are
+# already compressed, and recompressing them costs time for no gain.
 #
 # The collection is checked first with scripts/check-collection.sh. Only images
 # tracked by Git are packaged, so local files and OS metadata such as .DS_Store
@@ -16,14 +24,16 @@
 # for a release asset.
 #
 # Usage: scripts/package-wallpapers.sh [output-dir]
-#   output-dir  defaults to dist/release at the repository root
+#   output-dir  defaults to dist/release at the repository root. Archives and
+#               SHA256SUMS.txt from an earlier run there are replaced.
 #
-# Requires git, git-lfs contents, and zip. Written for the bash 3.2 that macOS
-# ships as well as the runner's.
+# Requires git, git-lfs contents, zip, and sha256sum or shasum. Written for the
+# bash 3.2 that macOS ships as well as the runner's.
 
 set -euo pipefail
 
 FORMATS="desktops ultrawide dual triple mobile square"
+SPLIT_FORMATS="desktops"
 ASSET_LIMIT=2147483648 # 2 GiB
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -46,9 +56,12 @@ fail() {
   errors=$((errors + 1))
 }
 
+is_split() {
+  case " ${SPLIT_FORMATS} " in *" $1 "*) return 0 ;; esac
+  return 1
+}
+
 for format in $FORMATS; do
-  stage="${STAGE}/${format}"
-  mkdir "$stage"
   count=0
 
   while IFS= read -r -d '' path; do
@@ -58,17 +71,30 @@ for format in $FORMATS; do
     fi
 
     relative="${path#wallpapers/"${format}"/}"
-    archive_name="${relative%%/*}_${relative#*/}"
-    ln "${ROOT}/${path}" "${stage}/${archive_name}" 2> /dev/null \
-      || cp -p "${ROOT}/${path}" "${stage}/${archive_name}"
+    category="${relative%%/*}"
+    name="${relative#*/}"
+    if is_split "$format"; then
+      archive="wallpapers-${format}-${category}"
+      entry="$name"
+    else
+      archive="wallpapers-${format}"
+      entry="${category}_${name}"
+    fi
+
+    stage="${STAGE}/${archive}"
+    if [ ! -d "$stage" ]; then
+      mkdir "$stage"
+      cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
+      printf '%s\n' "$archive" >> "${STAGE}/archives"
+    fi
+    ln "${ROOT}/${path}" "${stage}/${entry}" 2> /dev/null \
+      || cp -p "${ROOT}/${path}" "${stage}/${entry}"
     count=$((count + 1))
   done < <(git -C "$ROOT" ls-files -z -- "wallpapers/${format}")
 
   if [ "$count" -eq 0 ]; then
     fail "No tracked images found in wallpapers/${format}"
   fi
-  cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
-  printf '%s\n' "$count" > "${stage}.count"
 done
 
 if [ "$errors" -gt 0 ]; then
@@ -76,22 +102,36 @@ if [ "$errors" -gt 0 ]; then
   exit 1
 fi
 
-for format in $FORMATS; do
-  archive="${OUTPUT_DIR}/wallpapers-${format}.zip"
-  # zip adds to an existing archive rather than replacing it.
-  rm -f "$archive"
+# Replace everything an earlier run left, so a renamed or removed category
+# cannot leave a stale archive behind.
+rm -f "${OUTPUT_DIR}"/wallpapers-*.zip "${OUTPUT_DIR}/SHA256SUMS.txt"
+
+while IFS= read -r archive; do
+  zip_path="${OUTPUT_DIR}/${archive}.zip"
   # -0 stores without compression, -X leaves out OS-specific file attributes,
   # and sorting the list keeps the entry order the same from run to run.
   (
-    cd "${STAGE}/${format}"
-    find . -type f | sed 's|^\./||' | LC_ALL=C sort | zip -0 -X -q "$archive" -@
+    cd "${STAGE}/${archive}"
+    find . -type f | sed 's|^\./||' | LC_ALL=C sort | zip -0 -X -q "$zip_path" -@
   )
-  size="$(wc -c < "$archive" | tr -d ' ')"
-  echo "wallpapers-${format}.zip: $(cat "${STAGE}/${format}.count") images, ${size} bytes"
+  images="$(($(find "${STAGE}/${archive}" -type f | wc -l) - 1))"
+  size="$(wc -c < "$zip_path" | tr -d ' ')"
+  echo "${archive}.zip: ${images} images, ${size} bytes"
   if [ "$size" -ge "$ASSET_LIMIT" ]; then
-    fail "wallpapers-${format}.zip is ${size} bytes; GitHub release assets must be under 2 GiB"
+    fail "${archive}.zip is ${size} bytes; GitHub release assets must be under 2 GiB"
   fi
-done
+done < <(LC_ALL=C sort "${STAGE}/archives")
+
+if command -v sha256sum > /dev/null 2>&1; then
+  checksum() { sha256sum "$@"; }
+else
+  checksum() { shasum -a 256 "$@"; }
+fi
+(
+  cd "$OUTPUT_DIR"
+  find . -maxdepth 1 -name 'wallpapers-*.zip' | sed 's|^\./||' | LC_ALL=C sort \
+    | while IFS= read -r zip_name; do checksum "$zip_name"; done > SHA256SUMS.txt
+)
 
 if [ "$errors" -gt 0 ]; then
   exit 1
