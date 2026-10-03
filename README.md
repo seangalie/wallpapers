@@ -149,8 +149,10 @@ Collection additions, organization changes, and corrections are recorded in
 
 The archive is maintained by [Sean Galie](https://github.com/seangalie).
 Thanks to the artists, photographers, and communities whose work appears in
-the collection. If you can identify a missing or incorrect credit, please
-include the image's path and original source in an issue or pull request.
+the collection. Known creators and sources are listed in
+[CREDITS.md](CREDITS.md). If you can identify a missing or incorrect credit,
+please include the image's path and original source in an issue or pull
+request.
 
 Wallpaper and preview image copyrights remain with their original creators
 and rights holders. Most image license terms are unknown; inclusion here does

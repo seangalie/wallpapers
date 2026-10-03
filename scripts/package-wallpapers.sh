@@ -9,7 +9,7 @@
 # Formats listed in SPLIT_FORMATS are too large for one archive, so they become
 # one archive per category instead, wallpapers-<format>-<category>.zip, with
 # each image at the root under its own filename: so
-# wallpapers/desktops/space/galaxy-messier82.jpg becomes galaxy-messier82.jpg
+# wallpapers/desktops/space/galaxy-m82.jpg becomes galaxy-m82.jpg
 # in wallpapers-desktops-space.zip.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
