@@ -71,6 +71,9 @@ Pull requests need at least one of these labels: `breaking-change`, `bugfix`,
 
 ## Checks
 
+Run `bash scripts/test-check-collection.sh` after changing collection validation.
+The regression tests use disposable Git indexes and do not download wallpapers.
+
 Text files follow [`.editorconfig`](../.editorconfig). The Lint workflow checks
 text formatting and runs shellcheck on tracked shell scripts. Workflow changes
 are checked by actionlint and zizmor. The CI workflow runs

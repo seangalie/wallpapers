@@ -43,5 +43,8 @@ jobs:
           persist-credentials: false
           lfs: false
 
+      - name: 🧪 Test the collection checker
+        run: bash scripts/test-check-collection.sh
+
       - name: 🚀 Run the collection check
         run: bash scripts/check-collection.sh

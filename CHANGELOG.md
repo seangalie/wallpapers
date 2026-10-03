@@ -30,10 +30,9 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
-Work in progress toward **1.0.0**. Downloadable wallpaper ZIP contents, naming,
-and publication workflow are still being planned; no ZIP packaging is
-implemented yet. Finalize those decisions and record the implemented behavior
-here before publishing the release.
+Work in progress toward **1.0.0**. Local ZIP packaging is implemented;
+automatically attaching archives to GitHub releases is still being planned.
+Finalize the publication workflow before publishing the release.
 
 ### Added
 
@@ -76,6 +75,9 @@ here before publishing the release.
 
 ### Fixed
 
+- Hardened collection validation to reject malformed LFS pointers, missing
+  indexed LFS tracking rules, and invalid filenames without corrupting the
+  check's records. Failed validation no longer rewrites the README table.
 - Corrected filename spelling, astronomy and character titles, and misplaced
   portrait and multi-monitor images.
 - Replaced README template placeholders and references to missing screenshots

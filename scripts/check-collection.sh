@@ -2,11 +2,12 @@
 # Checks the wallpaper collection against docs/ORGANIZATION.md and keeps the
 # README's collection table in step with it.
 #
-# Everything is read from the Git index, so a checkout holding only LFS pointer
-# files -- as CI's does -- is checked as fully as one with the images: layout,
+# Paths, attributes, and pointer metadata are read from the Git index, so a
+# checkout holding only LFS pointer files -- as CI's does -- can check layout,
 # formats, categories, filenames, LFS tracking, case-insensitive collisions,
 # and exact duplicates (the SHA-256 recorded in each LFS pointer is the image's
-# own hash). When an image's contents are present and file(1) is available, its
+# own hash). Git LFS validates pointers locally without downloading images.
+# When an image's contents are present and file(1) is available, its
 # contents are also checked against its extension.
 #
 # Usage: scripts/check-collection.sh [--write-readme]
@@ -68,10 +69,18 @@ while IFS= read -r -d '' entry; do
   mode="${entry%% *}"
   rest="${entry#* }"
   object="${rest%% *}"
+  stage="${rest#* }"
+  stage="${stage%%$'\t'*}"
   path="${entry#*$'\t'}"
+  printf -v quoted_path '%q' "$path"
+
+  if [ "$stage" != "0" ]; then
+    fail "Unmerged Git index entry: ${quoted_path}"
+    continue
+  fi
 
   if [ "$mode" != "100644" ] && [ "$mode" != "100755" ]; then
-    fail "Expected a regular file: ${path}"
+    fail "Expected a regular file: ${quoted_path}"
     continue
   fi
 
@@ -81,31 +90,34 @@ while IFS= read -r -d '' entry; do
   category="${remainder%%/*}"
   name="${remainder#*/}"
   if [ "$format" = "$relative" ] || [ "$category" = "$remainder" ] || [ "$name" != "${name##*/}" ]; then
-    fail "Expected wallpapers/<format>/<category>/<filename>: ${path}"
+    fail "Expected wallpapers/<format>/<category>/<filename>: ${quoted_path}"
     continue
   fi
 
   if ! contains "$format" "$FORMATS"; then
-    fail "Unknown display format '${format}': ${path}"
+    fail "Unknown display format: ${quoted_path}"
     continue
   fi
   if ! contains "$category" "$CATEGORIES"; then
-    fail "Unknown category '${category}': ${path}"
+    fail "Unknown category: ${quoted_path}"
     continue
   fi
 
   if ! [[ "$name" =~ $NAME_PATTERN ]]; then
-    fail "Filename is not lowercase, hyphenated, and .jpg/.png/.webp/.gif/.avif: ${path}"
+    fail "Filename is not lowercase, hyphenated, and .jpg/.png/.webp/.gif/.avif: ${quoted_path}"
+    continue
   elif [ "$category" != "themes" ] && [ "$name" != "${name#*_}" ]; then
-    fail "Underscores separate theme prefixes, in themes/ only: ${path}"
+    fail "Underscores separate theme prefixes, in themes/ only: ${quoted_path}"
+    continue
   fi
 
   printf '%s %s\n' "$object" "$path" >> "${WORK}/objects"
   printf '%s\t%s\n' "$format" "$category" >> "${WORK}/counts"
+  printf '%s\0' "$path" >> "${WORK}/paths"
 done < <(git ls-files -s -z -- wallpapers)
 
 if [ ! -s "${WORK}/objects" ]; then
-  fail "No wallpapers are tracked under wallpapers/"
+  fail "No valid wallpaper entries found in the Git index"
   exit 1
 fi
 
@@ -117,17 +129,34 @@ done < "${WORK}/collisions"
 
 # --- Git LFS ----------------------------------------------------------------
 
+git check-attr --cached -z --stdin filter < "${WORK}/paths" > "${WORK}/attributes"
+while IFS= read -r -d '' path && IFS= read -r -d '' attribute && IFS= read -r -d '' value; do
+  if [ "$attribute" != "filter" ] || [ "$value" != "lfs" ]; then
+    fail "Indexed attributes do not set filter=lfs: ${path}"
+  fi
+done < "${WORK}/attributes"
+
+if ! git lfs version > /dev/null 2>&1; then
+  fail "Git LFS is required to validate pointers; install Git LFS and rerun the check"
+  exit 1
+fi
+
 # An LFS pointer is a small text blob. Anything larger was committed directly
 # to Git, which .gitattributes is meant to prevent; only small blobs are read.
 cut -d' ' -f1 "${WORK}/objects" \
   | git cat-file --batch-check='%(objectname) %(objectsize)' > "${WORK}/sizes"
-awk '$2 > 1024 { print $1 }' "${WORK}/sizes" > "${WORK}/large"
+: > "${WORK}/pointers"
 awk '$2 <= 1024 { print $1 }' "${WORK}/sizes" \
-  | git cat-file --batch \
-  | LC_ALL=C awk '
-      /^[0-9a-f]+ blob [0-9]+$/ { object = $1; next }
-      /^oid sha256:[0-9a-f]+$/ { sub(/^oid sha256:/, ""); print object, $0 }
-    ' > "${WORK}/pointers"
+  | LC_ALL=C sort -u > "${WORK}/small-objects"
+while IFS= read -r object; do
+  git cat-file blob "$object" > "${WORK}/pointer"
+  # Use Git LFS's parser rather than treating an oid line as a whole pointer.
+  # Strict checks include version, SHA-256 length, size, and canonical encoding.
+  if git lfs pointer --check --strict --file="${WORK}/pointer" > /dev/null 2>&1; then
+    oid="$(sed -n 's/^oid sha256://p' "${WORK}/pointer")"
+    printf '%s %s\n' "$object" "$oid" >> "${WORK}/pointers"
+  fi
+done < "${WORK}/small-objects"
 
 # Prints "<path>\t<lfs-oid>" for pointers and "<path>\t-" for anything else.
 awk '
@@ -137,7 +166,7 @@ awk '
 
 while IFS=$'\t' read -r path oid; do
   if [ "$oid" = "-" ]; then
-    fail "Not stored in Git LFS (check .gitattributes, then re-add the file): ${path}"
+    fail "Not a valid canonical Git LFS pointer in the index (re-add the image with LFS): ${path}"
   fi
 done < "${WORK}/lfs"
 
@@ -159,6 +188,10 @@ if command -v file > /dev/null 2>&1; then
   while IFS=$'\t' read -r path _; do
     [ -f "$path" ] || continue
     if head -c 40 "$path" | grep -q '^version https://git-lfs'; then
+      if ! git lfs pointer --check --strict --file="$path" > /dev/null 2>&1; then
+        fail "Invalid Git LFS pointer in the working tree: ${path}"
+        continue
+      fi
       pointers_only=$((pointers_only + 1))
       continue
     fi
@@ -236,7 +269,7 @@ else
     !skipping { print }
   ' README.md > "${WORK}/README.md"
   if ! cmp -s README.md "${WORK}/README.md"; then
-    if [ "$WRITE_README" = true ]; then
+    if [ "$WRITE_README" = true ] && [ "$errors" -eq 0 ]; then
       cp "${WORK}/README.md" README.md
       echo "Updated the collection table in README.md."
     else
