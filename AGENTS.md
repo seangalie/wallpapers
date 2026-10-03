@@ -60,8 +60,9 @@ Workflow changes are checked by actionlint and zizmor in
 `.github/workflows/lint-workflows.yml`. Use the pinned tool configuration there.
 For asset changes, run the collection check, then verify that every changed
 image opens and that format, category, dimensions, and filename agree. The
-check finds exact duplicates only; look for re-encoded or resized copies too. For documentation changes, check local links,
-examples, and any collection counts.
+check finds exact duplicates only; look for re-encoded or resized copies too.
+For documentation changes, check local links, examples, and any collection
+counts.
 
 ## Repository layout
 

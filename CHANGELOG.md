@@ -50,8 +50,9 @@ Finalize the publication workflow before publishing the release.
 - Aspect-ratio and multi-monitor arithmetic guidance for choosing a display
   format in the organization guide.
 - A collection check, run in CI without downloading images, that verifies
-  layout, categories, filenames, Git LFS tracking, case-insensitive path
-  collisions, exact duplicates, and the README's collection counts.
+  layout, categories, filenames, Git LFS pointers and tracking rules,
+  case-insensitive path collisions, exact duplicates, and the README's
+  collection counts.
 - A local packaging script that builds one ZIP per display format, ready for
   the planned 1.0.0 release downloads.
 
@@ -75,9 +76,6 @@ Finalize the publication workflow before publishing the release.
 
 ### Fixed
 
-- Hardened collection validation to reject malformed LFS pointers, missing
-  indexed LFS tracking rules, and invalid filenames without corrupting the
-  check's records. Failed validation no longer rewrites the README table.
 - Corrected filename spelling, astronomy and character titles, and misplaced
   portrait and multi-monitor images.
 - Replaced README template placeholders and references to missing screenshots
