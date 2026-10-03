@@ -54,58 +54,58 @@ trap 'rm -rf "$STAGE"' EXIT
 errors=0
 
 fail() {
-  if [ -n "${GITHUB_ACTIONS:-}" ]; then echo "::error::$1" >&2; else echo "error: $1" >&2; fi
-  errors=$((errors + 1))
+    if [ -n "${GITHUB_ACTIONS:-}" ]; then echo "::error::$1" >&2; else echo "error: $1" >&2; fi
+    errors=$((errors + 1))
 }
 
 is_split() {
-  case " ${SPLIT_FORMATS} " in *" $1 "*) return 0 ;; esac
-  return 1
+    case " ${SPLIT_FORMATS} " in *" $1 "*) return 0 ;; esac
+    return 1
 }
 
 for format in $FORMATS; do
-  count=0
+    count=0
 
-  while IFS= read -r -d '' path; do
-    if head -c 40 "${ROOT}/${path}" | grep -q '^version https://git-lfs'; then
-      fail "Git LFS image has not been downloaded (run git lfs pull): ${path}"
-      continue
-    fi
+    while IFS= read -r -d '' path; do
+        if head -c 40 "${ROOT}/${path}" | grep -q '^version https://git-lfs'; then
+            fail "Git LFS image has not been downloaded (run git lfs pull): ${path}"
+            continue
+        fi
 
-    relative="${path#wallpapers/"${format}"/}"
-    category="${relative%%/*}"
-    name="${relative#*/}"
-    if is_split "$format"; then
-      archive="wallpapers-${format}-${category}"
-      entry="$name"
-    else
-      archive="wallpapers-${format}"
-      entry="${category}_${name}"
-    fi
+        relative="${path#wallpapers/"${format}"/}"
+        category="${relative%%/*}"
+        name="${relative#*/}"
+        if is_split "$format"; then
+            archive="wallpapers-${format}-${category}"
+            entry="$name"
+        else
+            archive="wallpapers-${format}"
+            entry="${category}_${name}"
+        fi
 
-    stage="${STAGE}/${archive}"
-    if [ ! -d "$stage" ]; then
-      mkdir "$stage"
-      cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
-      printf '%s\n' "$archive" >> "${STAGE}/archives"
-    fi
-    if grep -qxF -- "  ${path}" "${ROOT}/LICENSE-ORIGINALS" \
-      && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
-      cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
-    fi
-    ln "${ROOT}/${path}" "${stage}/${entry}" 2> /dev/null \
-      || cp -p "${ROOT}/${path}" "${stage}/${entry}"
-    count=$((count + 1))
-  done < <(git -C "$ROOT" ls-files -z -- "wallpapers/${format}")
+        stage="${STAGE}/${archive}"
+        if [ ! -d "$stage" ]; then
+            mkdir "$stage"
+            cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
+            printf '%s\n' "$archive" >> "${STAGE}/archives"
+        fi
+        if grep -qxF -- "  ${path}" "${ROOT}/LICENSE-ORIGINALS" \
+            && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
+            cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
+        fi
+        ln "${ROOT}/${path}" "${stage}/${entry}" 2> /dev/null \
+            || cp -p "${ROOT}/${path}" "${stage}/${entry}"
+        count=$((count + 1))
+    done < <(git -C "$ROOT" ls-files -z -- "wallpapers/${format}")
 
-  if [ "$count" -eq 0 ]; then
-    fail "No tracked images found in wallpapers/${format}"
-  fi
+    if [ "$count" -eq 0 ]; then
+        fail "No tracked images found in wallpapers/${format}"
+    fi
 done
 
 if [ "$errors" -gt 0 ]; then
-  echo "Packaging stopped: ${errors} problem(s) found." >&2
-  exit 1
+    echo "Packaging stopped: ${errors} problem(s) found." >&2
+    exit 1
 fi
 
 # Replace everything an earlier run left, so a renamed or removed category
@@ -113,32 +113,32 @@ fi
 rm -f "${OUTPUT_DIR}"/wallpapers-*.zip "${OUTPUT_DIR}/SHA256SUMS.txt"
 
 while IFS= read -r archive; do
-  zip_path="${OUTPUT_DIR}/${archive}.zip"
-  # -0 stores without compression, -X leaves out OS-specific file attributes,
-  # and sorting the list keeps the entry order the same from run to run.
-  (
-    cd "${STAGE}/${archive}"
-    find . -type f | sed 's|^\./||' | LC_ALL=C sort | zip -0 -X -q "$zip_path" -@
-  )
-  images="$(find "${STAGE}/${archive}" -type f ! -name 'LICENSE*.txt' | wc -l | tr -d ' ')"
-  size="$(wc -c < "$zip_path" | tr -d ' ')"
-  echo "${archive}.zip: ${images} images, ${size} bytes"
-  if [ "$size" -ge "$ASSET_LIMIT" ]; then
-    fail "${archive}.zip is ${size} bytes; GitHub release assets must be under 2 GiB"
-  fi
+    zip_path="${OUTPUT_DIR}/${archive}.zip"
+    # -0 stores without compression, -X leaves out OS-specific file attributes,
+    # and sorting the list keeps the entry order the same from run to run.
+    (
+        cd "${STAGE}/${archive}"
+        find . -type f | sed 's|^\./||' | LC_ALL=C sort | zip -0 -X -q "$zip_path" -@
+    )
+    images="$(find "${STAGE}/${archive}" -type f ! -name 'LICENSE*.txt' | wc -l | tr -d ' ')"
+    size="$(wc -c < "$zip_path" | tr -d ' ')"
+    echo "${archive}.zip: ${images} images, ${size} bytes"
+    if [ "$size" -ge "$ASSET_LIMIT" ]; then
+        fail "${archive}.zip is ${size} bytes; GitHub release assets must be under 2 GiB"
+    fi
 done < <(LC_ALL=C sort "${STAGE}/archives")
 
 if command -v sha256sum > /dev/null 2>&1; then
-  checksum() { sha256sum "$@"; }
+    checksum() { sha256sum "$@"; }
 else
-  checksum() { shasum -a 256 "$@"; }
+    checksum() { shasum -a 256 "$@"; }
 fi
 (
-  cd "$OUTPUT_DIR"
-  find . -maxdepth 1 -name 'wallpapers-*.zip' | sed 's|^\./||' | LC_ALL=C sort \
-    | while IFS= read -r zip_name; do checksum "$zip_name"; done > SHA256SUMS.txt
+    cd "$OUTPUT_DIR"
+    find . -maxdepth 1 -name 'wallpapers-*.zip' | sed 's|^\./||' | LC_ALL=C sort \
+        | while IFS= read -r zip_name; do checksum "$zip_name"; done > SHA256SUMS.txt
 )
 
 if [ "$errors" -gt 0 ]; then
-  exit 1
+    exit 1
 fi
