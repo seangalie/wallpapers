@@ -89,7 +89,9 @@ consistent with the archive.
 Repository-authored non-image contributions use the
 [Apache License 2.0](../LICENSE-APACHE), subject to existing third-party notices.
 Wallpapers and preview images retain the rights and terms of their original
-creators; they are excluded from the Apache license. Do not infer permission
+creators; they are excluded from the Apache license. Sean's own photographs,
+listed in [LICENSE-ORIGINALS](../LICENSE-ORIGINALS), use CC BY-NC 4.0; other
+creators who supply originals should state their own terms. Do not infer permission
 from an image's presence in the archive. Include known source and licensing
 information for wallpaper contributions and clearly mark unknown details.
 See [LICENSE](../LICENSE) for the complete licensing scope.

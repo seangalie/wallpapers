@@ -140,4 +140,14 @@ cp README.md before-readme
 expect_failure 'failed validation must not rewrite the README' 'Not a valid canonical Git LFS pointer in the index' --write-readme
 cmp -s README.md before-readme
 
+setup_case
+printf 'Header\n\n  %s\n' "$PATH_IN_INDEX" > originals
+index_file LICENSE-ORIGINALS originals
+expect_success 'LICENSE-ORIGINALS may list indexed wallpapers'
+
+setup_case
+printf 'Header\n\n  wallpapers/desktops/abstract/renamed.jpg\n' > originals
+index_file LICENSE-ORIGINALS originals
+expect_failure 'reject LICENSE-ORIGINALS paths missing from the index' 'LICENSE-ORIGINALS lists a path that is not a valid wallpaper'
+
 echo "Collection regression tests passed: ${case_count} cases."
