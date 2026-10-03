@@ -57,9 +57,10 @@ and verify that image contents and file counts are preserved afterward.
 2. Add or update the relevant files and documentation.
 3. Record user-visible changes under `## [Unreleased]` in
    [CHANGELOG.md](../CHANGELOG.md).
-4. Run `git diff --check` and review the images and paths you changed. After
-   staging wallpaper additions, use `git lfs status` and `git lfs ls-files`
-   to confirm that the images are tracked by LFS.
+4. Stage your changes and run `scripts/check-collection.sh`. It checks paths,
+   filenames, LFS tracking, and duplicates, and reports when the README's
+   collection table needs updating; `scripts/check-collection.sh --write-readme`
+   updates it. Also run `git diff --check` and review the images you changed.
 5. Use a [Conventional Commit](https://www.conventionalcommits.org/) message,
    such as `feat: add forest wallpapers` or `fix: correct galaxy filenames`.
 6. Push your branch and open a pull request using the repository's template.
@@ -70,13 +71,18 @@ Pull requests need at least one of these labels: `breaking-change`, `bugfix`,
 
 ## Checks
 
+Run `bash scripts/test-check-collection.sh` after changing collection validation.
+The regression tests use disposable Git indexes and do not download wallpapers.
+
 Text files follow [`.editorconfig`](../.editorconfig). The Lint workflow checks
 text formatting and runs shellcheck on tracked shell scripts. Workflow changes
-are checked by actionlint and zizmor. The general CI workflow currently has a
-placeholder step; it does not validate the wallpaper collection.
+are checked by actionlint and zizmor. The CI workflow runs
+`scripts/check-collection.sh` on every pull request without downloading the
+images.
 
-For image changes, manually verify that files open, dimensions match the
-intended format, categories remain flat, and filenames distinguish variants.
+The script cannot judge what an image shows. For image changes, also verify
+that files open, dimensions match the intended format, and filenames
+distinguish variants.
 For documentation changes, check local links and keep counts and examples
 consistent with the archive.
 

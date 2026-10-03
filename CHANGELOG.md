@@ -30,10 +30,9 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
-Work in progress toward **1.0.0**. Downloadable wallpaper ZIP contents, naming,
-and publication workflow are still being planned; no ZIP packaging is
-implemented yet. Finalize those decisions and record the implemented behavior
-here before publishing the release.
+Work in progress toward **1.0.0**. Local ZIP packaging is implemented;
+automatically attaching archives to GitHub releases is still being planned.
+Finalize the publication workflow before publishing the release.
 
 ### Added
 
@@ -44,6 +43,18 @@ here before publishing the release.
   for contributing new wallpapers, corrections, and source credits.
 - Git LFS tracking for wallpaper image formats, with setup and download
   instructions for local checkouts. README preview images remain in regular Git.
+- A category-by-format table in the README, with each count linking to its
+  folder, and common resolutions for each display format.
+- Instructions for downloading a single format or category with
+  `git lfs pull --include`, instead of the whole 2 GB collection.
+- Aspect-ratio and multi-monitor arithmetic guidance for choosing a display
+  format in the organization guide.
+- A collection check, run in CI without downloading images, that verifies
+  layout, categories, filenames, Git LFS pointers and tracking rules,
+  case-insensitive path collisions, exact duplicates, and the README's
+  collection counts.
+- A local packaging script that builds one ZIP per display format, ready for
+  the planned 1.0.0 release downloads.
 
 ### Changed
 

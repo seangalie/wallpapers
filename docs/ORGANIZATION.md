@@ -25,6 +25,17 @@ Check dimensions before assigning a format. These are intended layouts, not
 fixed resolutions. Keep the halves of a paired dual-monitor set together in
 `dual`, even when each half has a single-monitor aspect ratio.
 
+As a guide, a single landscape image up to about 2.2:1 belongs in `desktops`;
+most are 16:9 or 16:10, with some at 4:3. A single image wider than that, such
+as 21:9 at 3440×1440, belongs in `ultrawide`. Portrait images belong in
+`mobile`, and images at exactly 1:1 belong in `square`.
+
+Judge multi-monitor images by monitor arithmetic rather than raw ratio: they
+are two or three copies of a single-screen ratio placed side by side. 3840×1080
+is two 1920×1080 screens, 3200×1200 is two 1600×1200 screens, and 7680×1440 is
+three 2560×1440 screens. A 3200×1200 image is `dual`, not `ultrawide`, even
+though its ratio looks like an ultrawide one.
+
 ## Categories
 
 | Category | Main subject or purpose |
@@ -100,3 +111,7 @@ firewatch-dawn-tower-right-panel.jpg
 Before a bulk move or rename, review the full old-to-new path list. Preserve
 image contents, keep a rollback mapping, and verify the results. See the
 [contributing guide](CONTRIBUTING.md) for submitting changes.
+
+`scripts/check-collection.sh` enforces the layout, the format and category
+lists, and the filename rules above. Adding a format or category means updating
+the lists in that script along with this guide.

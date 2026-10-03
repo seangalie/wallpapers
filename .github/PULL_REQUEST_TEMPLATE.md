@@ -46,6 +46,7 @@ Issue Number: N/A
 - [ ] User-visible changes are recorded under `## [Unreleased]` in [CHANGELOG.md](https://github.com/seangalie/wallpapers/blob/main/CHANGELOG.md).
 - [ ] Commit messages follow [conventional commits](https://www.conventionalcommits.org).
 - [ ] Documentation has been updated where it was affected.
+- [ ] `scripts/check-collection.sh` passes, and the README's collection table is up to date.
 - [ ] Changed images open correctly, categories stay flat, and filenames distinguish variants or panels.
 - [ ] Wallpaper additions are tracked by Git LFS, and the checkout contains actual images.
 - [ ] Source/creator information is included for new wallpapers, with unknown details identified.

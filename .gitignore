@@ -242,3 +242,9 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
+
+# ---------------------------------
+# Generated wallpaper ZIP archives
+# ---------------------------------
+
+dist/
