@@ -18,7 +18,12 @@ indent_size = 2
 [*.{js,jsx,ts,tsx,css,scss,html,htm,svg}]
 indent_size = 2
 
-[*.{sh,bash,rb}]
+# Shell scripts here use 4 spaces, the maintainer's hand-coding style. Ruby
+# keeps its community convention of 2.
+[*.{sh,bash}]
+indent_size = 4
+
+[*.rb]
 indent_size = 2
 
 [*.{py,go}]

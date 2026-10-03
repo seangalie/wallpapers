@@ -120,9 +120,9 @@ because those downloads do count. See the [archive documentation](https://docs.g
   one of `breaking-change`, `bugfix`, `documentation`, `enhancement`, `refactor`,
   `performance`, `new-feature`, `maintenance`, `ci`, or `dependencies`.
 - **Formatting** follows `.editorconfig`: UTF-8, LF, and a final newline. Use
-  2 spaces for YAML, JSON, TOML, web files, shell, and Ruby; 4 elsewhere; tabs
-  for Go and Makefiles. Markdown has no fixed indentation size. PowerShell,
-  batch, and CSV files use CRLF.
+  4 spaces by default, including shell scripts; 2 for YAML, JSON, TOML, web
+  files, and Ruby; tabs for Go and Makefiles. Markdown has no fixed indentation
+  size. PowerShell, batch, and CSV files use CRLF.
 - **Releases:** prepare a dated version section in `CHANGELOG.md` before pushing
   a matching `v*` tag. The Release workflow publishes that section as notes,
   with the wallpaper ZIPs attached. To rebuild an existing release's ZIPs
