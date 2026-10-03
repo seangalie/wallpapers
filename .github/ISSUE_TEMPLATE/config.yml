@@ -2,9 +2,6 @@
 blank_issues_enabled: false
 
 contact_links:
-  - name: 💬 Question, idea, or general discussion
-    url: https://github.com/seangalie/wallpapers/discussions
-    about: Start a discussion for anything that is not a specific, actionable issue.
   - name: 🔒 Report a security vulnerability
     url: https://github.com/seangalie/wallpapers/security/advisories/new
     about: Please report vulnerabilities privately. Never open a public issue for one.

@@ -69,6 +69,12 @@ Finalize the publication workflow before publishing the release.
   documentation, configuration, and code. Image terms remain with original
   creators and rights holders, unknown terms are identified as unknown, and
   existing third-party notices are retained.
+- Replaced the Contributor Covenant with a shorter code of conduct written for
+  this archive, including how to report a concern privately.
+- Added a `NOTICE` file with the copyright notice for repository-authored
+  files.
+- Questions and suggestions now go through issues; the repository does not use
+  GitHub Discussions.
 
 ### Removed
 

@@ -22,7 +22,8 @@ Repository documentation, configuration, and code
 ------------------------------------------------
 
 Repository-authored non-image files are licensed under the Apache License,
-Version 2.0. The complete, unmodified license text is in LICENSE-APACHE.
+Version 2.0. The complete, unmodified license text is in LICENSE-APACHE, and
+the copyright notice is in NOTICE.
 
 You may not use those files except in compliance with that license. They are
 provided on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
@@ -30,5 +31,4 @@ either express or implied. See LICENSE-APACHE for the specific language
 governing permissions and limitations.
 
 Third-party material with its own licensing or attribution notice retains
-those terms. In particular, docs/CODE_OF_CONDUCT.md is adapted from the
-Contributor Covenant and retains its stated CC BY-SA 4.0 license.
+those terms.
