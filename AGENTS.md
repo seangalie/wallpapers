@@ -68,7 +68,8 @@ counts.
 
 - `wallpapers/<format>/<category>/` -- image assets; each category stays flat.
 - `.gitattributes` -- LFS image rules scoped to `wallpapers/`, plus text formatting.
-- `LICENSE` -- licensing scope; `LICENSE-APACHE` -- unmodified Apache 2.0 terms.
+- `LICENSE` -- licensing scope; `LICENSE-APACHE` -- unmodified Apache 2.0 terms;
+  `NOTICE` -- copyright notice for repository-authored files.
 - `docs/ORGANIZATION.md` -- category definitions and naming conventions.
 - `docs/` -- contribution, support, security, and conduct policies, plus README images.
 - `.github/` -- issue and PR templates, labels, Dependabot, and workflows.

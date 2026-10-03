@@ -7,8 +7,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Open-ended conversation is usually a better fit for Discussions. Use this
-        form when you have a specific question about using Sean's Wallpaper Archive.
+        Use this form to ask how to find, download, or apply a wallpaper from
+        Sean's Wallpaper Archive.
 
   - type: checkboxes
     id: preflight
@@ -17,7 +17,7 @@ body:
       options:
         - label: I read the README and the documentation.
           required: true
-        - label: I searched the existing issues and discussions.
+        - label: I searched the existing issues.
           required: true
 
   - type: textarea
