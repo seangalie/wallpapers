@@ -11,14 +11,16 @@
 #
 # The downloads are built by scripts/package-wallpapers.sh: one ZIP per display
 # format, except desktops, which has one ZIP per category, plus
-# SHA256SUMS.txt. The release stays a draft until every download is attached,
-# so nobody sees a release without its files.
+# SHA256SUMS.txt. A new release stays a draft until every download is
+# attached, so nobody sees a release without its files.
 #
 # To refresh the downloads of an existing release without a new version -- for
 # example after an image fix -- run this workflow from the Actions tab, choose
 # the branch to package (normally main), and enter the release's tag. The ZIPs
 # are rebuilt from that branch, replaced on the release, and the notes record
-# which commit they came from. The tag itself does not move.
+# which commit they came from. The tag itself does not move. The release stays
+# public meanwhile; if a refresh fails partway, a warning is added to its notes
+# until a later run succeeds.
 #
 # Each run downloads the whole collection from Git LFS, about 2.1 GiB of the
 # account's monthly LFS bandwidth. Release downloads by visitors do not count
@@ -210,10 +212,16 @@ jobs:
             echo "Created a draft release for ${TAG}."
           fi
 
-          files=()
-          while IFS= read -r -d '' file; do files+=("$file"); done \
-            < <(find "$downloads" -maxdepth 1 -type f \( -name 'wallpapers-*.zip' -o -name 'SHA256SUMS.txt' \) -print0)
-          gh release upload "$TAG" "${files[@]}" --clobber
+          # Upload the archives first and SHA256SUMS.txt last, so the new
+          # checksums appear only once every archive they list is in place.
+          # Stale downloads are removed only after every upload has succeeded.
+          # The marker tells the failure step below that files began changing.
+          touch "${RUNNER_TEMP}/assets-changing"
+          archives=()
+          while IFS= read -r -d '' file; do archives+=("$file"); done \
+            < <(find "$downloads" -maxdepth 1 -type f -name 'wallpapers-*.zip' -print0)
+          gh release upload "$TAG" "${archives[@]}" --clobber
+          gh release upload "$TAG" "${downloads}/SHA256SUMS.txt" --clobber
 
           # Remove downloads from an earlier build that this one no longer
           # produces, such as a category that was renamed.
@@ -226,9 +234,41 @@ jobs:
                 fi
               done
 
+          # Rewriting the notes also clears any warning a failed earlier run
+          # added.
           gh release edit "$TAG" \
             --notes-file "$notes" \
             --prerelease="$PRERELEASE" \
             --draft=false
-          echo "Published ${TAG} with ${#files[@]} attached files."
+          echo "Published ${TAG} with $((${#archives[@]} + 1)) attached files."
           cat "$notes" >> "$GITHUB_STEP_SUMMARY"
+
+      # A refresh replaces the files on a release that is already public. If it
+      # fails partway, some archives may be from the new build and some from
+      # the old, and they may not match SHA256SUMS.txt, so say so on the
+      # release until a later run succeeds and rewrites the notes. A draft
+      # release is not visible, and nothing changed if no upload had started.
+      - name: ⚠️ Flag an incomplete refresh
+        if: failure()
+        run: |
+          set -euo pipefail
+          [ -f "${RUNNER_TEMP}/assets-changing" ] || exit 0
+          if [ "$(gh release view "$TAG" --json isDraft --jq .isDraft)" = "true" ]; then
+            exit 0
+          fi
+
+          marker='<!-- incomplete-refresh -->'
+          gh release view "$TAG" --json body --jq .body > "${RUNNER_TEMP}/body.md"
+          if grep -qF -- "$marker" "${RUNNER_TEMP}/body.md"; then
+            exit 0
+          fi
+          {
+            echo "$marker"
+            echo "> [!WARNING]"
+            echo "> A refresh of these downloads did not finish. Some ZIPs may be from"
+            echo "> different builds or may not match \`SHA256SUMS.txt\`. Check back soon."
+            echo
+            cat "${RUNNER_TEMP}/body.md"
+          } > "${RUNNER_TEMP}/flagged.md"
+          gh release edit "$TAG" --notes-file "${RUNNER_TEMP}/flagged.md"
+          echo "::warning::The ${TAG} downloads are incomplete. Re-run this workflow to finish the refresh."
