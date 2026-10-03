@@ -1,10 +1,13 @@
----
-# A starting point for this project's build and test pipeline. It passes as-is
-# so that a new repository does not begin with a failing check; replace the
-# placeholder step with real setup, build, and test steps.
+# Checks the wallpaper collection with scripts/check-collection.sh: layout,
+# formats, categories, filenames, Git LFS tracking, case-insensitive path
+# collisions, exact duplicates, and the README's collection table.
 #
-# Once it does real work, make "🧪 Build and test" a required status check in
-# the default branch's protection rule or ruleset.
+# The checkout deliberately leaves LFS images as pointer files. The check reads
+# everything it needs from the Git index and the pointers, so CI never spends
+# the repository's monthly Git LFS bandwidth.
+#
+# Make "🧪 Check the collection" a required status check in the default
+# branch's protection rule or ruleset.
 #
 # Pin every third-party action to a full commit SHA with the version in a
 # trailing comment, as the other workflows here do; Dependabot keeps them
@@ -29,8 +32,8 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
-    name: 🧪 Build and test
+  check:
+    name: 🧪 Check the collection
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -38,13 +41,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          lfs: false
 
-      # Replace this with the steps your project needs, for example:
-      #   - uses: actions/setup-node@<commit-sha> # vX.Y.Z
-      #     with:
-      #       node-version-file: .nvmrc
-      #       cache: npm
-      #   - run: npm ci
-      #   - run: npm test
-      - name: 🚧 Placeholder
-        run: echo "::notice::No build or test steps are configured yet. Add them to .github/workflows/ci.yml."
+      - name: 🚀 Run the collection check
+        run: bash scripts/check-collection.sh
