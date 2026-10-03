@@ -1,21 +1,29 @@
----
-# Publishes a GitHub release when a version tag is pushed, using that version's
-# section of CHANGELOG.md as the release notes.
+# Publishes a GitHub release with wallpaper ZIP downloads when a version tag is
+# pushed, using that version's section of CHANGELOG.md as the release notes.
 #
 #   git tag -a v1.2.0 -m "v1.2.0" && git push origin v1.2.0
 #
 # The tag v1.2.0 picks the `## [1.2.0] - YYYY-MM-DD` section. A tag with a
-# pre-release suffix such as v1.2.0-rc.1 is published as a pre-release. Running
-# it again for a tag that already has a release (re-run the job, or delete and
-# re-push the tag) updates that release's notes.
+# pre-release suffix such as v1.2.0-rc.1 is published as a pre-release. The run
+# fails, publishing nothing, if CHANGELOG.md has no section for the version: a
+# missing section usually means the tag went out before the changelog was
+# prepared.
 #
-# The run fails, publishing nothing, if CHANGELOG.md has no section for the
-# version: a missing section usually means the tag went out before the
-# changelog was prepared.
+# The downloads are built by scripts/package-wallpapers.sh: one ZIP per display
+# format, except desktops, which has one ZIP per category, plus
+# SHA256SUMS.txt. The release stays a draft until every download is attached,
+# so nobody sees a release without its files.
 #
-# This only writes the release notes. Build and attach artifacts in a job of
-# your own, uploading to the release this job creates. The categories in
-# .github/release.yml apply only to notes generated from the GitHub UI.
+# To refresh the downloads of an existing release without a new version -- for
+# example after an image fix -- run this workflow from the Actions tab, choose
+# the branch to package (normally main), and enter the release's tag. The ZIPs
+# are rebuilt from that branch, replaced on the release, and the notes record
+# which commit they came from. The tag itself does not move.
+#
+# Each run downloads the whole collection from Git LFS, about 2.1 GiB of the
+# account's monthly LFS bandwidth. Release downloads by visitors do not count
+# against that limit. The notes job runs first and needs no images, so a
+# missing changelog section fails before anything is downloaded.
 
 name: Release
 
@@ -23,36 +31,63 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag whose downloads to rebuild, such as v1.0.0"
+        type: string
+        required: true
 
 permissions:
   contents: read
 
-# Two pushes of the same tag must not race to create the release.
+# Two runs for the same tag must not race to create or update the release.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.tag || github.ref_name }}
   cancel-in-progress: false
 
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
+
 jobs:
-  release:
-    name: 📦 Publish the release
+  notes:
+    name: 📝 Prepare the release notes
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    permissions:
-      contents: write
-    env:
-      TAG: ${{ github.ref_name }}
-      GH_TOKEN: ${{ github.token }}
-      GH_REPO: ${{ github.repository }}
+    outputs:
+      prerelease: ${{ steps.tag.outputs.prerelease }}
     steps:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          lfs: false
+
+      - name: 🏷 Check the tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if ! printf '%s' "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'; then
+            echo "::error::\"${TAG}\" is not a version tag such as v1.2.0 or v1.2.0-rc.1."
+            exit 1
+          fi
+          if ! gh api "repos/${GH_REPO}/git/ref/tags/${TAG}" > /dev/null 2>&1; then
+            echo "::error::The tag ${TAG} does not exist. Push the tag to publish a new release."
+            exit 1
+          fi
+
+          prerelease=false
+          case "${TAG#v}" in *-*) prerelease=true ;; esac
+          echo "prerelease=${prerelease}" >> "$GITHUB_OUTPUT"
 
       - name: 📝 Extract the release notes
         run: |
           set -euo pipefail
           version="${TAG#v}"
+          mkdir -p "${RUNNER_TEMP}/notes"
 
           # Everything under `## [<version>]` up to the next `## [` heading,
           # without the link definitions Keep a Changelog puts at the end, or
@@ -66,36 +101,134 @@ jobs:
             !found || /^\[[^]]+\]: / { next }
             /^[[:space:]]*$/ { if (started) blank++; next }
             { while (blank > 0) { print ""; blank-- }; started = 1; print }
-          ' CHANGELOG.md > "${RUNNER_TEMP}/notes.md"
+          ' CHANGELOG.md > "${RUNNER_TEMP}/notes/notes.md"
 
-          if [ ! -s "${RUNNER_TEMP}/notes.md" ]; then
+          if [ ! -s "${RUNNER_TEMP}/notes/notes.md" ]; then
             echo "::error::CHANGELOG.md has no section for ${version}, so nothing was published. Add a \`## [${version}]\` section, then delete and re-push ${TAG}."
             exit 1
           fi
 
+      - name: 📤 Keep the notes for publishing
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-notes
+          path: ${{ runner.temp }}/notes/notes.md
+          if-no-files-found: error
+          retention-days: 1
+
+  package:
+    name: 📦 Build the wallpaper downloads
+    needs: notes
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: ⤵️ Check out code and wallpaper images from GitHub
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          lfs: true
+
+      - name: 📦 Package the wallpapers
+        run: bash scripts/package-wallpapers.sh "${RUNNER_TEMP}/release"
+
+      - name: 🧾 List the downloads
+        env:
+          GH_REPO: ${{ github.repository }}
+          SERVER_URL: ${{ github.server_url }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          cd "${RUNNER_TEMP}/release"
+          base="${SERVER_URL}/${GH_REPO}/releases/download/${TAG}"
           {
-            echo "## Release notes for ${TAG}"
+            echo "## Downloads"
             echo
-            cat "${RUNNER_TEMP}/notes.md"
-          } >> "$GITHUB_STEP_SUMMARY"
+            echo "Each ZIP holds one display format, or one category of desktop wallpapers,"
+            echo "with \`LICENSE.txt\` explaining the image rights. Built from commit"
+            echo "[\`${SHA:0:7}\`](${SERVER_URL}/${GH_REPO}/commit/${SHA}). Checksums are in"
+            echo "[\`SHA256SUMS.txt\`](${base}/SHA256SUMS.txt)."
+            echo
+            echo "| Download | Images | Size |"
+            echo "| --- | ---: | ---: |"
+            for zip in wallpapers-*.zip; do
+              images="$(unzip -Z1 "$zip" | grep -vcx 'LICENSE.txt')"
+              size="$(stat -c %s "$zip" | awk '{ printf "%.0f MB", $1 / 1000000 }')"
+              echo "| [${zip}](${base}/${zip}) | ${images} | ${size} |"
+            done
+          } > downloads.md
+          cat downloads.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 📤 Keep the downloads for publishing
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-downloads
+          path: ${{ runner.temp }}/release/
+          if-no-files-found: error
+          retention-days: 1
+          # The ZIPs store already-compressed images; compressing again only
+          # costs time.
+          compression-level: 0
+
+  publish:
+    name: 🚀 Publish the release
+    needs: [notes, package]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PRERELEASE: ${{ needs.notes.outputs.prerelease }}
+    steps:
+      - name: ⤵️ Fetch the notes and downloads
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: ${{ runner.temp }}/artifacts
 
       - name: 🚀 Create or update the release
         run: |
           set -euo pipefail
+          artifacts="${RUNNER_TEMP}/artifacts"
+          downloads="${artifacts}/release-downloads"
+          notes="${RUNNER_TEMP}/notes.md"
+          {
+            cat "${artifacts}/release-notes/notes.md"
+            echo
+            cat "${downloads}/downloads.md"
+          } > "$notes"
 
-          prerelease=false
-          case "${TAG#v}" in *-*) prerelease=true ;; esac
-
-          if gh release view "$TAG" --json tagName > /dev/null 2>&1; then
-            gh release edit "$TAG" \
-              --notes-file "${RUNNER_TEMP}/notes.md" \
-              --prerelease="$prerelease"
-            echo "Updated the existing release for ${TAG}."
-          else
+          # A new release starts as a draft and is only published once every
+          # download is attached.
+          if ! gh release view "$TAG" --json tagName > /dev/null 2>&1; then
             gh release create "$TAG" \
               --verify-tag \
+              --draft \
               --title "$TAG" \
-              --notes-file "${RUNNER_TEMP}/notes.md" \
-              --prerelease="$prerelease"
-            echo "Published the release for ${TAG}."
+              --notes-file "$notes" \
+              --prerelease="$PRERELEASE"
+            echo "Created a draft release for ${TAG}."
           fi
+
+          files=()
+          while IFS= read -r -d '' file; do files+=("$file"); done \
+            < <(find "$downloads" -maxdepth 1 -type f \( -name 'wallpapers-*.zip' -o -name 'SHA256SUMS.txt' \) -print0)
+          gh release upload "$TAG" "${files[@]}" --clobber
+
+          # Remove downloads from an earlier build that this one no longer
+          # produces, such as a category that was renamed.
+          gh release view "$TAG" --json assets --jq '.assets[].name' \
+            | while IFS= read -r asset; do
+                case "$asset" in wallpapers-*.zip | SHA256SUMS.txt) ;; *) continue ;; esac
+                if [ ! -f "${downloads}/${asset}" ]; then
+                  gh release delete-asset "$TAG" "$asset" --yes
+                  echo "Removed the stale download ${asset}."
+                fi
+              done
+
+          gh release edit "$TAG" \
+            --notes-file "$notes" \
+            --prerelease="$PRERELEASE" \
+            --draft=false
+          echo "Published ${TAG} with ${#files[@]} attached files."
+          cat "$notes" >> "$GITHUB_STEP_SUMMARY"

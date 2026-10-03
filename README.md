@@ -91,11 +91,20 @@ illustration placement, retro styles, and filename conventions.
 **Single images:** open a file in [wallpapers/](wallpapers/) and use the
 download button on its page. This is the easiest option for most people.
 
-**A whole format or category:** wallpaper images are stored with
-[Git LFS](https://git-lfs.com/), and GitHub limits how much LFS data the
-repository can serve each month. The full collection is about 2 GB, so download
-only the parts you need when possible. Install Git LFS, clone without images,
-and then fetch only the folders you want:
+**A whole format or category:** download a ZIP from the
+[latest release](https://github.com/seangalie/wallpapers/releases/latest),
+starting with the first release, 1.0.0. Each display format has one ZIP, such
+as `wallpapers-mobile.zip`. Desktop wallpapers have one ZIP per category, such
+as `wallpapers-desktops-space.zip`, because the full desktop set is too large
+for a single download. Images sit directly inside each ZIP, and every ZIP
+includes `LICENSE.txt` explaining the image rights. `SHA256SUMS.txt` lists a
+checksum for each ZIP.
+
+**With Git:** wallpaper images are stored with [Git LFS](https://git-lfs.com/),
+and GitHub limits how much LFS data the repository can serve each month.
+Release downloads do not count against that limit, but cloning does, and the
+full collection is about 2 GB. Prefer the release ZIPs, or clone without images
+and fetch only the folders you want:
 
 ```sh
 git lfs install
@@ -109,10 +118,8 @@ patterns separated by commas. Run `git lfs pull` without `--include` to fetch
 everything. See [GitHub's Git LFS setup guide](https://docs.github.com/en/repositories/working-with-files/managing-large-files/configuring-git-large-file-storage)
 for more details.
 
-Downloadable ZIP files, one for each display format, are planned for the first
-1.0.0 release. Release downloads do not count against the LFS limit. GitHub's
-automatic **Download ZIP** button contains only small LFS pointer files rather
-than the images.
+GitHub's automatic **Download ZIP** button on the repository page contains only
+small LFS pointer files rather than the images. Use the release ZIPs instead.
 
 Choose an image that suits your screen dimensions, then select it in your
 desktop or mobile wallpaper settings. A spanning panorama works best when its

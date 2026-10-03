@@ -30,9 +30,7 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
-Work in progress toward **1.0.0**. Local ZIP packaging is implemented;
-automatically attaching archives to GitHub releases is still being planned.
-Finalize the publication workflow before publishing the release.
+Work in progress toward **1.0.0**.
 
 ### Added
 
@@ -53,8 +51,10 @@ Finalize the publication workflow before publishing the release.
   layout, categories, filenames, Git LFS pointers and tracking rules,
   case-insensitive path collisions, exact duplicates, and the README's
   collection counts.
-- A local packaging script that builds one ZIP per display format, ready for
-  the planned 1.0.0 release downloads.
+- ZIP downloads attached to each GitHub release: one ZIP per display format,
+  and one per category for desktop wallpapers, each with `LICENSE.txt`, plus
+  `SHA256SUMS.txt` checksums. Release downloads do not count against the
+  repository's monthly Git LFS bandwidth.
 
 ### Changed
 
