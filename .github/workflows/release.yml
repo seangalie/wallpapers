@@ -10,9 +10,9 @@
 # prepared.
 #
 # The downloads are built by scripts/package-wallpapers.sh: one ZIP per display
-# format, except desktops, which has one ZIP per category, plus
-# SHA256SUMS.txt. A new release stays a draft until every download is
-# attached, so nobody sees a release without its files.
+# format, one more per desktop category, and SHA256SUMS.txt. A new release
+# stays a draft until every download is attached, so nobody sees a release
+# without its files.
 #
 # To refresh the downloads of an existing release without a new version -- for
 # example after an image fix -- run this workflow from the Actions tab, choose
@@ -145,9 +145,10 @@ jobs:
           {
             echo "## Downloads"
             echo
-            echo "Each ZIP holds one display format, or one category of desktop wallpapers,"
-            echo "with \`LICENSE.txt\` explaining the image rights (plus \`LICENSE-ORIGINALS.txt\`"
-            echo "for Sean's own photos). Built from commit"
+            echo "Each display format has one ZIP of every image, named \`<category>_<filename>\`."
+            echo "Desktop wallpapers are also available one category per ZIP. Every ZIP"
+            echo "includes \`LICENSE.txt\` explaining the image rights, and ZIPs with Sean's"
+            echo "own photos also include \`LICENSE-ORIGINALS.txt\`. Built from commit"
             echo "[\`${SHA:0:7}\`](${SERVER_URL}/${GH_REPO}/commit/${SHA}). Checksums are in"
             echo "[\`SHA256SUMS.txt\`](${base}/SHA256SUMS.txt)."
             echo

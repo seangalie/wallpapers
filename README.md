@@ -93,14 +93,14 @@ illustration placement, retro styles, and filename conventions.
 download button on its page. This is the easiest option for most people.
 
 **A whole format or category:** download a ZIP from the
-[latest release](https://github.com/seangalie/wallpapers/releases/latest),
-starting with the first release, 1.0.0. Each display format has one ZIP, such
-as `wallpapers-mobile.zip`. Desktop wallpapers have one ZIP per category, such
-as `wallpapers-desktops-space.zip`, because the full desktop set is too large
-for a single download. Images sit directly inside each ZIP, and every ZIP
-includes `LICENSE.txt` explaining the image rights; the `original` ZIP also
-includes `LICENSE-ORIGINALS.txt`. `SHA256SUMS.txt` lists a
-checksum for each ZIP.
+[latest release](https://github.com/seangalie/wallpapers/releases/latest).
+Each display format has one ZIP of every image, such
+as `wallpapers-mobile.zip`, with files named `<category>_<filename>`. The full
+`wallpapers-desktops.zip` is large, about 1.8 GB, so desktop wallpapers are also
+offered one category per ZIP, such as `wallpapers-desktops-space.zip`. Images
+sit directly inside each ZIP, and every ZIP includes `LICENSE.txt` explaining
+the image rights. ZIPs with Sean's own photos also include
+`LICENSE-ORIGINALS.txt`, and `SHA256SUMS.txt` lists a checksum for each ZIP.
 
 **With Git:** wallpaper images are stored with [Git LFS](https://git-lfs.com/),
 and GitHub limits how much LFS data the repository can serve each month.
@@ -142,8 +142,9 @@ Community participation follows the [code of conduct](docs/CODE_OF_CONDUCT.md).
 ## Changelog
 
 Collection additions, organization changes, and corrections are recorded in
-[CHANGELOG.md](CHANGELOG.md). Work awaiting a release is listed under
-**Unreleased**, which is the working record for the planned 1.0.0 release.
+[CHANGELOG.md](CHANGELOG.md), and each release's notes and downloads are on the
+[releases page](https://github.com/seangalie/wallpapers/releases). Changes
+waiting for the next release are listed under **Unreleased**.
 
 ## Credits and license
 

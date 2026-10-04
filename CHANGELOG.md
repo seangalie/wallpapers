@@ -2,10 +2,10 @@
 
 Notable changes to Sean's Wallpaper Archive are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-This is a live record of user-visible changes toward the first **1.0.0** release.
-Keep updating **Unreleased** as the collection and repository are prepared;
-add a dated 1.0.0 section only when the release is ready.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and releases use [Semantic Versioning](https://semver.org/) as it applies to
+a collection: adding wallpapers is a minor release, corrections are a patch,
+and moving or renaming published paths or downloads is a major release.
 
 <!--
 Add entries to [Unreleased] as changes are made, grouped under these headings
@@ -30,79 +30,56 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
-Work in progress toward **1.0.0**.
+## [1.0.0] - 2026-10-03
+
+The first public release of Sean's Wallpaper Archive: 1,250 wallpapers for
+single desktops, ultrawide screens, two- and three-monitor setups, phones, and
+square displays, gathered from all over the internet and now easy to share.
 
 ### Added
 
-- Initial collection of 1,250 wallpapers across desktop, ultrawide, dual-monitor,
-  triple-monitor, mobile, and square formats.
-- A flat `retro` category for 25 images with retro graphic styles.
-- A Creative Commons Attribution-NonCommercial 4.0 license for Sean's own
-  photographs in `desktops/original`, listed in `LICENSE-ORIGINALS`. They may
-  be shared and adapted for non-commercial purposes with credit.
-- `CREDITS.md`, listing creators and sources found in image metadata, with the
-  evidence for each credit and any uncertainty.
-- Archive browsing instructions, category and filename conventions, and guidance
-  for contributing new wallpapers, corrections, and source credits.
-- Git LFS tracking for wallpaper image formats, with setup and download
-  instructions for local checkouts. README preview images remain in regular Git.
-- A category-by-format table in the README, with each count linking to its
-  folder, and common resolutions for each display format.
-- Instructions for downloading a single format or category with
-  `git lfs pull --include`, instead of the whole 2 GB collection.
-- Aspect-ratio and multi-monitor arithmetic guidance for choosing a display
-  format in the organization guide.
-- A collection check, run in CI without downloading images, that verifies
-  layout, categories, filenames, Git LFS pointers and tracking rules,
-  case-insensitive path collisions, exact duplicates, and the README's
-  collection counts.
-- ZIP downloads attached to each GitHub release: one ZIP per display format,
-  and one per category for desktop wallpapers, each with `LICENSE.txt`, plus
-  `SHA256SUMS.txt` checksums. Release downloads do not count against the
-  repository's monthly Git LFS bandwidth.
+- **The collection:** 1,250 wallpapers in six display formats, with 964
+  desktop, 65 ultrawide, 108 dual-monitor, 47 triple-monitor, 58 mobile, and 8
+  square images, sorted into 21 categories from `abstract` to `urban`.
+- **ZIP downloads** with every release: one ZIP per display format, such as
+  `wallpapers-desktops.zip` with all 964 desktop images (about 1.8 GB), and one
+  per desktop category, such as `wallpapers-desktops-space.zip`. Every ZIP
+  includes `LICENSE.txt` explaining the image rights, and `SHA256SUMS.txt`
+  lists a checksum for each ZIP.
+- **Browsing guides:** a README table linking every category in every format,
+  the common resolutions for each format, and an organization guide that
+  explains the categories, filenames, and how to choose a format for your
+  screen or monitor layout.
+- **Credits:** `CREDITS.md` names known photographers, artists, and sources,
+  with the evidence for each credit. If you recognize an uncredited image,
+  please open an issue.
+- **Sean's own photographs** of the New Jersey Pine Barrens, in
+  `desktops/original`, licensed under Creative Commons Attribution-NonCommercial
+  4.0: share and adapt them for non-commercial purposes with credit.
+- **Ways to contribute:** guides and issue forms for suggesting wallpapers,
+  correcting names or credits, and asking questions, plus a code of conduct.
 
 ### Changed
 
-- Introduced the project name **Sean's Wallpaper Archive** and the description
-  "A collection of desktop, multi-desktop, and mobile wallpapers gathered from
-  all over the internet".
-- Organized images by display format and flat subject or style categories,
-  including illustration placement in outdoors, urban, and minimal categories.
-- Clarified generic filenames, image variants, and paired panel names with
-  `-left-panel` and `-right-panel` suffixes.
-- Separated image rights from the Apache 2.0 license for repository-authored
-  documentation, configuration, and code. Image terms remain with original
-  creators and rights holders, unknown terms are identified as unknown, and
-  existing third-party notices are retained.
-- Replaced the Contributor Covenant with a shorter code of conduct written for
-  this archive, including how to report a concern privately.
-- Added a `NOTICE` file with the copyright notice for repository-authored
-  files.
-- Questions and suggestions now go through issues; the repository does not use
-  GitHub Discussions.
-- Renamed seven wallpapers for consistent names: `desktops/space/galaxy-m82`
-  (was `galaxy-messier82`), `desktops/space/earth` and `planetrise` (dropped
-  the redundant `space-` prefix), `dual/urban/san-francisco-1906` (was
-  `sanfrancisco-1906`), and `dual/urban/brooklyn-bridge`, `chernobyl-ruins`,
-  and `golden-gate-bridge` (dropped the `landmarks-` prefix).
-- Renamed `mobile/tech/asop-portrait-dark.png` and `asop-portrait-light.png` to
-  `grapheneos-logo-blue.png` and `grapheneos-logo-white.png`, identifying the
-  GrapheneOS logo and naming each by its logo color.
-- Enlarged three small images for current displays: `hobbit-art` and
-  `multicolor-groot` to 3840×2160 with Real-ESRGAN, and `blue-gradient` to
-  4096×3072 by reconstructing the gradient. `CREDITS.md` records each method.
+For anyone who used Sean's previous private wallpaper archive (release
+`v2026.09`):
+
+- The `desktop` folder is now `desktops`, and `source` is now `square`.
+- About 190 images moved to a better-fitting category. Most of the old `art`
+  category moved into subject categories such as `outdoors`, `abstract`,
+  `urban`, and `space`, and new `abstract` and `retro` categories collect those
+  styles. Three more images moved to a different display format.
+- About 40 images were renamed to clearer names, and paired dual-monitor panels
+  now end in `-left-panel` and `-right-panel`.
+- `wallpapers-desktop.zip` is now `wallpapers-desktops.zip`, desktop
+  wallpapers are also offered one category per ZIP, and `wallpapers-source.zip`
+  is now `wallpapers-square.zip`.
+- Three small images, `hobbit-art`, `multicolor-groot`, and `blue-gradient`,
+  were enlarged for current displays. `CREDITS.md` records how.
 
 ### Removed
 
-- Three duplicate wallpapers from the initial import: one exact copy, and JPEG
-  re-encodes of `dual/gaming/firewatch-tower-dual.png` and
-  `desktops/themes/osaka-jade_shaded-entrance.png`, which remain.
+- Three duplicate images from the previous archive.
 
-### Fixed
-
-- Corrected filename spelling, astronomy and character titles, and misplaced
-  portrait and multi-monitor images.
-- Replaced README template placeholders and references to missing screenshots
-  with archive documentation and landscape, portrait, and square previews.
-
-[unreleased]: https://github.com/seangalie/wallpapers/commits/main
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/seangalie/wallpapers/releases/tag/v1.0.0
