@@ -10,6 +10,13 @@ grant permission to use the image, and it does not change the licensing scope
 in [LICENSE](LICENSE). Sean's own photographs are credited and licensed in
 [LICENSE-ORIGINALS](LICENSE-ORIGINALS).
 
+## Identified by the maintainer
+
+| Image | Credit | Evidence and notes |
+| --- | --- | --- |
+| `mobile/tech/grapheneos-logo-blue.png` | GrapheneOS logo | Sean identified the logo as GrapheneOS's. The wallpaper's creator is unknown. |
+| `mobile/tech/grapheneos-logo-white.png` | GrapheneOS logo | As above, with the logo in white. |
+
 ## Credits from image metadata
 
 These credits come from metadata embedded in the image files, such as the EXIF

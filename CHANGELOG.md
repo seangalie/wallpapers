@@ -85,6 +85,9 @@ Work in progress toward **1.0.0**.
   the redundant `space-` prefix), `dual/urban/san-francisco-1906` (was
   `sanfrancisco-1906`), and `dual/urban/brooklyn-bridge`, `chernobyl-ruins`,
   and `golden-gate-bridge` (dropped the `landmarks-` prefix).
+- Renamed `mobile/tech/asop-portrait-dark.png` and `asop-portrait-light.png` to
+  `grapheneos-logo-blue.png` and `grapheneos-logo-white.png`, identifying the
+  GrapheneOS logo and naming each by its logo color.
 - Enlarged three small images for current displays: `hobbit-art` and
   `multicolor-groot` to 3840×2160 with Real-ESRGAN, and `blue-gradient` to
   4096×3072 by reconstructing the gradient. `CREDITS.md` records each method.
