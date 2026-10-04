@@ -1,23 +1,25 @@
 #!/usr/bin/env bash
 # Packages the tracked wallpapers into flat ZIP archives for release downloads.
 #
-# Most display formats become one archive, wallpapers-<format>.zip, with each
+# Every display format becomes one archive, wallpapers-<format>.zip, with each
 # image at the root named <category>_<filename>: so
 # wallpapers/dual/gaming/firewatch-tower-left-panel.jpg becomes
 # gaming_firewatch-tower-left-panel.jpg in wallpapers-dual.zip.
 #
-# Formats listed in SPLIT_FORMATS are too large for one archive, so they become
-# one archive per category instead, wallpapers-<format>-<category>.zip, with
-# each image at the root under its own filename: so
-# wallpapers/desktops/space/galaxy-m82.jpg becomes galaxy-m82.jpg
-# in wallpapers-desktops-space.zip.
+# Formats listed in SPLIT_FORMATS are large, so they also get one archive per
+# category, wallpapers-<format>-<category>.zip, with each image at the root
+# under its own filename: so wallpapers/desktops/space/galaxy-m82.jpg becomes
+# galaxy-m82.jpg in wallpapers-desktops-space.zip, and space_galaxy-m82.jpg in
+# wallpapers-desktops.zip. GitHub's 2 GiB limit below cannot be raised, so
+# when a full archive nears it, split that archive into parts.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
 # image rights notice travels with the downloads. An archive holding any image
 # listed in LICENSE-ORIGINALS also carries that file as LICENSE-ORIGINALS.txt,
-# because those images are licensed under its CC BY-NC 4.0 terms. SHA256SUMS.txt lists a
-# checksum for each archive. Images are stored, not recompressed: they are
-# already compressed, and recompressing them costs time for no gain.
+# because those images are licensed under its CC BY-NC 4.0 terms.
+# SHA256SUMS.txt lists a checksum for each archive. Images are stored, not
+# recompressed: they are already compressed, and recompressing them costs time
+# for no gain.
 #
 # The collection is checked first with scripts/check-collection.sh. Only images
 # tracked by Git are packaged, so local files and OS metadata such as .DS_Store
@@ -46,10 +48,21 @@ bash "${ROOT}/scripts/check-collection.sh"
 mkdir -p "$OUTPUT_DIR"
 OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
 
-# Staged beside the output so the hard links below usually stay on one
-# filesystem; when they cannot, the file is copied instead.
+# Staged beside the output so the links below usually stay on one filesystem;
+# when they cannot, the file is copied instead.
 STAGE="$(mktemp -d "${OUTPUT_DIR}/.stage.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
+
+# On macOS, stage images as APFS clones. Hard links would update every image's
+# ctime, so Git would re-hash the whole collection through the LFS filter, and
+# an editor's background `git status` doing that can leave .git/index.lock
+# behind. Elsewhere, hard links are cheap and nothing is watching the checkout.
+# GNU cp gives -c a different meaning, so check the platform rather than trying
+# it.
+CLONE=false
+if [ "$(uname -s)" = "Darwin" ]; then
+    CLONE=true
+fi
 
 errors=0
 
@@ -61,6 +74,26 @@ fail() {
 is_split() {
     case " ${SPLIT_FORMATS} " in *" $1 "*) return 0 ;; esac
     return 1
+}
+
+# add_to_archive ARCHIVE ENTRY PATH stages the image at PATH as ENTRY in
+# ARCHIVE, creating the archive's stage with its license files on first use.
+add_to_archive() {
+    local stage="${STAGE}/$1"
+    if [ ! -d "$stage" ]; then
+        mkdir "$stage"
+        cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
+        printf '%s\n' "$1" >> "${STAGE}/archives"
+    fi
+    if grep -qxF -- "  $3" "${ROOT}/LICENSE-ORIGINALS" \
+        && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
+        cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
+    fi
+    if [ "$CLONE" = true ] && cp -c -p "${ROOT}/$3" "${stage}/$2" 2> /dev/null; then
+        return
+    fi
+    ln "${ROOT}/$3" "${stage}/$2" 2> /dev/null \
+        || cp -p "${ROOT}/$3" "${stage}/$2"
 }
 
 for format in $FORMATS; do
@@ -75,26 +108,10 @@ for format in $FORMATS; do
         relative="${path#wallpapers/"${format}"/}"
         category="${relative%%/*}"
         name="${relative#*/}"
+        add_to_archive "wallpapers-${format}" "${category}_${name}" "$path"
         if is_split "$format"; then
-            archive="wallpapers-${format}-${category}"
-            entry="$name"
-        else
-            archive="wallpapers-${format}"
-            entry="${category}_${name}"
+            add_to_archive "wallpapers-${format}-${category}" "$name" "$path"
         fi
-
-        stage="${STAGE}/${archive}"
-        if [ ! -d "$stage" ]; then
-            mkdir "$stage"
-            cp "${ROOT}/LICENSE" "${stage}/LICENSE.txt"
-            printf '%s\n' "$archive" >> "${STAGE}/archives"
-        fi
-        if grep -qxF -- "  ${path}" "${ROOT}/LICENSE-ORIGINALS" \
-            && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
-            cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
-        fi
-        ln "${ROOT}/${path}" "${stage}/${entry}" 2> /dev/null \
-            || cp -p "${ROOT}/${path}" "${stage}/${entry}"
         count=$((count + 1))
     done < <(git -C "$ROOT" ls-files -z -- "wallpapers/${format}")
 

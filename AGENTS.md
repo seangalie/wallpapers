@@ -82,11 +82,13 @@ counts.
 
 `scripts/package-wallpapers.sh` builds flat ZIPs into the ignored `dist/`: one
 per display format (`wallpapers-<format>.zip`, entries named
-`<category>_<filename>`), except formats in its `SPLIT_FORMATS` list, currently
-`desktops`, which get one ZIP per category (`wallpapers-desktops-<category>.zip`,
-entries keep their filenames). Every ZIP includes `LICENSE.txt`, and
-`SHA256SUMS.txt` lists their checksums. It rejects unresolved LFS pointers and
-archives of 2 GiB or more (GitHub's release asset limit).
+`<category>_<filename>`), and for formats in its `SPLIT_FORMATS` list, currently
+`desktops`, one more per category (`wallpapers-desktops-<category>.zip`, entries
+keep their filenames). Every ZIP includes `LICENSE.txt`, and `SHA256SUMS.txt`
+lists their checksums. It rejects unresolved LFS pointers and archives of 2 GiB
+or more (GitHub's release asset limit). `wallpapers-desktops.zip` is the
+largest, about 1.76 GB in October 2026; when it nears the limit, split it into
+parts.
 
 `.github/workflows/release.yml` runs the script and attaches the ZIPs to the
 release. Each run downloads the whole collection from LFS, about 2.1 GiB of the
@@ -115,7 +117,6 @@ because those downloads do count. See the [archive documentation](https://docs.g
 - **Commits** follow [Conventional Commits](https://www.conventionalcommits.org/).
 - **Changelog:** record user-visible changes under `## [Unreleased]` using the
   headings listed in its comment. Internal-only changes need no entry.
-  Until the first release, keep this as the live record for planned 1.0.0.
 - **Pull requests** fill in `.github/PULL_REQUEST_TEMPLATE.md` and carry at least
   one of `breaking-change`, `bugfix`, `documentation`, `enhancement`, `refactor`,
   `performance`, `new-feature`, `maintenance`, `ci`, or `dependencies`.
