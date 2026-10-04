@@ -53,12 +53,13 @@ OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
 STAGE="$(mktemp -d "${OUTPUT_DIR}/.stage.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
 
-# On macOS, stage images as APFS clones. Hard links would update every image's
-# ctime, so Git would re-hash the whole collection through the LFS filter, and
-# an editor's background `git status` doing that can leave .git/index.lock
-# behind. Elsewhere, hard links are cheap and nothing is watching the checkout.
-# GNU cp gives -c a different meaning, so check the platform rather than trying
-# it.
+# On macOS, stage images as APFS clones, falling back to a plain copy where
+# cloning is unavailable, such as on a non-APFS volume. Never hard-link there:
+# a hard link updates the image's ctime, so Git would re-hash the whole
+# collection through the LFS filter, and an editor's background `git status`
+# doing that can leave .git/index.lock behind. Elsewhere, hard links are cheap
+# and nothing is watching the checkout. GNU cp gives -c a different meaning, so
+# check the platform rather than trying it.
 CLONE=false
 if [ "$(uname -s)" = "Darwin" ]; then
     CLONE=true
@@ -89,11 +90,13 @@ add_to_archive() {
         && [ ! -f "${stage}/LICENSE-ORIGINALS.txt" ]; then
         cp "${ROOT}/LICENSE-ORIGINALS" "${stage}/LICENSE-ORIGINALS.txt"
     fi
-    if [ "$CLONE" = true ] && cp -c -p "${ROOT}/$3" "${stage}/$2" 2> /dev/null; then
-        return
+    if [ "$CLONE" = true ]; then
+        cp -c -p "${ROOT}/$3" "${stage}/$2" 2> /dev/null \
+            || cp -p "${ROOT}/$3" "${stage}/$2"
+    else
+        ln "${ROOT}/$3" "${stage}/$2" 2> /dev/null \
+            || cp -p "${ROOT}/$3" "${stage}/$2"
     fi
-    ln "${ROOT}/$3" "${stage}/$2" 2> /dev/null \
-        || cp -p "${ROOT}/$3" "${stage}/$2"
 }
 
 for format in $FORMATS; do
