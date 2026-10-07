@@ -30,9 +30,11 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-07
+
 ### Added
 
-- **35 new wallpapers:** 34 desktop images and 1 mobile image. Highlights:
+- **34 new wallpapers:** 33 desktop images and 1 mobile image. Highlights:
   - a `mojave_` theme in `desktops/themes` with the sand dune at morning, day,
     dusk, and night
   - liquid color swirls in `desktops/abstract`
@@ -43,6 +45,11 @@ section as the GitHub release notes, and refuses to publish if it is missing.
   - an Orthodox cathedral dome in `mobile/art`
 - **Credits:** Thomas Cole is credited for his signed painting
   `desktops/history/course-of-empire-consummation.jpg`.
+
+### Removed
+
+- The newly added samurai collage wallpaper
+  `desktops/inspiration/lock-in-samurai-panels.jpg`, before inclusion in a release.
 
 ## [1.0.0] - 2026-10-03
 
@@ -95,5 +102,6 @@ For anyone who used Sean's previous private wallpaper archive (release
 
 - Three duplicate images from the previous archive.
 
-[unreleased]: https://github.com/seangalie/wallpapers/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/seangalie/wallpapers/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/seangalie/wallpapers/releases/tag/v1.0.0
