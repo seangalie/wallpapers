@@ -17,6 +17,15 @@ in [LICENSE](LICENSE). Sean's own photographs are credited and licensed in
 | `mobile/tech/grapheneos-logo-blue.png` | GrapheneOS logo | Sean identified the logo as GrapheneOS's. The wallpaper's creator is unknown. |
 | `mobile/tech/grapheneos-logo-white.png` | GrapheneOS logo | As above, with the logo in white. |
 
+## Signed artwork
+
+These artworks carry a visible signature. Matching titles have not been
+confirmed against museum records.
+
+| Image | Credit | Evidence and notes |
+| --- | --- | --- |
+| `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
+
 ## Credits from image metadata
 
 These credits come from metadata embedded in the image files, such as the EXIF
