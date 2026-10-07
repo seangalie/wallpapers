@@ -30,6 +30,20 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+### Added
+
+- **35 new wallpapers:** 34 desktop images and 1 mobile image. Highlights:
+  - a `mojave_` theme in `desktops/themes` with the sand dune at morning, day,
+    dusk, and night
+  - liquid color swirls in `desktops/abstract`
+  - mountain, ocean, and meadow landscapes in `desktops/outdoors`
+  - Milky Way, Jupiter, and astronaut scenes in `desktops/space`
+  - historical paintings and a ukiyo-e print in `desktops/history` and
+    `desktops/art`
+  - an Orthodox cathedral dome in `mobile/art`
+- **Credits:** Thomas Cole is credited for his signed painting
+  `desktops/history/course-of-empire-consummation.jpg`.
+
 ## [1.0.0] - 2026-10-03
 
 The first public release of Sean's Wallpaper Archive: 1,250 wallpapers for
