@@ -128,6 +128,10 @@ index_file example.md "$PATH_IN_INDEX"
 expect_failure 'case-insensitive collisions remain rejected' 'Paths differ only by letter case'
 
 setup_case
+index_file "$PATH_IN_INDEX" "$PATH_IN_INDEX" 100755
+expect_failure 'reject executable images' 'Image is marked executable'
+
+setup_case
 object="$(git hash-object -w --stdin < "$PATH_IN_INDEX")"
 printf '100644 %s 2\twallpapers/desktops/abstract/conflict.jpg\n' "$object" | git update-index --index-info
 expect_failure 'reject unresolved index stages explicitly' 'Unmerged Git index entry:'

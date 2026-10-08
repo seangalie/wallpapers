@@ -62,9 +62,9 @@ and verify that image contents and file counts are preserved afterward.
 3. Record user-visible changes under `## [Unreleased]` in
    [CHANGELOG.md](../CHANGELOG.md).
 4. Stage your changes and run `scripts/check-collection.sh`. It checks paths,
-   filenames, LFS tracking, and duplicates, and reports when the README's
-   collection table needs updating; `scripts/check-collection.sh --write-readme`
-   updates it. Also run `git diff --check` and review the images you changed.
+   filenames, LFS tracking, and duplicates, rejects images marked executable,
+   and reports when the README's collection table needs updating;
+   `scripts/check-collection.sh --write-readme` updates it. Also run `git diff --check` and review the images you changed.
 5. Use a [Conventional Commit](https://www.conventionalcommits.org/) message,
    such as `feat: add forest wallpapers` or `fix: correct galaxy filenames`.
 6. Push your branch and open a pull request using the repository's template.
