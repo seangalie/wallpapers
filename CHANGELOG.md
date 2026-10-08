@@ -30,6 +30,13 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-10-07
+
+180 Gruvbox wallpapers join the archive, bringing it to 1,464 images. This is
+a major release because the desktop downloads changed: the collection outgrew
+GitHub's limit for a single release file, so `wallpapers-desktops.zip` is now
+two parts. If you link to or script that download, see **Changed** below.
+
 ### Added
 
 - **180 Gruvbox wallpapers:** 171 desktop, 6 ultrawide, and 3 dual-monitor
@@ -135,6 +142,7 @@ For anyone who used Sean's previous private wallpaper archive (release
 
 - Three duplicate images from the previous archive.
 
-[unreleased]: https://github.com/seangalie/wallpapers/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/seangalie/wallpapers/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/seangalie/wallpapers/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/seangalie/wallpapers/releases/tag/v1.0.0
