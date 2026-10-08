@@ -16,10 +16,15 @@
 # PART_FORMATS have their full archive split into numbered parts,
 # wallpapers-<format>-part-<n>.zip, instead of one wallpapers-<format>.zip.
 # Entries keep the <category>_<filename> naming, and each category stays whole
-# in one part: categories are taken in alphabetical order and shared between
-# as few parts as keeps each near PART_TARGET or below, so space_galaxy-m82.jpg
-# lands in a later part than abstract_ images. Adding images can move a
-# category to a neighboring part, or add a part.
+# in one part. Categories are taken in alphabetical order and packed into the
+# fewest parts that each stay at or under PART_TARGET, counting ZIP entry
+# overhead and the license files. Within that number of parts, the split
+# keeps the largest part as small as possible, and parts are numbered without
+# gaps, so space_galaxy-m82.jpg lands in a later part than abstract_ images.
+# Only a single category larger than PART_TARGET can produce a bigger part,
+# and the 2 GiB check below still stops packaging if that part reaches the
+# limit. Adding images can move a category to a neighboring part, or add a
+# part.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
 # image rights notice travels with the downloads. An archive holding any image
@@ -144,33 +149,61 @@ for format in $FORMATS; do
     fi
 done
 
+# Every part carries LICENSE.txt and may carry LICENSE-ORIGINALS.txt, so leave
+# room for both, plus a little for the ZIP's end-of-archive record.
+PART_RESERVE=$(($(wc -c < "${ROOT}/LICENSE") + $(wc -c < "${ROOT}/LICENSE-ORIGINALS") + 4096))
+
 for format in $PART_FORMATS; do
     [ -f "${STAGE}/${format}.parts" ] || continue
-    # Use the fewest parts that keep an even share at or under PART_TARGET.
-    # Each category goes to the part where its midpoint falls, so the parts
-    # come out close to that share while keeping categories whole. The list is
-    # in Git's path order, so categories arrive alphabetically.
+    # The list is in Git's path order, so categories arrive alphabetically.
     while IFS="$(printf '\t')" read -r part category path; do
         add_to_archive "wallpapers-${format}-part-${part}" \
             "${category}_${path#wallpapers/"${format}"/"${category}"/}" "$path"
-    done < <(awk -F '\t' -v target="$PART_TARGET" '
+    done < <(awk -F '\t' -v target="$PART_TARGET" -v reserve="$PART_RESERVE" '
+        # pack(cap) fills parts in order, starting a new part whenever the next
+        # category would push the current one past cap, and returns how many
+        # parts that takes. For categories kept in order, filling each part as
+        # far as it goes uses the fewest parts for a given cap.
+        function pack(cap,    i, used, count) {
+            count = 1
+            used = 0
+            for (i = 1; i <= categories; i++) {
+                if (used > 0 && used + size[order[i]] > cap) {
+                    count++
+                    used = 0
+                }
+                part_of[order[i]] = count
+                used += size[order[i]]
+            }
+            return count
+        }
         {
             if (!($1 in size)) order[++categories] = $1
-            size[$1] += $2
-            total += $2
+            # A stored ZIP entry adds a 30-byte local header and a 46-byte
+            # central directory record, each holding the entry name.
+            name = $3
+            sub(/^[^\/]*\/[^\/]*\//, "", name)
+            entry = $2 + 76 + 2 * length(name)
+            size[$1] += entry
+            if (size[$1] > largest) largest = size[$1]
             line[NR] = $0
         }
         END {
-            parts = int((total + target - 1) / target)
-            if (parts < 1) parts = 1
-            share = total / parts
-            before = 0
-            for (i = 1; i <= categories; i++) {
-                part = int((before + size[order[i]] / 2) / share) + 1
-                if (part > parts) part = parts
-                part_of[order[i]] = part
-                before += size[order[i]]
+            limit = target - reserve
+            # A category larger than the limit gets a part of its own.
+            high = (largest > limit) ? largest : limit
+            parts = pack(high)
+            # Find the smallest cap that still needs no more parts, which keeps
+            # the largest part as small as possible.
+            low = largest
+            while (high - low > 1) {
+                # Halve without int(), which some awks cap at 2^31 - 1.
+                middle = (low + high - (low + high) % 2) / 2
+                if (pack(middle) <= parts) high = middle
+                else low = middle
             }
+            if (pack(low) <= parts) high = low
+            pack(high)
             for (i = 1; i <= NR; i++) {
                 split(line[i], field, "\t")
                 print part_of[field[1]] "\t" field[1] "\t" field[3]
