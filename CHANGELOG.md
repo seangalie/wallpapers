@@ -30,6 +30,39 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+### Added
+
+- **180 Gruvbox wallpapers:** 171 desktop, 6 ultrawide, and 3 dual-monitor
+  images recolored in the warm [Gruvbox](https://github.com/morhetz/gruvbox)
+  palette, sorted by subject like the rest of the archive. Their names end in
+  `-gruvbox`, or `-gruvbox-light` for the light variant, so they are easy to
+  find. Highlights:
+  - painted sci-fi countryside, machines, and wrecks in `desktops/scifi`
+  - dinosaurs, pterosaurs, and giant creatures in `desktops/fantasy`
+  - Linux and NixOS logos with retro stripes in `desktops/tech`
+  - Black Mesa, City 17, Doom Eternal, Firewatch, and Red Dead Redemption 2
+    scenes in `desktops/gaming`
+  - forests, lakes, and mountains in `desktops/outdoors`
+  - Gruvbox versions of three wallpapers already in the archive:
+    `astronaut-station`, `drawn-spaceship-deck`, and `firewatch-wide-lookout`
+  - thirteen images that were too small for today's screens, enlarged and
+    listed under "Modified images" in [CREDITS.md](CREDITS.md)
+- **Credits:** Simon Stålenhag is credited for four paintings that carry his
+  signature or web address, and Ahmed Mostafa for an astronaut scene from
+  Desktopography.
+
+### Changed
+
+- **Desktop ZIP downloads come in parts.** The desktop collection has grown
+  past what GitHub allows in one release download, so `wallpapers-desktops.zip`
+  is replaced by `wallpapers-desktops-part-1.zip` and
+  `wallpapers-desktops-part-2.zip`. Each part keeps whole categories together:
+  part 1 has `abstract` through `outdoors` (about 1.3 GB), and part 2 has
+  `pop-culture` through `urban` (about 0.9 GB). Download both for every
+  desktop image, or pick a single category from the per-category ZIPs, which
+  are unchanged. As the collection grows, a category may move to the other
+  part, or a third part may be added.
+
 ## [1.1.0] - 2026-10-07
 
 ### Added

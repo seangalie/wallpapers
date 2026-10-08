@@ -1,8 +1,9 @@
 # Contributing to Sean's Wallpaper Archive
 
-New wallpapers and corrections are welcome. You can help by adding images,
-improving names or categories, identifying sources and creators, or updating
-the documentation. Please follow the [code of conduct](CODE_OF_CONDUCT.md).
+Thanks for helping out! I welcome new wallpapers and corrections. You can help
+by adding images, improving names or categories, identifying sources and
+creators, or updating the documentation. Please follow the
+[code of conduct](CODE_OF_CONDUCT.md).
 
 ## Get started
 
@@ -22,8 +23,9 @@ formats through LFS when you stage them with `git add`. README previews in
 `docs/` stay in regular Git. Add an LFS rule when introducing a new image format.
 
 Keep a pull request focused on one addition or a related set of changes.
-Discuss a new category, a large import, or a bulk reorganization in an
-[issue](https://github.com/seangalie/wallpapers/issues) before preparing it.
+For a new category, a large import, or a bulk reorganization, open an
+[issue](https://github.com/seangalie/wallpapers/issues) first so we can talk it
+over before you do the work.
 
 ## Add wallpapers
 
@@ -49,7 +51,7 @@ creator identification, include a source that supports it when available.
 Known creators and sources are recorded in [CREDITS.md](../CREDITS.md), with
 the evidence for each credit.
 
-For bulk changes, provide an old-to-new path list for review. Check that every
+For bulk changes, send me an old-to-new path list to review. Check that every
 destination is unique and free before moving files, keep a rollback mapping,
 and verify that image contents and file counts are preserved afterward.
 
@@ -69,7 +71,7 @@ and verify that image contents and file counts are preserved afterward.
 
 Pull requests need at least one of these labels: `breaking-change`, `bugfix`,
 `documentation`, `enhancement`, `refactor`, `performance`, `new-feature`,
-`maintenance`, `ci`, or `dependencies`. A maintainer can add a label if needed.
+`maintenance`, `ci`, or `dependencies`. If you can't add one, I'll add it.
 
 ## Checks
 
@@ -91,7 +93,7 @@ consistent with the archive.
 Repository-authored non-image contributions use the
 [Apache License 2.0](../LICENSE-APACHE), subject to existing third-party notices.
 Wallpapers and preview images retain the rights and terms of their original
-creators; they are excluded from the Apache license. Sean's own photographs,
+creators; they are excluded from the Apache license. My own photographs,
 listed in [LICENSE-ORIGINALS](../LICENSE-ORIGINALS), use CC BY-NC 4.0; other
 creators who supply originals should state their own terms. Do not infer permission
 from an image's presence in the archive. Include known source and licensing

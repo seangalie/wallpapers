@@ -1,8 +1,8 @@
 # Code of conduct
 
-Sean's Wallpaper Archive is shared with friends, family, and colleagues.
-Everyone who opens an issue, comments, or contributes is expected to keep it a
-friendly place.
+I share this archive with friends, family, and colleagues, and I'd like it to
+stay a friendly place. That's all I ask of everyone who opens an issue,
+comments, or contributes.
 
 ## Expected behavior
 
@@ -21,11 +21,11 @@ friendly place.
 
 ## Reporting
 
-If someone's behavior concerns you, contact Sean privately through the
+If someone's behavior concerns you, contact me privately through my
 [contact form](https://www.seangalie.com/contact). You don't need a GitHub
 account, and your report doesn't have to relate to a specific comment, issue,
-or pull request. Sean will keep the details of your report private and share
-them only as needed to address the concern.
+or pull request. I'll keep the details of your report private and share them
+only as needed to address the concern.
 
 To flag a specific comment, issue, or pull request to GitHub's staff, use
 GitHub's **Report content** option on it. GitHub handles those reports under
@@ -33,9 +33,8 @@ its own policies.
 
 ## Enforcement
 
-The maintainer may edit, hide, or delete comments; close or lock
-conversations; reject contributions; and block people who do not follow this
-code of conduct. Responses depend on the situation, from a friendly reminder
+I may edit, hide, or delete comments; close or lock conversations; reject
+contributions; and block people who don't follow this code of conduct. Responses depend on the situation, from a friendly reminder
 to a permanent block for serious or repeated problems.
 
 This applies to all repository spaces, including issues, pull requests,

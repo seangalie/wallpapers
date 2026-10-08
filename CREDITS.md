@@ -1,30 +1,37 @@
 # Credits
 
-Credits for wallpapers whose creator or source is known. Most images in the
-archive arrived without credits; this list grows as creators are identified.
-If you recognize an image, open an issue or pull request with its path and a
-link to the original source.
+These are the wallpapers whose creator or source I know. Most images in the
+archive came to me without credits, so this list grows as creators are
+identified. If you recognize an image, please open an issue or pull request
+with its path and a link to the original source.
 
 A credit here identifies who made an image or where it came from. It does not
 grant permission to use the image, and it does not change the licensing scope
-in [LICENSE](LICENSE). Sean's own photographs are credited and licensed in
+in [LICENSE](LICENSE). My own photographs are credited and licensed in
 [LICENSE-ORIGINALS](LICENSE-ORIGINALS).
 
-## Identified by the maintainer
+## Identified by me
 
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
-| `mobile/tech/grapheneos-logo-blue.png` | GrapheneOS logo | Sean identified the logo as GrapheneOS's. The wallpaper's creator is unknown. |
+| `mobile/tech/grapheneos-logo-blue.png` | GrapheneOS logo | I identified the logo as GrapheneOS's. The wallpaper's creator is unknown. |
 | `mobile/tech/grapheneos-logo-white.png` | GrapheneOS logo | As above, with the logo in white. |
 
 ## Signed artwork
 
-These artworks carry a visible signature. Matching titles have not been
-confirmed against museum records.
+These artworks carry a visible signature or creator mark. Matching titles
+have not been confirmed against museum records or the creators' own listings.
+Images whose names end in `-gruvbox` or `-gruvbox-light` were recolored to the
+Gruvbox palette by someone other than the creator, who is unknown.
 
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
 | `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
+| `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
+| `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
+| `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
+| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
+| `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
 
 ## Credits from image metadata
 
@@ -72,12 +79,26 @@ was found, not necessarily who made it.
 ## Modified images
 
 These images were enlarged from small originals so they suit current displays.
-The originals remain in the repository's Git history. Upscaling adds pixels,
+The originals remain in the repository's Git history, except for the Gruvbox
+images, which were enlarged before they were added. Upscaling adds pixels,
 not detail from the original artwork; a larger original from the creator is
 always a welcome replacement.
 
 | Image | Original | Now | Method |
 | --- | --- | --- | --- |
+| `desktops/abstract/curling-wave-texture-gruvbox.png` | 901×507 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. |
+| `desktops/abstract/scattered-shapes-pattern-gruvbox.png` | 1600×920 | 3840×2208 | As above. |
+| `desktops/abstract/swirling-wave-texture-gruvbox.png` | 901×507 | 3840×2160 | As above. |
 | `desktops/fantasy/hobbit-art.jpg` | 1024×576 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus`, blended 60/40 with Lanczos resampling to keep the paper-grain texture, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/minimal/arched-window-landscapes-gruvbox.png` | 1366×768 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. The original's unused alpha channel was dropped. |
+| `desktops/minimal/blossom-volcano-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
 | `desktops/minimal/blue-gradient.png` | 1024×768 | 4096×3072 | Gradient tones reconstructed from row averages, which removes the original's coarse dithering. Resampled in 16-bit and re-dithered to 8-bit. The original's lighter one-pixel right edge was dropped. |
+| `desktops/minimal/cloud-valley-trees-gruvbox.png` | 1366×768 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. The original's unused alpha channel was dropped. |
+| `desktops/minimal/mountain-ridge-line-art-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
+| `desktops/minimal/mountains-and-pines-line-art-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
+| `desktops/minimal/pine-silhouettes-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
+| `desktops/minimal/snowy-peak-and-clouds-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
 | `desktops/pop-culture/multicolor-groot.jpg` | 1366×768 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus-anime`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/scifi/crashed-plane-roadside-gruvbox-light.jpg` | 1838×919 | 3676×1838 | Upscayl `high-fidelity-4x` at 2x, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | 1024×922 | 4096×3688 | Upscayl `high-fidelity-4x`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |

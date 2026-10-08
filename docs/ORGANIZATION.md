@@ -49,7 +49,7 @@ though its ratio looks like an ultrawide one.
 | `inspiration` | Motivational quotations and advice |
 | `minimal` | Sparse compositions, simple silhouettes, and restrained graphic designs |
 | `music` | Musicians, instruments, and music imagery |
-| `original` | Original work supplied by its creator; Sean's photographs are listed in [LICENSE-ORIGINALS](../LICENSE-ORIGINALS) |
+| `original` | Original work supplied by its creator; my own photographs are listed in [LICENSE-ORIGINALS](../LICENSE-ORIGINALS) |
 | `outdoors` | Landscapes, gardens, plants, wildlife, and outdoor scenes |
 | `pop-culture` | Film, television, comics, and other recognizable cultural subjects |
 | `retro` | Retro graphic styles, including synthwave and vaporwave |
