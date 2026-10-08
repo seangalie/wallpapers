@@ -84,14 +84,16 @@ counts.
 per display format (`wallpapers-<format>.zip`, entries named
 `<category>_<filename>`), and for formats in its `SPLIT_FORMATS` list, currently
 `desktops`, one more per category (`wallpapers-desktops-<category>.zip`, entries
-keep their filenames). Every ZIP includes `LICENSE.txt`, and `SHA256SUMS.txt`
-lists their checksums. It rejects unresolved LFS pointers and archives of 2 GiB
-or more (GitHub's release asset limit). `wallpapers-desktops.zip` is the
-largest, about 1.76 GB in October 2026; when it nears the limit, split it into
-parts.
+keep their filenames). Formats in its `PART_FORMATS` list, currently `desktops`,
+get numbered parts instead of one full ZIP (`wallpapers-desktops-part-<n>.zip`),
+each holding whole categories in alphabetical order and aiming for 1.5 GiB or
+less. Every ZIP includes `LICENSE.txt`, and `SHA256SUMS.txt` lists their
+checksums. It rejects unresolved LFS pointers and archives of 2 GiB or more
+(GitHub's release asset limit). In October 2026 the desktop parts were about
+1.3 GB and 0.9 GB, and the largest category ZIP, `outdoors`, about 0.55 GB.
 
 `.github/workflows/release.yml` runs the script and attaches the ZIPs to the
-release. Each run downloads the whole collection from LFS, about 2.1 GiB of the
+release. Each run downloads the whole collection from LFS, about 2.5 GiB of the
 monthly LFS bandwidth, so avoid unnecessary runs. Release downloads do not
 count against that limit. GitHub source archives include pointers by default
 unless the repository setting to include LFS objects is enabled; keep it off,
@@ -120,6 +122,10 @@ because those downloads do count. See the [archive documentation](https://docs.g
 - **Pull requests** fill in `.github/PULL_REQUEST_TEMPLATE.md` and carry at least
   one of `breaking-change`, `bugfix`, `documentation`, `enhancement`, `refactor`,
   `performance`, `new-feature`, `maintenance`, `ci`, or `dependencies`.
+- **Voice:** user-facing documentation (README, `docs/`, `CREDITS.md`) is
+  written by Sean in the first person ("my photos", "I maintain"). Keep it
+  plain and friendly, and do not add personal details he has not stated.
+  `AGENTS.md`, licenses, and generated text stay as they are.
 - **Formatting** follows `.editorconfig`: UTF-8, LF, and a final newline. Use
   4 spaces by default, including shell scripts; 2 for YAML, JSON, TOML, web
   files, and Ruby; tabs for Go and Makefiles. Markdown has no fixed indentation

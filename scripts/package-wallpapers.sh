@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 # Packages the tracked wallpapers into flat ZIP archives for release downloads.
 #
-# Every display format becomes one archive, wallpapers-<format>.zip, with each
-# image at the root named <category>_<filename>: so
+# Every display format becomes one archive, wallpapers-<format>.zip, or
+# numbered parts of one as described below, with each image at the root named
+# <category>_<filename>: so
 # wallpapers/dual/gaming/firewatch-tower-left-panel.jpg becomes
 # gaming_firewatch-tower-left-panel.jpg in wallpapers-dual.zip.
 #
 # Formats listed in SPLIT_FORMATS are large, so they also get one archive per
 # category, wallpapers-<format>-<category>.zip, with each image at the root
 # under its own filename: so wallpapers/desktops/space/galaxy-m82.jpg becomes
-# galaxy-m82.jpg in wallpapers-desktops-space.zip, and space_galaxy-m82.jpg in
-# wallpapers-desktops.zip. GitHub's 2 GiB limit below cannot be raised, so
-# when a full archive nears it, split that archive into parts.
+# galaxy-m82.jpg in wallpapers-desktops-space.zip.
+#
+# GitHub's 2 GiB limit below cannot be raised, so formats listed in
+# PART_FORMATS have their full archive split into numbered parts,
+# wallpapers-<format>-part-<n>.zip, instead of one wallpapers-<format>.zip.
+# Entries keep the <category>_<filename> naming, and each category stays whole
+# in one part: categories are taken in alphabetical order and shared between
+# as few parts as keeps each near PART_TARGET or below, so space_galaxy-m82.jpg
+# lands in a later part than abstract_ images. Adding images can move a
+# category to a neighboring part, or add a part.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
 # image rights notice travels with the downloads. An archive holding any image
@@ -38,6 +46,8 @@ set -euo pipefail
 
 FORMATS="desktops ultrawide dual triple mobile square"
 SPLIT_FORMATS="desktops"
+PART_FORMATS="desktops"
+PART_TARGET=1610612736 # 1.5 GiB, leaving room to grow before the limit
 ASSET_LIMIT=2147483648 # 2 GiB
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -77,6 +87,11 @@ is_split() {
     return 1
 }
 
+is_parted() {
+    case " ${PART_FORMATS} " in *" $1 "*) return 0 ;; esac
+    return 1
+}
+
 # add_to_archive ARCHIVE ENTRY PATH stages the image at PATH as ENTRY in
 # ARCHIVE, creating the archive's stage with its license files on first use.
 add_to_archive() {
@@ -111,7 +126,13 @@ for format in $FORMATS; do
         relative="${path#wallpapers/"${format}"/}"
         category="${relative%%/*}"
         name="${relative#*/}"
-        add_to_archive "wallpapers-${format}" "${category}_${name}" "$path"
+        if is_parted "$format"; then
+            # Parts are assigned below, once every category's size is known.
+            size="$(wc -c < "${ROOT}/${path}" | tr -d ' ')"
+            printf '%s\t%s\t%s\n' "$category" "$size" "$path" >> "${STAGE}/${format}.parts"
+        else
+            add_to_archive "wallpapers-${format}" "${category}_${name}" "$path"
+        fi
         if is_split "$format"; then
             add_to_archive "wallpapers-${format}-${category}" "$name" "$path"
         fi
@@ -121,6 +142,40 @@ for format in $FORMATS; do
     if [ "$count" -eq 0 ]; then
         fail "No tracked images found in wallpapers/${format}"
     fi
+done
+
+for format in $PART_FORMATS; do
+    [ -f "${STAGE}/${format}.parts" ] || continue
+    # Use the fewest parts that keep an even share at or under PART_TARGET.
+    # Each category goes to the part where its midpoint falls, so the parts
+    # come out close to that share while keeping categories whole. The list is
+    # in Git's path order, so categories arrive alphabetically.
+    while IFS="$(printf '\t')" read -r part category path; do
+        add_to_archive "wallpapers-${format}-part-${part}" \
+            "${category}_${path#wallpapers/"${format}"/"${category}"/}" "$path"
+    done < <(awk -F '\t' -v target="$PART_TARGET" '
+        {
+            if (!($1 in size)) order[++categories] = $1
+            size[$1] += $2
+            total += $2
+            line[NR] = $0
+        }
+        END {
+            parts = int((total + target - 1) / target)
+            if (parts < 1) parts = 1
+            share = total / parts
+            before = 0
+            for (i = 1; i <= categories; i++) {
+                part = int((before + size[order[i]] / 2) / share) + 1
+                if (part > parts) part = parts
+                part_of[order[i]] = part
+                before += size[order[i]]
+            }
+            for (i = 1; i <= NR; i++) {
+                split(line[i], field, "\t")
+                print part_of[field[1]] "\t" field[1] "\t" field[3]
+            }
+        }' "${STAGE}/${format}.parts")
 done
 
 if [ "$errors" -gt 0 ]; then

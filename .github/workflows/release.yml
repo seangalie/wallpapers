@@ -10,7 +10,8 @@
 # prepared.
 #
 # The downloads are built by scripts/package-wallpapers.sh: one ZIP per display
-# format, one more per desktop category, and SHA256SUMS.txt. A new release
+# format (the desktop format in numbered parts), one more per desktop category,
+# and SHA256SUMS.txt. A new release
 # stays a draft until every download is attached, so nobody sees a release
 # without its files.
 #
@@ -22,7 +23,7 @@
 # public meanwhile; if a refresh fails partway, a warning is added to its notes
 # until a later run succeeds.
 #
-# Each run downloads the whole collection from Git LFS, about 2.1 GiB of the
+# Each run downloads the whole collection from Git LFS, about 2.5 GiB of the
 # account's monthly LFS bandwidth. Release downloads by visitors do not count
 # against that limit. The notes job runs first and needs no images, so a
 # missing changelog section fails before anything is downloaded.
@@ -146,7 +147,8 @@ jobs:
             echo "## Downloads"
             echo
             echo "Each display format has one ZIP of every image, named \`<category>_<filename>\`."
-            echo "Desktop wallpapers are also available one category per ZIP. Every ZIP"
+            echo "The desktop images are too many for one ZIP, so they come in numbered parts"
+            echo "that keep each category whole, and also one category per ZIP. Every ZIP"
             echo "includes \`LICENSE.txt\` explaining the image rights, and ZIPs with Sean's"
             echo "own photos also include \`LICENSE-ORIGINALS.txt\`. Built from commit"
             echo "[\`${SHA:0:7}\`](${SERVER_URL}/${GH_REPO}/commit/${SHA}). Checksums are in"
