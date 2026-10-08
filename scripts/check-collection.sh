@@ -4,8 +4,8 @@
 #
 # Paths, attributes, and pointer metadata are read from the Git index, so a
 # checkout holding only LFS pointer files -- as CI's does -- can check layout,
-# formats, categories, filenames, LFS tracking, case-insensitive collisions,
-# and exact duplicates (the SHA-256 recorded in each LFS pointer is the image's
+# formats, categories, filenames, file modes, LFS tracking, case-insensitive
+# collisions, and exact duplicates (the SHA-256 recorded in each LFS pointer is the image's
 # own hash). Git LFS validates pointers locally without downloading images.
 # When an image's contents are present and file(1) is available, its
 # contents are also checked against its extension.
@@ -82,6 +82,11 @@ while IFS= read -r -d '' entry; do
     if [ "$mode" != "100644" ] && [ "$mode" != "100755" ]; then
         fail "Expected a regular file: ${quoted_path}"
         continue
+    fi
+    # Images copied from downloads or other systems can arrive executable.
+    # Report it and keep checking the rest of the entry.
+    if [ "$mode" = "100755" ]; then
+        fail "Image is marked executable (run git update-index --chmod=-x on it): ${quoted_path}"
     fi
 
     relative="${path#wallpapers/}"

@@ -29,8 +29,8 @@ git lfs pull
 git lfs status
 git lfs ls-files
 
-# Check layout, filenames, LFS tracking, duplicates, and README counts
-# (reads the Git index, so stage changes first):
+# Check layout, filenames, file modes, LFS tracking, duplicates, and README
+# counts (reads the Git index, so stage changes first):
 scripts/check-collection.sh
 
 # Regenerate the README's collection table after adding or moving images:

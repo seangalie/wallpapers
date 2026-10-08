@@ -1,6 +1,7 @@
 # Checks the wallpaper collection with scripts/check-collection.sh: layout,
-# formats, categories, filenames, Git LFS tracking, case-insensitive path
-# collisions, exact duplicates, and the README's collection table.
+# formats, categories, filenames, file modes, Git LFS tracking,
+# case-insensitive path collisions, exact duplicates, and the README's
+# collection table.
 #
 # The checkout deliberately leaves LFS images as pointer files. The check reads
 # everything it needs from the Git index and the pointers, so CI never spends
