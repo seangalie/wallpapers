@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
 # Packages the tracked wallpapers into flat ZIP archives for release downloads.
 #
-# Every display format becomes one archive, wallpapers-<format>.zip, with each
-# image at the root named <category>_<filename>: so
+# Every display format becomes one archive, wallpapers-<format>.zip, or
+# numbered parts of one as described below, with each image at the root named
+# <category>_<filename>: so
 # wallpapers/dual/gaming/firewatch-tower-left-panel.jpg becomes
 # gaming_firewatch-tower-left-panel.jpg in wallpapers-dual.zip.
 #
 # Formats listed in SPLIT_FORMATS are large, so they also get one archive per
 # category, wallpapers-<format>-<category>.zip, with each image at the root
 # under its own filename: so wallpapers/desktops/space/galaxy-m82.jpg becomes
-# galaxy-m82.jpg in wallpapers-desktops-space.zip, and space_galaxy-m82.jpg in
-# wallpapers-desktops.zip. GitHub's 2 GiB limit below cannot be raised, so
-# when a full archive nears it, split that archive into parts.
+# galaxy-m82.jpg in wallpapers-desktops-space.zip.
+#
+# GitHub's 2 GiB limit below cannot be raised, so formats listed in
+# PART_FORMATS have their full archive split into numbered parts,
+# wallpapers-<format>-part-<n>.zip, instead of one wallpapers-<format>.zip.
+# Entries keep the <category>_<filename> naming, and each category stays whole
+# in one part. Categories are taken in alphabetical order and packed into the
+# fewest parts that each stay at or under PART_TARGET, counting ZIP entry
+# overhead and the license files. Within that number of parts, the split
+# keeps the largest part as small as possible, and parts are numbered without
+# gaps, so space_galaxy-m82.jpg lands in a later part than abstract_ images.
+# Only a single category larger than PART_TARGET can produce a bigger part,
+# and the 2 GiB check below still stops packaging if that part reaches the
+# limit. Adding images can move a category to a neighboring part, or add a
+# part.
 #
 # Every archive also carries the repository's LICENSE as LICENSE.txt, so the
 # image rights notice travels with the downloads. An archive holding any image
@@ -38,6 +51,8 @@ set -euo pipefail
 
 FORMATS="desktops ultrawide dual triple mobile square"
 SPLIT_FORMATS="desktops"
+PART_FORMATS="desktops"
+PART_TARGET=1610612736 # 1.5 GiB, leaving room to grow before the limit
 ASSET_LIMIT=2147483648 # 2 GiB
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -77,6 +92,11 @@ is_split() {
     return 1
 }
 
+is_parted() {
+    case " ${PART_FORMATS} " in *" $1 "*) return 0 ;; esac
+    return 1
+}
+
 # add_to_archive ARCHIVE ENTRY PATH stages the image at PATH as ENTRY in
 # ARCHIVE, creating the archive's stage with its license files on first use.
 add_to_archive() {
@@ -111,7 +131,13 @@ for format in $FORMATS; do
         relative="${path#wallpapers/"${format}"/}"
         category="${relative%%/*}"
         name="${relative#*/}"
-        add_to_archive "wallpapers-${format}" "${category}_${name}" "$path"
+        if is_parted "$format"; then
+            # Parts are assigned below, once every category's size is known.
+            size="$(wc -c < "${ROOT}/${path}" | tr -d ' ')"
+            printf '%s\t%s\t%s\n' "$category" "$size" "$path" >> "${STAGE}/${format}.parts"
+        else
+            add_to_archive "wallpapers-${format}" "${category}_${name}" "$path"
+        fi
         if is_split "$format"; then
             add_to_archive "wallpapers-${format}-${category}" "$name" "$path"
         fi
@@ -121,6 +147,68 @@ for format in $FORMATS; do
     if [ "$count" -eq 0 ]; then
         fail "No tracked images found in wallpapers/${format}"
     fi
+done
+
+# Every part carries LICENSE.txt and may carry LICENSE-ORIGINALS.txt, so leave
+# room for both, plus a little for the ZIP's end-of-archive record.
+PART_RESERVE=$(($(wc -c < "${ROOT}/LICENSE") + $(wc -c < "${ROOT}/LICENSE-ORIGINALS") + 4096))
+
+for format in $PART_FORMATS; do
+    [ -f "${STAGE}/${format}.parts" ] || continue
+    # The list is in Git's path order, so categories arrive alphabetically.
+    while IFS="$(printf '\t')" read -r part category path; do
+        add_to_archive "wallpapers-${format}-part-${part}" \
+            "${category}_${path#wallpapers/"${format}"/"${category}"/}" "$path"
+    done < <(awk -F '\t' -v target="$PART_TARGET" -v reserve="$PART_RESERVE" '
+        # pack(cap) fills parts in order, starting a new part whenever the next
+        # category would push the current one past cap, and returns how many
+        # parts that takes. For categories kept in order, filling each part as
+        # far as it goes uses the fewest parts for a given cap.
+        function pack(cap,    i, used, count) {
+            count = 1
+            used = 0
+            for (i = 1; i <= categories; i++) {
+                if (used > 0 && used + size[order[i]] > cap) {
+                    count++
+                    used = 0
+                }
+                part_of[order[i]] = count
+                used += size[order[i]]
+            }
+            return count
+        }
+        {
+            if (!($1 in size)) order[++categories] = $1
+            # A stored ZIP entry adds a 30-byte local header and a 46-byte
+            # central directory record, each holding the entry name.
+            name = $3
+            sub(/^[^\/]*\/[^\/]*\//, "", name)
+            entry = $2 + 76 + 2 * length(name)
+            size[$1] += entry
+            if (size[$1] > largest) largest = size[$1]
+            line[NR] = $0
+        }
+        END {
+            limit = target - reserve
+            # A category larger than the limit gets a part of its own.
+            high = (largest > limit) ? largest : limit
+            parts = pack(high)
+            # Find the smallest cap that still needs no more parts, which keeps
+            # the largest part as small as possible.
+            low = largest
+            while (high - low > 1) {
+                # Halve without int(), which some awks cap at 2^31 - 1.
+                middle = (low + high - (low + high) % 2) / 2
+                if (pack(middle) <= parts) high = middle
+                else low = middle
+            }
+            if (pack(low) <= parts) high = low
+            pack(high)
+            for (i = 1; i <= NR; i++) {
+                split(line[i], field, "\t")
+                print part_of[field[1]] "\t" field[1] "\t" field[3]
+            }
+        }' "${STAGE}/${format}.parts")
 done
 
 if [ "$errors" -gt 0 ]; then

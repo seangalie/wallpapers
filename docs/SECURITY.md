@@ -16,8 +16,8 @@ undisclosed vulnerability in a public issue, discussion, pull request, or
 commit message.
 
 Include the affected path or workflow, steps to reproduce the issue, its
-potential impact, and a suggested fix if you have one. Reports are handled on
-a best-effort basis; there is no guaranteed response time.
+potential impact, and a suggested fix if you have one. I'll look into every
+report as soon as I can, though I can't promise a response time.
 
 Ordinary image, naming, category, and credit corrections belong in the channels
 listed in the [support guide](SUPPORT.md).

@@ -27,8 +27,8 @@ reference when it helps identify the copy you downloaded.
 
 ## What to expect
 
-Sean's Wallpaper Archive is maintained on a best-effort basis. There is no
-guaranteed response time or commercial support offering.
+I look after this archive in my spare time, so I answer when I can. There's no
+guaranteed response time or paid support.
 
 Inactive issues are marked stale after 60 days and closed 14 days later unless
 they carry an exempt label. Update the issue if it still needs attention; you
