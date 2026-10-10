@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<!--
+  Sean's Wallpaper Archive, built by scripts/build-site.sh.
+  Design: Multiverse by HTML5 UP (html5up.net | @ajlkn), used under the
+  CCA 3.0 license (html5up.net/license); see assets/LICENSE-HTML5UP.txt.
+-->
+<html lang="en">
+  <head>
+    <title>Sean's Wallpaper Archive</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="My collection of desktop, multi-monitor, and mobile wallpapers, gathered from all over the internet." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload">
+
+    <div id="wrapper">
+
+      <header id="header">
+        <h1><a href="./"><strong>Sean's</strong> Wallpaper Archive</a></h1>
+        <span id="summary" aria-live="polite"></span>
+        <nav>
+          <ul>
+            <li><a href="#browse" class="icon solid fa-sliders-h">Browse</a></li>
+            <li><a href="#downloads" class="icon solid fa-file-archive">ZIPs</a></li>
+            <li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="main"></div>
+
+      <div id="empty" hidden>
+        <h2>No wallpapers match</h2>
+        <p>Try another search, or <a href="#" data-reset>show everything</a>.</p>
+      </div>
+
+      <noscript>
+        <div class="noscript-message">
+          <h2>This gallery needs JavaScript</h2>
+          <p>You can still <a href="https://github.com/seangalie/wallpapers/tree/main/wallpapers">browse the folders on GitHub</a>.</p>
+        </div>
+      </noscript>
+
+      <section id="browse" class="panel">
+        <div class="inner">
+          <section>
+            <h2>Browse</h2>
+            <input type="search" id="search" placeholder="Search names, like gruvbox, nord, or moon" aria-label="Search wallpapers" autocomplete="off" />
+          </section>
+          <section>
+            <h3>Display format</h3>
+            <ul class="filters" id="format-filters"></ul>
+          </section>
+          <section>
+            <h3>Category</h3>
+            <ul class="filters" id="category-filters"></ul>
+          </section>
+          <ul class="actions">
+            <li><a href="#browse" class="button primary" id="show-results">Show wallpapers</a></li>
+            <li><a href="#" class="button" data-reset>Reset</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="downloads" class="panel">
+        <div class="inner split">
+          <div>
+            <section>
+              <h2>Download everything</h2>
+              <p>Want a whole format or category at once? Every release has ZIP files: one for each display format, with desktops in numbered parts, plus one for each desktop category.</p>
+              <ul class="actions">
+                <li><a href="https://github.com/seangalie/wallpapers/releases/latest" class="button primary icon solid fa-download" data-repository-link="/releases/latest">Latest release</a></li>
+              </ul>
+            </section>
+          </div>
+          <div>
+            <section>
+              <h2>One at a time</h2>
+              <p>Select any wallpaper to see a larger preview, then choose <strong>Download</strong> to save the original, full-size image. On a phone, the download button sits under the preview.</p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer id="footer" class="panel">
+        <div class="inner split">
+          <div>
+            <section>
+              <h2>About the archive</h2>
+              <p>This is where I keep the wallpapers I've collected for single desktops, multiple monitors, ultrawide displays, phones, and square layouts. You'll find photography, illustrations, abstract designs, retro graphics, games, science fiction, and coordinated color themes.</p>
+              <p>I didn't create most of these images, and their copyright stays with the original creators. The photographs in <em>Original</em> are mine, and you may share and adapt them for non-commercial purposes under <a href="https://github.com/seangalie/wallpapers/blob/main/LICENSE-ORIGINALS" data-repository-link="/blob/main/LICENSE-ORIGINALS">CC BY-NC 4.0</a>.</p>
+            </section>
+            <p class="copyright">
+              Design: <a href="https://html5up.net">HTML5 UP</a>.
+            </p>
+          </div>
+          <div>
+            <section>
+              <h2>Credits and corrections</h2>
+              <p>Know who made one of these, or own the rights to one? Please <a href="https://github.com/seangalie/wallpapers/issues" data-repository-link="/issues">open an issue</a> with the image's name, and see <a href="https://github.com/seangalie/wallpapers/blob/main/CREDITS.md" data-repository-link="/blob/main/CREDITS.md">the credits I know of</a>.</p>
+              <ul class="icons">
+                <li><a href="https://github.com/seangalie/wallpapers" class="icon brands fa-github" data-repository-link=""><span class="label">GitHub</span></a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <div id="viewer" class="poptrox-overlay" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
+      <div class="poptrox-popup">
+        <div class="pic"><img alt="" /></div>
+        <span class="loader"></span>
+        <div class="caption">
+          <h2 id="viewer-title"></h2>
+          <p id="viewer-details"></p>
+          <ul class="actions">
+            <li><a class="button primary small icon solid fa-download" id="viewer-download">Download</a></li>
+            <li><a class="button small" id="viewer-original" target="_blank" rel="noopener">Open full size</a></li>
+          </ul>
+        </div>
+        <button type="button" class="nav-previous" aria-label="Previous wallpaper"></button>
+        <button type="button" class="nav-next" aria-label="Next wallpaper"></button>
+        <button type="button" class="closer" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <!-- collection -->
+    <script src="assets/js/site.js"></script>
+
+  </body>
+</html>
