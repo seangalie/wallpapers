@@ -47,6 +47,14 @@ indent_size = unset
 indent_style = unset
 indent_size = unset
 
+[site/assets/{LICENSE-HTML5UP.txt,css/main.css,css/noscript.css,css/fontawesome-all.min.css,css/images/*.svg}]
+# Vendored from the Multiverse template and Font Awesome; their layout is
+# theirs, so updates can be copied over unchanged.
+indent_style = unset
+indent_size = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+
 [.gitignore]
 # The macOS "Icon\r" pattern needs a literal carriage return mid-line, which
 # editorconfig-checker would otherwise report as a wrong line ending.

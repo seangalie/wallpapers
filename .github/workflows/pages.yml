@@ -1,0 +1,101 @@
+# Publishes the browsing site to GitHub Pages with scripts/build-site.sh
+# whenever main changes the collection or the site.
+#
+# Pages must be enabled once, with "GitHub Actions" as the source, under
+# Settings > Pages.
+#
+# The site carries previews only; its download links point at each image on
+# media.githubusercontent.com, so every full-size download from the site counts
+# against the account's monthly Git LFS bandwidth. Building reuses the
+# previews already published and downloads from LFS only the images that are
+# new or changed. A run stops before downloading more than the LFS limit, 1
+# GiB unless set otherwise. The first deploy, or one after the preview
+# settings change, renders the whole collection: run this workflow from the
+# Actions tab with a limit of about 3000 MiB. That costs about 2.5 GiB of LFS
+# bandwidth.
+
+name: Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - wallpapers/**
+      - site/**
+      - scripts/build-site.sh
+      - scripts/check-collection.sh
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+    inputs:
+      lfs-limit:
+        description: "Most MiB to download from Git LFS for new previews"
+        type: number
+        default: 1024
+
+permissions:
+  contents: read
+
+# Deploys run in order and are never cancelled midway, so the published
+# previews always match a finished build.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 🏗 Build the site
+    runs-on: ubuntu-latest
+    # Rendering the whole collection takes a while; later builds are quick.
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      # configure-pages reads the site's address.
+      pages: read
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          lfs: false
+
+      - name: 📦 Install ImageMagick
+        run: |
+          set -euo pipefail
+          if ! command -v convert > /dev/null 2>&1 && ! command -v magick > /dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends imagemagick
+          fi
+          # The build script downloads only the images it has to render.
+          git lfs install --local
+
+      - name: 🔧 Configure Pages
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: 🏗 Build the site
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_LFS_LIMIT: ${{ inputs.lfs-limit || 1024 }}
+        run: bash scripts/build-site.sh "${RUNNER_TEMP}/site"
+
+      - name: ⤴️ Upload the site
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
