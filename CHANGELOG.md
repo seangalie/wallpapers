@@ -30,6 +30,14 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+### Added
+
+- **A gallery site at <https://seangalie.github.io/wallpapers/>:** browse the
+  whole archive as previews, filter by display format and category, search by
+  name, and download any single wallpaper at full size. Links to a filtered
+  view or a single wallpaper can be bookmarked and shared. The site updates
+  itself whenever the collection changes.
+
 ## [2.0.0] - 2026-10-07
 
 180 Gruvbox wallpapers join the archive, bringing it to 1,464 images. This is

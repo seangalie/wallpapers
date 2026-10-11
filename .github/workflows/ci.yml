@@ -1,7 +1,8 @@
 # Checks the wallpaper collection with scripts/check-collection.sh: layout,
 # formats, categories, filenames, file modes, Git LFS tracking,
 # case-insensitive path collisions, exact duplicates, and the README's
-# collection table.
+# collection table. A second job tests scripts/build-site.sh, which builds the
+# gallery site, against tiny images it makes itself.
 #
 # The checkout deliberately leaves LFS images as pointer files. The check reads
 # everything it needs from the Git index and the pointers, so CI never spends
@@ -49,3 +50,26 @@ jobs:
 
       - name: 🚀 Run the collection check
         run: bash scripts/check-collection.sh
+
+  site:
+    name: 🧪 Test the site build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          lfs: false
+
+      - name: 📦 Install ImageMagick
+        run: |
+          set -euo pipefail
+          if ! command -v convert > /dev/null 2>&1 && ! command -v magick > /dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends imagemagick
+          fi
+
+      - name: 🧪 Test the site build
+        # The tests make their own tiny images, so no LFS content is needed.
+        run: bash scripts/test-build-site.sh

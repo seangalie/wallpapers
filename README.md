@@ -3,7 +3,8 @@
   <h1>Sean's Wallpaper Archive</h1>
   <p>My collection of desktop, multi-desktop, and mobile wallpapers, gathered from all over the internet</p>
   <p>
-    <a href="wallpapers/">Browse the archive</a>
+    <a href="https://seangalie.github.io/wallpapers/">Browse the gallery</a>
+    · <a href="wallpapers/">Browse the folders</a>
     · <a href="docs/CONTRIBUTING.md">Contribute</a>
     · <a href="CHANGELOG.md">Changelog</a>
   </p>
@@ -90,8 +91,10 @@ illustration placement, retro styles, and filename conventions.
 
 ## Download and use
 
-**Single images:** open a file in [wallpapers/](wallpapers/) and use the
-download button on its page. This is the easiest option for most people.
+**Single images:** browse the [gallery](https://seangalie.github.io/wallpapers/),
+filter it by display format, category, or name, select a wallpaper, and choose
+**Download**. This is the easiest option for most people. You can also open a
+file in [wallpapers/](wallpapers/) and use the download button on its page.
 
 **A whole format or category:** download a ZIP from the
 [latest release](https://github.com/seangalie/wallpapers/releases/latest).
