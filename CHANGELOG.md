@@ -30,6 +30,36 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-10-11
+
+67 wallpapers from my old laptop join the archive, bringing it to 1,608
+images, and two existing wallpapers get much sharper copies.
+
+### Added
+
+- **67 wallpapers** found in folders I copied off my old laptop:
+  - 50 desktop images, including 16 Star Wars scenes in
+    `desktops/star-wars`, military aircraft in `desktops/history`, Fallout,
+    Half-Life, Minecraft, and Mirror's Edge in `desktops/gaming`, and large
+    abstract, space, and landscape images
+  - 4 ultrawide images, including a Middle-earth map and a green version of
+    the Firewatch wilderness view, 2 dual-monitor panoramas, and a
+    triple-monitor sunset
+  - 10 phone wallpapers, from a Better Call Saul poster to a steam engine in
+    a cloud of smoke
+  - sixteen of these were too small for today's screens, so they were
+    enlarged and listed under "Modified images" in [CREDITS.md](CREDITS.md)
+- **Credits:** Louis Coyle is credited for `bear-and-deer-dawn`, which
+  carries his signature and Dribbble address, and U.S. Navy photographer
+  James R. Evans for `f18-hornet-cloudscape`, from its metadata.
+
+### Changed
+
+- **Sharper copies of two wallpapers**, at the same paths:
+  `desktops/outdoors/bear-and-deer-dawn.jpg` is now 7680×4320, replacing a
+  heavily compressed 5376×3024 copy, and `desktops/space/everest-starscape.jpg`
+  is now 2560×1440 with a slightly wider view, up from 1920×1200.
+
 ## [3.0.0] - 2026-10-11
 
 The archive gets a gallery site, 102 new wallpapers, and sharper copies of
@@ -188,7 +218,8 @@ For anyone who used Sean's previous private wallpaper archive (release
 
 - Three duplicate images from the previous archive.
 
-[unreleased]: https://github.com/seangalie/wallpapers/compare/v3.0.0...HEAD
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/seangalie/wallpapers/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/seangalie/wallpapers/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/seangalie/wallpapers/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/seangalie/wallpapers/compare/v1.0.0...v1.1.0
