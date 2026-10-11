@@ -60,6 +60,7 @@ publications.
 | `desktops/outdoors/endless-sand.jpg` | Justin Wirtalla | EXIF copyright: "©2022 Justin Wirtalla". |
 | `desktops/outdoors/iceberg-night.jpg` | Justin Wirtalla | EXIF copyright: "©2022 Justin Wirtalla". |
 | `desktops/outdoors/northern-lights-ocean.jpg` | Brendon Porter, Ryan Gorley, et al. | EXIF artist. |
+| `desktops/star-wars/lego-clone-troopers-beach.jpg` | Daniel Boud | EXIF copyright, and XMP creator and rights. XMP location: Sydney, NSW, Australia. |
 | `desktops/urban/melbourne-three-rivers.jpg` | Sander Groffen | EXIF artist and copyright: "Sander Groffen 2015". Caption: "Taken from an airplane window". |
 | `desktops/urban/newyorkcity-tiltshift.jpg` | Vivienne Gucwa | EXIF artist. |
 | `dual/outdoors/forest-stand.jpg` | Georgios Wollbrecht | EXIF artist "Geo Wollbrecht" and copyright "Georgios Wollbrecht ©2008". |
