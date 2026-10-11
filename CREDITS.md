@@ -40,6 +40,7 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
 | `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
+| `desktops/outdoors/bear-and-deer-dawn.jpg` | Louis Coyle | Signature in the lower right, with "dribbble.com/louiscoyle" beneath it. |
 | `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
 | `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
 | `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
@@ -55,6 +56,7 @@ publications.
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
 | `desktops/history/f15-and-f22-formation.jpg` | TSgt Ben Bloker | EXIF artist. The caption describes an F-15 Eagle and F/A-22 Raptor of the 27th Fighter Squadron off the coast of Virginia. TSgt is a U.S. Air Force rank. |
+| `desktops/history/f18-hornet-cloudscape.jpg` | MCSN James R. Evans | EXIF artist. The caption begins with the photo number `060730-N-7981E-097` and describes an F/A-18F Super Hornet of VFA-2 passing USS Abraham Lincoln on July 30, 2006, consistent with U.S. Navy photo numbering. |
 | `desktops/history/f18-hornets.jpg` | MC3 Jimmy C. Pan | EXIF artist. The caption begins with the photo number `070923-N-3136P-109` and describes F/A-18E Super Hornets of VFA-27 at USS Kitty Hawk on September 23, 2007, consistent with U.S. Navy photo numbering. |
 | `desktops/outdoors/blueberries.jpg` | Scott Reilly | EXIF copyright. |
 | `desktops/outdoors/endless-sand.jpg` | Justin Wirtalla | EXIF copyright: "©2022 Justin Wirtalla". |
@@ -115,24 +117,40 @@ creator is always a welcome replacement.
 | `desktops/pop-culture/multicolor-groot.jpg` | 1366×768 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus-anime`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/crashed-plane-roadside-gruvbox-light.jpg` | 1838×919 | 3676×1838 | Upscayl `high-fidelity-4x` at 2x, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/snowy-towers-village-gruvbox.jpg` | 1024×922 | 4096×3688 | Upscayl `high-fidelity-4x`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `desktops/star-wars/lego-darth-vader-death-star-officer.jpg` | 1200×675 | 3840×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/space/horsehead-nebula.jpg` | 1280×720 | 3840×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/space/red-emission-nebula.jpg` | 760×494 | 2560×1664 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. The original was WebP. |
+| `desktops/star-wars/darth-vader-closeup.jpg` | 1344×741 | 3840×2117 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/star-wars/lego-darth-vader-death-star-officer.jpg` | 1200×675 | 3840×2160 | As above. |
 | `desktops/star-wars/lego-skeleton-stormtrooper-line.jpg` | 1024×680 | 3840×2550 | As above. |
+| `desktops/star-wars/millennium-falcon-fighter-escort.jpg` | 1200×814 | 3840×2605 | As above. |
 | `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |
 | `desktops/urban/princeton-gothic-arch-steps.jpg` | 1024×650 | 3840×2438 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original to soften invented stone texture, resized to 3840 wide with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-clock-tower.jpg` | 1024×685 | 3840×2569 | As above. |
 | `mobile/abstract/red-blue-brush-stripes.jpg` | 768×1024 | 1440×1920 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `mobile/art/raccoon-road-trip-comic.jpg` | 1000×1500 | 1440×2160 | As above. |
+| `mobile/art/bear-woodcut.jpg` | 952×1600 | 1440×2420 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/art/raccoon-road-trip-comic.jpg` | 1000×1500 | 1440×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/fantasy/dragon-overgrown-castle.jpg` | 900×1263 | 1440×2021 | As above. |
-| `mobile/fantasy/wooden-airship.jpg` | 760×1352 | 1440×2562 | As above. |
+| `mobile/fantasy/floating-city-islands.png` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/fantasy/wooden-airship.jpg` | 760×1352 | 1440×2562 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/gaming/bioshock-no-gods-or-kings.jpg` | 769×1200 | 1440×2247 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/gaming/portal-fall-icon.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/history/steam-engine-smoke.jpg` | 880×1443 | 1440×2361 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/minimal/pixel-art-dusk-moon.png` | 768×1280 | 1536×2560 | Doubled with nearest-neighbor scaling, which keeps the pixel art's hard edges. |
 | `mobile/minimal/pixel-art-sunny-sea.png` | 768×1280 | 1536×2560 | As above. |
 | `mobile/outdoors/palm-tree-sunset.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/outdoors/railway-tracks-summer.jpg` | 1024×1536 | 1440×2160 | As above. |
 | `mobile/outdoors/snowy-forest-red-cabin.jpg` | 720×1280 | 1440×2560 | As above. |
 | `mobile/outdoors/snowy-pine-forest-path.jpg` | 1000×1413 | 1440×2035 | As above. |
-| `mobile/scifi/armored-ape-soldier.jpg` | 991×1370 | 1440×1991 | As above. |
+| `mobile/outdoors/snowy-river-distant-wildfire.jpg` | 720×1043 | 1440×2086 | As above. |
+| `mobile/pop-culture/better-call-saul.jpg` | 800×1200 | 1440×2160 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/pop-culture/futurama-bender-face.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/scifi/armored-ape-soldier.jpg` | 991×1370 | 1440×1991 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/scifi/massive-city-corridor.jpg` | 750×1569 | 1440×3012 | As above. |
 | `mobile/scifi/rusty-mech-gunner.jpg` | 760×1343 | 1440×2545 | As above. |
 | `mobile/space/astronaut-riding-shark.png` | 720×1280 | 1440×2560 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
-| `mobile/space/nebula-triangle-mosaic.jpg` | 829×1433 | 1440×2489 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/space/eclipse-sequence-clouds.jpg` | 1000×1500 | 1440×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/space/nebula-triangle-mosaic.jpg` | 829×1433 | 1440×2489 | As above. |
 | `mobile/space/soviet-rocket-launch-tower.jpg` | 898×1600 | 1440×2566 | As above. |
+| `mobile/star-wars/fear-and-loathing-mos-eisley.jpg` | 732×1035 | 1440×2036 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `ultrawide/gaming/firewatch-wide-wilderness-green.jpg` | 1920×804 | 3440×1441 | As above. |
+| `ultrawide/star-wars/first-order-rally.jpg` | 1919×811 | 3440×1454 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
