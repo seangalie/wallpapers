@@ -238,27 +238,50 @@
   // --- Panels ---------------------------------------------------------------
 
   // The template's sliding panels: a toggle is any link to the panel's id.
+  // Closed panels only slide out of view, so they are inert to keep their
+  // controls out of the tab order and the accessibility tree.
   const panels = [...document.querySelectorAll('.panel')];
+  let panelOpener = null;
 
   function hidePanels() {
-    panels.forEach((panel) => panel.classList.remove('active'));
+    // Focus left inside a closing panel would be lost once it is inert.
+    const stranded = panels.some((panel) => panel.contains(document.activeElement));
+    panels.forEach((panel) => {
+      panel.classList.remove('active');
+      panel.inert = true;
+    });
     document.querySelectorAll('#header nav a').forEach((link) => link.classList.remove('active'));
     body.classList.remove('content-active');
+    if (stranded) {
+      if (panelOpener) panelOpener.focus({ preventScroll: true });
+      else document.activeElement.blur();
+    }
+    panelOpener = null;
   }
 
-  function showPanel(panel) {
+  function showPanel(panel, opener) {
     hidePanels();
+    panelOpener = opener;
+    panel.inert = false;
     panel.classList.add('active');
     document.querySelectorAll(`#header nav a[href="#${panel.id}"]`)
       .forEach((link) => link.classList.add('active'));
     body.classList.add('content-active');
+    // Panels follow every tile in the page, so focus moves into the open one
+    // rather than leaving keyboard users to tab through the grid. Small
+    // screens focus the panel itself to keep the on-screen keyboard closed.
     if (panel.id === 'browse' && !smallScreen.matches) search.focus({ preventScroll: true });
+    else panel.focus({ preventScroll: true });
   }
 
   panels.forEach((panel) => {
-    const closer = document.createElement('div');
+    const closer = document.createElement('button');
+    closer.type = 'button';
     closer.className = 'closer';
+    closer.setAttribute('aria-label', 'Close');
     closer.addEventListener('click', hidePanels);
+    panel.inert = true;
+    panel.tabIndex = -1;
     panel.append(closer);
     panel.addEventListener('click', (event) => event.stopPropagation());
 
@@ -266,7 +289,7 @@
       toggle.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (panel.classList.contains('active')) hidePanels(); else showPanel(panel);
+        if (panel.classList.contains('active')) hidePanels(); else showPanel(panel, toggle);
       });
     });
   });

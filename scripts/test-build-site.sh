@@ -114,6 +114,14 @@ expect_summary 'the LFS limit is reported' 'over the 0 MiB limit'
 [ -z "$(find "$WORK" -maxdepth 1 -name '.site-build.*')" ] || fail 'a failed build removes its staging directory'
 pass 'a build stops before downloading more than the LFS limit, keeping the earlier build'
 
+for limit in 1024.5 '1+1' 12345678; do
+    status=0
+    SITE_LFS_LIMIT="$limit" build "${WORK}/site" || status=$?
+    [ "$status" -ne 0 ] || fail "an LFS limit of ${limit} is rejected"
+    expect_summary "the rejected limit ${limit} is explained" 'must be a whole number of MiB'
+done
+pass 'a build rejects an LFS limit that is not a whole number'
+
 mkdir -p "${WORK}/unrelated"
 touch "${WORK}/unrelated/keep.txt"
 status=0

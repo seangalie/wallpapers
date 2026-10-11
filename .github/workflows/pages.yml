@@ -76,7 +76,9 @@ jobs:
       - name: 🏗 Build the site
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
-          SITE_LFS_LIMIT: ${{ inputs.lfs-limit || 1024 }}
+          # The event's inputs are strings, so a manual limit of 0 survives the
+          # fallback that push events take; the number-typed input would not.
+          SITE_LFS_LIMIT: ${{ github.event.inputs.lfs-limit || 1024 }}
         run: bash scripts/build-site.sh "${RUNNER_TEMP}/site"
 
       - name: ⤴️ Upload the site

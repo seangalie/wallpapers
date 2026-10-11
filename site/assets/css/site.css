@@ -15,12 +15,33 @@
 /* Header */
 
 #header #summary {
-  color: #707071;
+  color: #a0a0a1;
   font-size: 0.8em;
   letter-spacing: 0.1em;
   margin-left: 1.5em;
   text-transform: uppercase;
   vertical-align: middle;
+}
+
+/* Buttons */
+
+/*
+  The template's green is too light for white text, so buttons use its
+  darker pressed shade, and hover darkens rather than lightens.
+*/
+button.primary,
+.button.primary {
+  background-color: #287e6d;
+}
+
+button.primary:hover,
+.button.primary:hover {
+  background-color: #226b5d;
+}
+
+button.primary:hover:active,
+.button.primary:hover:active {
+  background-color: #1b574b;
 }
 
 /* Grid */
@@ -72,12 +93,12 @@
 }
 
 .filters button .count {
-  color: #707071;
+  color: #a0a0a1;
   margin-left: 0.6em;
 }
 
 .filters button[aria-pressed="true"] {
-  background-color: #34a58e;
+  background-color: #287e6d;
   box-shadow: none;
 }
 
@@ -86,7 +107,7 @@
 }
 
 .filters button[aria-pressed="true"] .count {
-  color: rgba(255, 255, 255, 0.75);
+  color: #ffffff;
 }
 
 .filters button:disabled {
@@ -97,6 +118,34 @@
 .filters button:disabled:hover {
   box-shadow: inset 0 0 0 2px #36383c;
   color: #ffffff !important;
+}
+
+/* Panels */
+
+/*
+  A panel takes focus only so Tab continues inside it, so it needs no
+  outline of its own.
+*/
+.panel:focus {
+  outline: none;
+}
+
+/*
+  The template rests the close icon at 25% opacity, too faint to find; 50%
+  matches the viewer's controls on hover.
+*/
+.panel > button.closer {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: inherit;
+  opacity: 0.5;
+  padding: 0;
+}
+
+/* The template's credit color is too faint for the license credit it holds. */
+#footer .copyright {
+  color: #969697;
 }
 
 /* Viewer, styled by the template's poptrox rules */
@@ -142,6 +191,19 @@
   border-radius: 0;
   box-shadow: none;
   padding: 0;
+}
+
+/*
+  The template shows these controls only on hover, which keyboard focus
+  never triggers. The dark inner ring keeps the outline visible over light
+  images.
+*/
+#viewer .poptrox-popup button:focus-visible,
+.panel > button.closer:focus-visible {
+  box-shadow: inset 0 0 0 4px #1f2224;
+  opacity: 1;
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
 }
 
 #viewer .poptrox-popup.single .nav-previous,

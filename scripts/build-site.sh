@@ -121,6 +121,16 @@ if ! printf '%s' "$REPOSITORY" | grep -Eq '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$'; t
 fi
 REF="$(git rev-parse --verify "${SITE_REF:-HEAD}^{commit}")"
 JOBS="${SITE_JOBS:-$(getconf _NPROCESSORS_ONLN 2> /dev/null || echo 2)}"
+# Bash arithmetic evaluates whatever text it is given, so only whole numbers
+# of up to seven digits reach it, keeping the byte count in range. 10# keeps a
+# leading zero from being read as octal.
+LFS_LIMIT=""
+if [ -n "${SITE_LFS_LIMIT:-}" ]; then
+    case "$SITE_LFS_LIMIT" in
+        *[!0-9]* | ????????*) fail "SITE_LFS_LIMIT must be a whole number of MiB, not \"${SITE_LFS_LIMIT}\"" ;;
+    esac
+    LFS_LIMIT="$((10#$SITE_LFS_LIMIT))"
+fi
 
 bash "${ROOT}/scripts/check-collection.sh"
 
@@ -229,8 +239,8 @@ done < "${WORK}/images"
 rendered="$(wc -l < "${WORK}/render" | tr -d ' ')"
 fetched="$(wc -l < "${WORK}/fetch" | tr -d ' ')"
 
-if [ -n "${SITE_LFS_LIMIT:-}" ] && [ "$fetch_bytes" -gt $((SITE_LFS_LIMIT * 1048576)) ]; then
-    fail "Rendering ${rendered} previews needs $(mebibytes "$fetch_bytes") from Git LFS, over the ${SITE_LFS_LIMIT} MiB limit"
+if [ -n "$LFS_LIMIT" ] && [ "$fetch_bytes" -gt $((LFS_LIMIT * 1048576)) ]; then
+    fail "Rendering ${rendered} previews needs $(mebibytes "$fetch_bytes") from Git LFS, over the ${LFS_LIMIT} MiB limit"
 fi
 
 if [ "$fetched" -gt 0 ]; then
