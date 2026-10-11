@@ -36,7 +36,35 @@ section as the GitHub release notes, and refuses to publish if it is missing.
   whole archive as previews, filter by display format and category, search by
   name, and download any single wallpaper at full size. Links to a filtered
   view or a single wallpaper can be bookmarked and shared. The site updates
-  itself whenever the collection changes.
+  itself whenever the collection changes. It opens in a shuffled order, so
+  each visit shows a different mix, and sorts A to Z once you pick a format or
+  category or search; switch between Shuffle and A to Z under Browse.
+- **102 wallpapers**, bringing the archive to 1,541 images:
+  - 13 Princeton University campus photos in `desktops/urban`, from the
+    university's Zoom backgrounds
+  - 41 phone wallpapers across `mobile`, including mech and sci-fi paintings,
+    Futurama and Half-Life posters, pixel art, and outdoor scenes
+  - 46 desktop wallpapers, including LEGO Star Wars scenes, Minecraft,
+    retro gaming jokes, quotes in `desktops/inspiration`, and three more of
+    my own photographs of Lebanon Lake in `desktops/original`
+  - the original colors of two Gruvbox paintings already in the archive:
+    `child-and-robots-lakeshore` and `robot-in-thicket` in `desktops/scifi`
+  - twenty images that were too small for today's screens, enlarged and
+    listed under "Modified images" in [CREDITS.md](CREDITS.md)
+
+### Changed
+
+- **Sharper copies of three wallpapers:** `desktops/gaming/tetris.jpg`,
+  `desktops/scifi/cyberpunk-city.jpg` (now without a watermark), and
+  `desktops/space/rocket-launch-tiltshift.jpg` are replaced by
+  higher-resolution versions at the same paths.
+
+### Removed
+
+- **25 wallpapers that no longer fit the collection:** the 23 Omarchy theme
+  wallpapers in `desktops/themes` (names containing `_omarchy` or `_oma`) and
+  the two `alpha-omega-crown-of-thorns` images in `desktops/art`. Links to
+  these files no longer work, and they are gone from the release ZIPs.
 
 ## [2.0.0] - 2026-10-07
 

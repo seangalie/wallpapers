@@ -14,6 +14,19 @@ in [LICENSE](LICENSE). My own photographs are credited and licensed in
 
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
+| `desktops/urban/princeton-clio-hall-autumn.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-gothic-arch-steps.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-gothic-clock-tower.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-gothic-hall-bicycles-autumn.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-gothic-tower-autumn-maple.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-john-witherspoon-statue-autumn.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-johnson-arch.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-lewis-center-for-the-arts-autumn.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-mccosh-hall-lecture-hall.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-nassau-hall-cupola.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-nassau-hall-ivy-windows.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-nassau-hall-summer.jpg` | Princeton University | Zoom Backgrounds |
+| `desktops/urban/princeton-red-ivy-gothic-doorway.jpg` | Princeton University | Zoom Backgrounds |
 | `mobile/tech/grapheneos-logo-blue.png` | GrapheneOS logo | I identified the logo as GrapheneOS's. The wallpaper's creator is unknown. |
 | `mobile/tech/grapheneos-logo-white.png` | GrapheneOS logo | As above, with the logo in white. |
 
@@ -47,6 +60,7 @@ publications.
 | `desktops/outdoors/endless-sand.jpg` | Justin Wirtalla | EXIF copyright: "©2022 Justin Wirtalla". |
 | `desktops/outdoors/iceberg-night.jpg` | Justin Wirtalla | EXIF copyright: "©2022 Justin Wirtalla". |
 | `desktops/outdoors/northern-lights-ocean.jpg` | Brendon Porter, Ryan Gorley, et al. | EXIF artist. |
+| `desktops/star-wars/lego-clone-troopers-beach.jpg` | Daniel Boud | EXIF copyright, and XMP creator and rights. XMP location: Sydney, NSW, Australia. |
 | `desktops/urban/melbourne-three-rivers.jpg` | Sander Groffen | EXIF artist and copyright: "Sander Groffen 2015". Caption: "Taken from an airplane window". |
 | `desktops/urban/newyorkcity-tiltshift.jpg` | Vivienne Gucwa | EXIF artist. |
 | `dual/outdoors/forest-stand.jpg` | Georgios Wollbrecht | EXIF artist "Geo Wollbrecht" and copyright "Georgios Wollbrecht ©2008". |
@@ -79,10 +93,10 @@ was found, not necessarily who made it.
 ## Modified images
 
 These images were enlarged from small originals so they suit current displays.
-The originals remain in the repository's Git history, except for the Gruvbox
-images, which were enlarged before they were added. Upscaling adds pixels,
-not detail from the original artwork; a larger original from the creator is
-always a welcome replacement.
+The originals remain in the repository's Git history, except for images that
+were enlarged before they were added, such as the Gruvbox images. Upscaling
+adds pixels, not detail from the original artwork; a larger original from the
+creator is always a welcome replacement.
 
 | Image | Original | Now | Method |
 | --- | --- | --- | --- |
@@ -101,4 +115,24 @@ always a welcome replacement.
 | `desktops/pop-culture/multicolor-groot.jpg` | 1366×768 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus-anime`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/crashed-plane-roadside-gruvbox-light.jpg` | 1838×919 | 3676×1838 | Upscayl `high-fidelity-4x` at 2x, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/snowy-towers-village-gruvbox.jpg` | 1024×922 | 4096×3688 | Upscayl `high-fidelity-4x`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/star-wars/lego-darth-vader-death-star-officer.jpg` | 1200×675 | 3840×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/star-wars/lego-skeleton-stormtrooper-line.jpg` | 1024×680 | 3840×2550 | As above. |
 | `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |
+| `desktops/urban/princeton-gothic-arch-steps.jpg` | 1024×650 | 3840×2438 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original to soften invented stone texture, resized to 3840 wide with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/urban/princeton-gothic-clock-tower.jpg` | 1024×685 | 3840×2569 | As above. |
+| `mobile/abstract/red-blue-brush-stripes.jpg` | 768×1024 | 1440×1920 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/art/raccoon-road-trip-comic.jpg` | 1000×1500 | 1440×2160 | As above. |
+| `mobile/fantasy/dragon-overgrown-castle.jpg` | 900×1263 | 1440×2021 | As above. |
+| `mobile/fantasy/wooden-airship.jpg` | 760×1352 | 1440×2562 | As above. |
+| `mobile/gaming/bioshock-no-gods-or-kings.jpg` | 769×1200 | 1440×2247 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/minimal/pixel-art-dusk-moon.png` | 768×1280 | 1536×2560 | Doubled with nearest-neighbor scaling, which keeps the pixel art's hard edges. |
+| `mobile/minimal/pixel-art-sunny-sea.png` | 768×1280 | 1536×2560 | As above. |
+| `mobile/outdoors/palm-tree-sunset.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/outdoors/railway-tracks-summer.jpg` | 1024×1536 | 1440×2160 | As above. |
+| `mobile/outdoors/snowy-forest-red-cabin.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/outdoors/snowy-pine-forest-path.jpg` | 1000×1413 | 1440×2035 | As above. |
+| `mobile/scifi/armored-ape-soldier.jpg` | 991×1370 | 1440×1991 | As above. |
+| `mobile/scifi/rusty-mech-gunner.jpg` | 760×1343 | 1440×2545 | As above. |
+| `mobile/space/astronaut-riding-shark.png` | 720×1280 | 1440×2560 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/space/nebula-triangle-mosaic.jpg` | 829×1433 | 1440×2489 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/space/soviet-rocket-launch-tower.jpg` | 898×1600 | 1440×2566 | As above. |

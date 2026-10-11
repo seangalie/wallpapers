@@ -115,8 +115,30 @@
 
   // --- Filters --------------------------------------------------------------
 
-  const state = { format: '', category: '', query: '' };
+  // An empty order follows the filters: shuffled while nothing narrows the
+  // collection, so each visit opens on a different mix, and A to Z once a
+  // format, category, or search is chosen. Choosing an order overrides that
+  // until the filters change again.
+  const ORDERS = [
+    { id: 'shuffle', label: 'Shuffle' },
+    { id: 'name', label: 'A to Z' },
+  ];
+  const state = { format: '', category: '', query: '', order: '' };
   let visible = images;
+  let shuffled = shuffle(images);
+  let arranged = images;
+
+  function shuffle(list) {
+    const copy = list.slice();
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  const filtered = () => Boolean(state.format || state.category || state.query.trim());
+  const currentOrder = () => state.order || (filtered() ? 'name' : 'shuffle');
 
   const search = document.getElementById('search');
   const summary = document.getElementById('summary');
@@ -140,6 +162,7 @@
       button.append(count);
       button.addEventListener('click', () => {
         state[key] = item.id;
+        state.order = '';
         update({ scroll: true });
       });
       const entry = document.createElement('li');
@@ -158,6 +181,22 @@
     items: categories.map((id) => ({ id, label: categoryLabel(id) })),
   });
 
+  // Shuffle again reshuffles, so it doubles as a "show me others" button.
+  const orderButtons = ORDERS.map((item) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = item.label;
+    button.addEventListener('click', () => {
+      if (item.id === 'shuffle' && currentOrder() === 'shuffle') shuffled = shuffle(images);
+      state.order = item.id;
+      update({ scroll: true });
+    });
+    const entry = document.createElement('li');
+    entry.append(button);
+    document.getElementById('order-filters').append(entry);
+    return { id: item.id, button };
+  });
+
   function refreshButtons(buttons, key) {
     const pool = images.filter((image) => matches(image, key));
     buttons.forEach(({ id, button, count }) => {
@@ -169,19 +208,28 @@
   }
 
   function update({ scroll = false } = {}) {
-    visible = images.filter((image) => matches(image));
+    const order = currentOrder();
+    const source = order === 'shuffle' ? shuffled : images;
+    // Moving the tiles is the costly part, so only do it when the order changes.
+    if (arranged !== source) {
+      main.append(...source.map((image) => image.article));
+      arranged = source;
+    }
+    visible = source.filter((image) => matches(image));
     const shown = new Set(visible);
     images.forEach((image) => { image.article.hidden = !shown.has(image); });
     empty.hidden = visible.length > 0;
 
     refreshButtons(formatButtons, 'format');
     refreshButtons(categoryButtons, 'category');
+    orderButtons.forEach(({ id, button }) => button.setAttribute('aria-pressed', String(order === id)));
 
     const noun = visible.length === 1 ? 'wallpaper' : 'wallpapers';
     const parts = [`${numbers.format(visible.length)} ${noun}`];
     if (state.format) parts.push(formatLabel(state.format));
     if (state.category) parts.push(categoryLabel(state.category));
     if (state.query.trim()) parts.push(`“${state.query.trim()}”`);
+    if (order === 'shuffle') parts.push('Shuffled');
     summary.textContent = parts.join(' · ');
     showResults.textContent = `Show ${numbers.format(visible.length)} ${noun}`;
 
@@ -194,6 +242,7 @@
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
       state.query = search.value;
+      state.order = '';
       update({ scroll: true });
     }, 150);
   });
@@ -204,6 +253,7 @@
       state.format = '';
       state.category = '';
       state.query = '';
+      state.order = '';
       search.value = '';
       update({ scroll: true });
     });
@@ -211,14 +261,15 @@
 
   // --- Address --------------------------------------------------------------
 
-  // Filters and the open wallpaper live in the URL's hash, such as
-  // #format=dual&category=space&view=wallpapers/dual/space/name.jpg, so a
-  // view can be bookmarked or shared.
+  // Filters, a chosen order, and the open wallpaper live in the URL's hash,
+  // such as #format=dual&category=space&view=wallpapers/dual/space/name.jpg,
+  // so a view can be bookmarked or shared.
   function writeHash() {
     const params = new URLSearchParams();
     if (state.format) params.set('format', state.format);
     if (state.category) params.set('category', state.category);
     if (state.query.trim()) params.set('q', state.query.trim());
+    if (state.order) params.set('order', state.order);
     if (viewer.image) params.set('view', viewer.image.path);
     const hash = params.toString();
     history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search);
@@ -231,6 +282,8 @@
     state.format = formatOrder.includes(format) ? format : '';
     state.category = categories.includes(category) ? category : '';
     state.query = params.get('q') || '';
+    const order = params.get('order') || '';
+    state.order = ORDERS.some((item) => item.id === order) ? order : '';
     search.value = state.query;
     return images.find((image) => image.path === params.get('view'));
   }
