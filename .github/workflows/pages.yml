@@ -13,6 +13,14 @@
 # settings change, renders the whole collection: run this workflow from the
 # Actions tab with a limit of about 3000 MiB. That costs about 2.5 GiB of LFS
 # bandwidth.
+#
+# To avoid that cost, build the site locally from a checkout that already has
+# the images, pack its previews with
+#   tar -cf site-seed.tar -C dist/site previews
+# attach site-seed.tar to a prerelease, and run this workflow with that
+# release's tag as the seed. Release downloads do not count against LFS
+# bandwidth, and only images missing from the seed are downloaded and
+# rendered. Delete the prerelease and its tag once the deploy succeeds.
 
 name: Pages
 
@@ -32,6 +40,10 @@ on:
         description: "Most MiB to download from Git LFS for new previews"
         type: number
         default: 1024
+      seed-tag:
+        description: "Release tag with site-seed.tar to reuse instead of the published previews"
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -73,9 +85,24 @@ jobs:
         id: pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
+      - name: 🌱 Fetch the seed previews
+        if: inputs.seed-tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SEED_TAG: ${{ inputs.seed-tag }}
+        run: |
+          set -euo pipefail
+          gh release download "$SEED_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern site-seed.tar --dir "$RUNNER_TEMP"
+          mkdir "${RUNNER_TEMP}/seed"
+          # Only the previews directory is extracted from the archive.
+          tar -xf "${RUNNER_TEMP}/site-seed.tar" -C "${RUNNER_TEMP}/seed" previews
+          rm "${RUNNER_TEMP}/site-seed.tar"
+
       - name: 🏗 Build the site
         env:
-          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # A seed stands in for the published site as the previous build.
+          SITE_URL: ${{ inputs.seed-tag != '' && format('file://{0}/seed', runner.temp) || steps.pages.outputs.base_url }}
           # The event's inputs are strings, so a manual limit of 0 survives the
           # fallback that push events take; the number-typed input would not.
           SITE_LFS_LIMIT: ${{ github.event.inputs.lfs-limit || 1024 }}
