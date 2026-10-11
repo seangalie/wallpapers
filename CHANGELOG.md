@@ -30,6 +30,13 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-10-11
+
+The archive gets a gallery site, 102 new wallpapers, and sharper copies of
+three more, bringing it to 1,541 images. This is a major release because 25
+wallpapers were removed: if you link to or script any of them, see
+**Removed** below.
+
 ### Added
 
 - **A gallery site at <https://seangalie.github.io/wallpapers/>:** browse the
@@ -51,6 +58,9 @@ section as the GitHub release notes, and refuses to publish if it is missing.
     `child-and-robots-lakeshore` and `robot-in-thicket` in `desktops/scifi`
   - twenty images that were too small for today's screens, enlarged and
     listed under "Modified images" in [CREDITS.md](CREDITS.md)
+- **Credits:** Daniel Boud is credited for a LEGO clone troopers photo whose
+  metadata names him, and the Princeton photos are credited to the
+  university.
 
 ### Changed
 
@@ -178,7 +188,8 @@ For anyone who used Sean's previous private wallpaper archive (release
 
 - Three duplicate images from the previous archive.
 
-[unreleased]: https://github.com/seangalie/wallpapers/compare/v2.0.0...HEAD
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/seangalie/wallpapers/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/seangalie/wallpapers/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/seangalie/wallpapers/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/seangalie/wallpapers/releases/tag/v1.0.0
