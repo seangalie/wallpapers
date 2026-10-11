@@ -124,7 +124,11 @@ from LFS only the images it must render. The workflow stops before downloading
 more than its LFS limit (1024 MiB unless set when run manually). The first
 deploy, or one after `PREVIEW_SETTINGS` changes, renders everything and needs
 a manual run with a limit of about 3000 MiB, which costs about 2.5 GiB of LFS
-bandwidth. Avoid changing the preview settings without reason. The page reads
+bandwidth. To avoid that cost, seed the run instead: build locally from a
+checkout with the images, attach the previews as `site-seed.tar` to a
+prerelease (release downloads do not count against LFS bandwidth), and run
+the workflow with its tag as `seed-tag`; the workflow header has the steps.
+Avoid changing the preview settings without reason. The page reads
 the collection from JSON the build embeds in `index.html`; `site.js` replaces
 the template's jQuery and Poptrox with a viewer that reuses their styles.
 
