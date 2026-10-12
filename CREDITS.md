@@ -46,6 +46,32 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
 | `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
 | `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
+| `desktops/abstract/rainbow-spikes.jpg` | bgn | Lower left reads "© 2007 bgn". |
+| `desktops/abstract/wooden-block-tunnel.jpg` | aphaits | Lower left reads "aphaits.deviantart.com". |
+| `desktops/art/ship-in-bottle-ghost-ship.jpg` | Budai Bálint | Signed "Budai Bálint" in the lower right. |
+| `desktops/art/two-faces-crumbling.jpg` | Android Jones | Mark in the lower right reads "www.androidjones.com". |
+| `desktops/cars/drift-car-street-circuit.jpg` | Linhbergh, via Speedhunters | Lower right reads "SPEEDHUNTERS.com" and "Photo: Linhbergh". |
+| `desktops/fantasy/domed-city-at-dusk.jpg` | Dmitry Zaviyalov | Lower edge reads "CGSociety.org" and "Copyright (C) Dmitry Zaviyalov, submitted 02 January 2012". |
+| `desktops/fantasy/floating-island-waterfalls.jpg` | Stella Artois | Lower right reads "STELLAARTOIS.COM" beside the Stella Artois logo. |
+| `desktops/fantasy/giant-wave-storm.jpg` | Dehong He, via CGWallpapers | Lower edge reads "Marvelous Journey © Dehong He, China, www.hdhcg.com" and "CGWallpapers.com". |
+| `desktops/fantasy/golden-castle-spires.jpg` | Noah Bradley | Lower right reads "NOAH BRADLEY.COM" and "COPYRIGHT 2012 WIZARDS OF THE COAST". |
+| `desktops/gaming/fallout-3-flags-power-armor.jpg` | Bethesda Softworks | Lower right reads "© 2008 Bethesda Softworks LLC. All Rights Reserved." |
+| `desktops/gaming/fallout-3-power-armor-explosion.jpg` | Bethesda Softworks, via GameWallpapers | Lower edge reads "Fallout 3 developer Bethesda Softworks publisher Bethesda Softworks" and "© GameWallpapers.com". |
+| `desktops/gaming/metal-gear-solid-4-rex-vs-ray.jpg` | yelansu | Lower left reads "Rex vs Ray" and "Metal Gear Solid 4", with a signature that reads like "yelansu 08.8". |
+| `desktops/gaming/turok-soldiers-fighting-dinosaur.jpg` | Propaganda Games, via GameWallpapers | Lower edge reads "Turok developer Propaganda Games publisher Buena Vista Games" and "© GameWallpapers.com". |
+| `desktops/minimal/floating-island-tree.jpg` | Vladstudio | Mark in the lower right reads "Vladstudio". |
+| `desktops/outdoors/crater-lake-green-mountains.jpg` | Rasmus Hartikainen, via National Geographic | Lower left reads "NATIONAL GEOGRAPHIC" and "Photograph by Rasmus Hartikainen". |
+| `desktops/outdoors/desert-valley-road.jpg` | Lucas Janin | Lower left reads "Lucas Janin". |
+| `desktops/outdoors/golden-sea-of-clouds.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy". |
+| `desktops/pop-culture/calvin-and-hobbes-wagon.jpg` | Bill Watterson | Signed "WATTERSON" in the lower right. |
+| `desktops/scifi/blue-light-tunnel-orb.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy.com". |
+| `desktops/scifi/corridor-light-at-end.jpg` | Raphael Lacoste | Lower edge reads "Raphael Lacoste 2005" and "www.3dluvr.com/eirafo". |
+| `desktops/scifi/figure-before-glowing-monolith.jpg` | chriscold | Lower right reads "chriscold.deviantart.com". |
+| `desktops/scifi/floating-city-battle-sunset.jpg` | Christian Hecker, via CGWallpapers | Lower edge reads "Gates To Elysium © Christian Hecker, Germany, www.tigaer-design.com" and "CGWallpapers.com". |
+| `desktops/scifi/spired-city-sunrise-watcher.jpg` | Roberto Oleotto, via CGWallpapers | Lower edge reads "Points of View © Roberto Oleotto, Italy, www.onthesign.it" and "CGWallpapers.com". |
+| `desktops/scifi/wasteland-wanderer-village.jpg` | M. Allsopp | Signed "M. Allsopp" in the lower left. |
+| `desktops/space/planet-breaking-apart.jpg` | thiagochackal | Lower right reads "ORION SLEEPERS" and "thiagochackal.deviantart.com", with a signature. |
+| `desktops/tech/hard-drive-arm-macro.jpg` | Mandolux | Lower left reads "MANDOLUX". |
 | `mobile/fantasy/sigantium-robed-figure.jpg` | Dragonhatch Productions | Lower edge reads "Sigantium © Dragonhatch Productions LLC 2014 all rights reserved". Enlarged (see Modified images). |
 
 ## Credits from image metadata
@@ -84,13 +110,27 @@ unknown unless listed.
 
 ## Source websites
 
-Metadata names the website these copies came from. A website is where an image
-was found, not necessarily who made it.
+Metadata or a mark on the image names the website these copies came from. A
+website is where an image was found, not necessarily who made it.
 
-| Image | Source named in metadata |
+| Image | Source and evidence |
 | --- | --- |
+| `desktops/abstract/colorful-hexagon-cubes.jpg` | wallpaperzzz.com (lower right reads "wallpaperzzz.com") |
+| `desktops/art/teal-tiled-tunnel.jpg` | gee.ru (lower right reads "www.gee.ru") |
+| `desktops/cars/black-supercar-cobblestones.jpg` | propergraphics.com (lower right reads "www.propergraphics.com") |
+| `desktops/gaming/bioshock-big-daddy-ink.jpg` | pickywallpapers.com (lower right reads "downloaded from pickywallpapers.com") |
+| `desktops/gaming/crysis-2-nanosuit.jpg` | Widescreen-Wallpaper.eu (lower right reads "Image hosted by Widescreen-Wallpaper.eu") |
+| `desktops/gaming/half-life-lambda-grey.png` | wallchan.com (lower right reads "wallchan.com") |
+| `desktops/outdoors/braided-river-mountain-valley.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/outdoors/cypress-knees-golden-light.jpg` | fiftyfootshadows.net (lower left reads "FIFTYFOOTSHADOWS.NET", mirrored) |
+| `desktops/outdoors/frosted-trees-river.jpg` | glossyart.com (lower right reads "glossyart.com") |
 | `desktops/outdoors/northern-lights-landscape.jpg` | GoodFon.ru (JPEG comment) |
 | `desktops/outdoors/northern-lights-mountains.jpg` | GoodFon.ru (JPEG comment) |
+| `desktops/pop-culture/dark-side-prism-mashup.jpg` | wallchan.com (lower right reads "wallchan.com") |
+| `desktops/scifi/neon-city-canal.jpg` | rewalls.com (lower right reads "rewalls.com") |
+| `desktops/scifi/ruined-domed-memorial.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/scifi/starship-bridge-view.jpg` | galacticconquest.net, zanimation.com (lower right reads "GALACTICCONQUEST.NET" and "ZANIMATION.COM") |
+| `desktops/tech/silicon-wafer-rainbow.jpg` | mydrivers.com (lower right reads "MyDrivers.com") |
 | `dual/urban/golden-gate-bridge.jpg` | laba.ws (EXIF description "Dual_Screen_HD_Wallpapers_laba.ws") |
 
 ## Modified images
@@ -104,7 +144,8 @@ creator is always a welcome replacement.
 | Image | Original | Now | Method |
 | --- | --- | --- | --- |
 | `desktops/abstract/curling-wave-texture-gruvbox.png` | 901×507 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. |
-| `desktops/abstract/scattered-shapes-pattern-gruvbox.png` | 1600×920 | 3840×2208 | As above. |
+| `desktops/abstract/geometric-triangles-rose.png` | 1279×783 | 3840×2351 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `desktops/abstract/scattered-shapes-pattern-gruvbox.png` | 1600×920 | 3840×2208 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. |
 | `desktops/abstract/swirling-wave-texture-gruvbox.png` | 901×507 | 3840×2160 | As above. |
 | `desktops/fantasy/hobbit-art.jpg` | 1024×576 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus`, blended 60/40 with Lanczos resampling to keep the paper-grain texture, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/minimal/arched-window-landscapes-gruvbox.png` | 1366×768 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. The original's unused alpha channel was dropped. |
@@ -115,8 +156,10 @@ creator is always a welcome replacement.
 | `desktops/minimal/mountains-and-pines-line-art-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
 | `desktops/minimal/pine-silhouettes-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
 | `desktops/minimal/snowy-peak-and-clouds-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
+| `desktops/outdoors/dark-forest-glow.jpg` | 1366×768 | 3840×2159 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/pop-culture/multicolor-groot.jpg` | 1366×768 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus-anime`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/crashed-plane-roadside-gruvbox-light.jpg` | 1838×919 | 3676×1838 | Upscayl `high-fidelity-4x` at 2x, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/scifi/monochrome-ruined-skyline.jpg` | 1200×829 | 3840×2653 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/scifi/snowy-towers-village-gruvbox.jpg` | 1024×922 | 4096×3688 | Upscayl `high-fidelity-4x`, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/space/horsehead-nebula.jpg` | 1280×720 | 3840×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/space/red-emission-nebula.jpg` | 760×494 | 2560×1664 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. The original was WebP. |
@@ -125,6 +168,7 @@ creator is always a welcome replacement.
 | `desktops/star-wars/lego-skeleton-stormtrooper-line.jpg` | 1024×680 | 3840×2550 | As above. |
 | `desktops/star-wars/millennium-falcon-fighter-escort.jpg` | 1200×814 | 3840×2605 | As above. |
 | `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |
+| `desktops/tech/pirate-ship-logo.jpg` | 1280×768 | 3840×2304 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-arch-steps.jpg` | 1024×650 | 3840×2438 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original to soften invented stone texture, resized to 3840 wide with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-clock-tower.jpg` | 1024×685 | 3840×2569 | As above. |
 | `mobile/abstract/blue-purple-constellation-lines.jpg` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
