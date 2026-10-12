@@ -57,10 +57,10 @@ The collection contains **2,247 images**. Select a count to open that folder.
 | `music` | [9](wallpapers/desktops/music/) | [1](wallpapers/ultrawide/music/) | [1](wallpapers/dual/music/) | — | — | — | 11 |
 | `original` | [9](wallpapers/desktops/original/) | — | — | — | — | — | 9 |
 | `outdoors` | [356](wallpapers/desktops/outdoors/) | [7](wallpapers/ultrawide/outdoors/) | [34](wallpapers/dual/outdoors/) | [21](wallpapers/triple/outdoors/) | [21](wallpapers/mobile/outdoors/) | [4](wallpapers/square/outdoors/) | 443 |
-| `pop-culture` | [61](wallpapers/desktops/pop-culture/) | — | [3](wallpapers/dual/pop-culture/) | [1](wallpapers/triple/pop-culture/) | [31](wallpapers/mobile/pop-culture/) | — | 96 |
+| `pop-culture` | [62](wallpapers/desktops/pop-culture/) | — | [3](wallpapers/dual/pop-culture/) | [1](wallpapers/triple/pop-culture/) | [31](wallpapers/mobile/pop-culture/) | — | 97 |
 | `retro` | [26](wallpapers/desktops/retro/) | — | — | — | — | — | 26 |
 | `science` | — | — | [3](wallpapers/dual/science/) | — | — | — | 3 |
-| `scifi` | [164](wallpapers/desktops/scifi/) | [6](wallpapers/ultrawide/scifi/) | [5](wallpapers/dual/scifi/) | [1](wallpapers/triple/scifi/) | [27](wallpapers/mobile/scifi/) | [1](wallpapers/square/scifi/) | 204 |
+| `scifi` | [163](wallpapers/desktops/scifi/) | [6](wallpapers/ultrawide/scifi/) | [5](wallpapers/dual/scifi/) | [1](wallpapers/triple/scifi/) | [27](wallpapers/mobile/scifi/) | [1](wallpapers/square/scifi/) | 203 |
 | `space` | [120](wallpapers/desktops/space/) | [18](wallpapers/ultrawide/space/) | [18](wallpapers/dual/space/) | [13](wallpapers/triple/space/) | [17](wallpapers/mobile/space/) | — | 186 |
 | `star-trek` | [15](wallpapers/desktops/star-trek/) | — | — | — | — | — | 15 |
 | `star-wars` | [106](wallpapers/desktops/star-wars/) | [1](wallpapers/ultrawide/star-wars/) | [3](wallpapers/dual/star-wars/) | [2](wallpapers/triple/star-wars/) | [6](wallpapers/mobile/star-wars/) | — | 118 |

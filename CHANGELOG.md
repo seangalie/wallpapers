@@ -86,7 +86,7 @@ section as the GitHub release notes, and refuses to publish if it is missing.
     under "Modified images" in [CREDITS.md](CREDITS.md)
 - **Credits:** Zach Bush, Sam Spratt, John Aslarona, Syanart, Blizzard
   Entertainment, and Marvel are credited for wallpapers that carry their
-  name or mark, and [CREDITS.md](CREDITS.md) lists the websites named in nine
+  name or mark, and [CREDITS.md](CREDITS.md) lists the websites named in 17
   more watermarks.
 
 ### Changed

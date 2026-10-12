@@ -39,13 +39,6 @@ Gruvbox palette by someone other than the creator, who is unknown.
 
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
-| `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
-| `desktops/outdoors/bear-and-deer-dawn.jpg` | Louis Coyle | Signature in the lower right, with "dribbble.com/louiscoyle" beneath it. |
-| `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
-| `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
-| `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
-| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
-| `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
 | `desktops/abstract/rainbow-spikes.jpg` | bgn | Lower left reads "© 2007 bgn". |
 | `desktops/abstract/wooden-block-tunnel.jpg` | aphaits | Lower left reads "aphaits.deviantart.com". |
 | `desktops/art/ship-in-bottle-ghost-ship.jpg` | Budai Bálint | Signed "Budai Bálint" in the lower right. |
@@ -65,22 +58,29 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/gaming/pokemon-trainer-phoenix.jpg` | Unconfirmed | Lower left has a doodled face signed "LOU". Whether it names the creator is unknown. |
 | `desktops/gaming/starcraft-2-jim-raynor.jpg` | Blizzard Entertainment, via GameWallpapers | Lower edge reads "Starcraft 2 developer Blizzard Entertainment publisher Blizzard Entertainment" and "© GameWallpapers.com". |
 | `desktops/gaming/turok-soldiers-fighting-dinosaur.jpg` | Propaganda Games, via GameWallpapers | Lower edge reads "Turok developer Propaganda Games publisher Buena Vista Games" and "© GameWallpapers.com". |
+| `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
 | `desktops/minimal/floating-island-tree.jpg` | Vladstudio | Mark in the lower right reads "Vladstudio". |
+| `desktops/outdoors/bear-and-deer-dawn.jpg` | Louis Coyle | Signature in the lower right, with "dribbble.com/louiscoyle" beneath it. |
 | `desktops/outdoors/crater-lake-green-mountains.jpg` | Rasmus Hartikainen, via National Geographic | Lower left reads "NATIONAL GEOGRAPHIC" and "Photograph by Rasmus Hartikainen". |
 | `desktops/outdoors/desert-valley-road.jpg` | Lucas Janin | Lower left reads "Lucas Janin". |
 | `desktops/outdoors/golden-sea-of-clouds.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy". |
 | `desktops/outdoors/misty-autumn-forest-path.jpg` | Unconfirmed | Lower right reads "ILOIKO". Whether it names the creator is unknown. |
 | `desktops/pop-culture/calvin-and-hobbes-wagon.jpg` | Bill Watterson | Signed "WATTERSON" in the lower right. |
+| `desktops/pop-culture/deadpool-black-suit.jpg` | John Aslarona | Lower left reads "JOHN ASLARONA". Deadpool in a black suit, which looks like a recolor of the red original. hdqwalls.com lists that original as "Deadpool Digital Art 2018" and credits "_photoshopismykung-fu_" on DeviantArt; how that name relates to the signature, and who made the recolor, are unknown. |
 | `desktops/pop-culture/deadpool-explosion.jpg` | Syanart | Lower right reads "SYANART". |
 | `desktops/pop-culture/deadpool-vs-taskmaster.jpg` | Marvel | Lower right shows the MARVEL logo. |
 | `desktops/scifi/blue-light-tunnel-orb.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy.com". |
 | `desktops/scifi/corridor-light-at-end.jpg` | Raphael Lacoste | Lower edge reads "Raphael Lacoste 2005" and "www.3dluvr.com/eirafo". |
 | `desktops/scifi/figure-before-glowing-monolith.jpg` | chriscold | Lower right reads "chriscold.deviantart.com". |
 | `desktops/scifi/floating-city-battle-sunset.jpg` | Christian Hecker, via CGWallpapers | Lower edge reads "Gates To Elysium © Christian Hecker, Germany, www.tigaer-design.com" and "CGWallpapers.com". |
+| `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
+| `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
 | `desktops/scifi/monochrome-ruined-skyline.jpg` | Unconfirmed | Lower left reads "VIRUS-PLAN2". Whether it names the creator or the title is unknown. Enlarged (see Modified images). |
-| `desktops/scifi/soldier-red-glow.jpg` | John Aslarona | Lower left reads "JOHN ASLARONA". |
+| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
 | `desktops/scifi/spired-city-sunrise-watcher.jpg` | Roberto Oleotto, via CGWallpapers | Lower edge reads "Points of View © Roberto Oleotto, Italy, www.onthesign.it" and "CGWallpapers.com". |
 | `desktops/scifi/wasteland-wanderer-village.jpg` | M. Allsopp | Signed "M. Allsopp" in the lower left. |
+| `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
+| `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
 | `desktops/space/planet-breaking-apart.jpg` | thiagochackal | Lower right reads "ORION SLEEPERS" and "thiagochackal.deviantart.com", with a signature. |
 | `desktops/space/requiem-light-burst.jpg` | Unconfirmed | Lower right reads "REQUIEM", with a signature and a smaller credit that reads like "Adam P' Burn". Whether it names the creator is unknown. |
 | `desktops/tech/hard-drive-arm-macro.jpg` | Mandolux | Lower left reads "MANDOLUX". |
@@ -147,10 +147,18 @@ website is where an image was found, not necessarily who made it.
 | `desktops/scifi/ruined-domed-memorial.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
 | `desktops/scifi/starship-bridge-view.jpg` | galacticconquest.net, zanimation.com (lower right reads "GALACTICCONQUEST.NET" and "ZANIMATION.COM") |
 | `desktops/space/bright-star-dark-clouds.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/darth-maul-red-lightsaber.jpg` | dws4.me (upper right reads "dws4.me") |
 | `desktops/star-wars/darth-vader-helmet-dark-closeup.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/darth-vader-helmet-flames.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/darth-vader-helmet-minimal.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/darth-vader-helmet-red-glow.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/force-unleashed-starkiller.jpg` | dws4.me (upper right reads "dws4.me") |
 | `desktops/star-wars/lego-stormtrooper-frosty-grass.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
 | `desktops/star-wars/lego-stormtroopers-clothesline.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/painted-stormtrooper-helmet-cream.jpg` | dws4.me (upper right reads "dws4.me") |
 | `desktops/star-wars/saga-collage-poster.jpg` | ladik.ru (lower right reads "Ладик.ru" beside a logo) |
+| `desktops/star-wars/stormtrooper-helmet-sketch-brown.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/yoda-dooku-duel.jpg` | dws4.me (upper right reads "dws4.me") |
 | `desktops/tech/silicon-wafer-rainbow.jpg` | mydrivers.com (lower right reads "MyDrivers.com") |
 | `dual/urban/golden-gate-bridge.jpg` | laba.ws (EXIF description "Dual_Screen_HD_Wallpapers_laba.ws") |
 
