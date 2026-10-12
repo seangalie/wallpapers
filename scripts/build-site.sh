@@ -11,7 +11,7 @@
 # bandwidth, but browsing the previews does not.
 #
 # Rendering a preview needs the image itself, and downloading the whole
-# collection from LFS costs about 2.5 GiB of that bandwidth, so previews are
+# collection from LFS costs about 3 GiB of that bandwidth, so previews are
 # reused wherever possible. Each preview is named after its image's LFS object
 # ID, so an unchanged image keeps its previews. Before rendering, the build
 # fetches previews/manifest.tsv from the previous build -- SITE_URL when set,
