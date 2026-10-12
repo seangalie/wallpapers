@@ -74,6 +74,20 @@ section as the GitHub release notes, and refuses to publish if it is missing.
   brand whose signature or mark they carry, including Noah Bradley, Android
   Jones, Raphael Lacoste, Digital Blasphemy, Vladstudio, and Bill Watterson.
   [CREDITS.md](CREDITS.md) also lists the websites named in 14 watermarks.
+- **141 more wallpapers** from four themed collections:
+  - 57 Star Wars wallpapers in `desktops/star-wars`, from painted battles
+    and LEGO stormtroopers to brand parodies like "Jedi" in Nike's style
+  - 22 planets, nebulas, and galaxies in `desktops/space`
+  - 13 ultrawide wallpapers: 11 space renders in `ultrawide/space` and two
+    Mass Effect scenes in `ultrawide/gaming`
+  - comic and game favourites, including Batman, Deadpool, the Lord of the
+    Rings, StarCraft II, Halo, Dead Space, Diablo III, and Mass Effect
+  - one was too small for today's screens, so it was enlarged and listed
+    under "Modified images" in [CREDITS.md](CREDITS.md)
+- **Credits:** Zach Bush, Sam Spratt, John Aslarona, Syanart, Blizzard
+  Entertainment, and Marvel are credited for wallpapers that carry their
+  name or mark, and [CREDITS.md](CREDITS.md) lists the websites named in nine
+  more watermarks.
 
 ### Changed
 
@@ -84,6 +98,10 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 - **Sharper copies of two wallpapers**, at the same paths:
   `desktops/space/nebula-purple.jpg` and `desktops/outdoors/seascape.jpg`
   are now 2560×1600 with more of each scene, up from 1920×1080.
+- **Sharper copies of two more wallpapers**, at the same paths:
+  `desktops/scifi/planets-over-mountain-valley.jpg` is now 2560×1600, up
+  from 1920×1080, and `desktops/urban/dark-stairway-tunnel.jpg` is now
+  1920×1200, up from 1600×900, color-graded to keep the earlier copy's look.
 
 ## [3.1.0] - 2026-10-11
 
