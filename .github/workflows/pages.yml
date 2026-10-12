@@ -11,7 +11,7 @@
 # new or changed. A run stops before downloading more than the LFS limit, 1
 # GiB unless set otherwise. The first deploy, or one after the preview
 # settings change, renders the whole collection: run this workflow from the
-# Actions tab with a limit of about 3000 MiB. That costs about 2.5 GiB of LFS
+# Actions tab with a limit of about 3500 MiB. That costs about 3 GiB of LFS
 # bandwidth.
 #
 # To avoid that cost, build the site locally from a checkout that already has

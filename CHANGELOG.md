@@ -30,6 +30,13 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-10-12
+
+639 wallpapers join the archive, bringing it to 2,247 images: 79 for phones,
+546 for desktops, 13 ultrawide, and one square. The gallery site can now list
+the newest wallpapers first, keep your favorites, and open on wallpapers that
+suit your device. Download names are unchanged.
+
 ### Added
 
 - **Newest first and favorites on the gallery site:** sort by **Newest**
@@ -291,7 +298,8 @@ For anyone who used Sean's previous private wallpaper archive (release
 
 - Three duplicate images from the previous archive.
 
-[unreleased]: https://github.com/seangalie/wallpapers/compare/v3.1.0...HEAD
+[unreleased]: https://github.com/seangalie/wallpapers/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/seangalie/wallpapers/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/seangalie/wallpapers/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/seangalie/wallpapers/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/seangalie/wallpapers/compare/v1.1.0...v2.0.0

@@ -102,11 +102,13 @@ get numbered parts instead of one full ZIP (`wallpapers-desktops-part-<n>.zip`),
 each holding whole categories in alphabetical order and aiming for 1.5 GiB or
 less. Every ZIP includes `LICENSE.txt`, and `SHA256SUMS.txt` lists their
 checksums. It rejects unresolved LFS pointers and archives of 2 GiB or more
-(GitHub's release asset limit). In October 2026 the desktop parts were about
-1.3 GB and 0.9 GB, and the largest category ZIP, `outdoors`, about 0.55 GB.
+(GitHub's release asset limit). For 3.2.0 in October 2026 the desktop parts
+were about 1.5 GB and 1.05 GB, and the largest category ZIP, `outdoors`, about
+0.62 GB; part 1 is close to the target, so the next large desktop addition may
+move a category to part 2 or add a part 3, which changes download names.
 
 `.github/workflows/release.yml` runs the script and attaches the ZIPs to the
-release. Each run downloads the whole collection from LFS, about 2.5 GiB of the
+release. Each run downloads the whole collection from LFS, about 3 GiB of the
 monthly LFS bandwidth, so avoid unnecessary runs. Release downloads do not
 count against that limit. GitHub source archives include pointers by default
 unless the repository setting to include LFS objects is enabled; keep it off,
@@ -116,14 +118,14 @@ because those downloads do count. See the [archive documentation](https://docs.g
 <https://seangalie.github.io/wallpapers/> by `.github/workflows/pages.yml` on
 pushes to main that touch the collection or site. Pages cannot serve LFS files
 and caps a site at 1 GB, so the site holds two WebP previews per image (about
-240 MB in October 2026), named after each image's LFS object ID. Its download
+360 MB in October 2026), named after each image's LFS object ID. Its download
 links point at media.githubusercontent.com, pinned to the built commit, and
 count against LFS bandwidth. Each build fetches the published
 `previews/manifest.tsv`, reuses previews of unchanged images, and downloads
 from LFS only the images it must render. The workflow stops before downloading
 more than its LFS limit (1024 MiB unless set when run manually). The first
 deploy, or one after `PREVIEW_SETTINGS` changes, renders everything and needs
-a manual run with a limit of about 3000 MiB, which costs about 2.5 GiB of LFS
+a manual run with a limit of about 3500 MiB, which costs about 3 GiB of LFS
 bandwidth. To avoid that cost, seed the run instead: build locally from a
 checkout with the images, attach the previews as `site-seed.tar` to a
 prerelease (release downloads do not count against LFS bandwidth), and run
