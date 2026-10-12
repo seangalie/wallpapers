@@ -30,6 +30,13 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ## [Unreleased]
 
+### Added
+
+- **6 phone wallpapers** from my old laptop, all enlarged and listed under
+  "Modified images" in [CREDITS.md](CREDITS.md): a tilt-shift village below a
+  mesa, a smoking skull, the "Follow the leader" and nature speedometer jokes,
+  a "This is Sparta" caution sign, and Matrix code.
+
 ## [3.1.0] - 2026-10-11
 
 67 wallpapers from my old laptop join the archive, bringing it to 1,608
