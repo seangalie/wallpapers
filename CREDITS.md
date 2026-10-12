@@ -57,6 +57,7 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/fantasy/golden-castle-spires.jpg` | Noah Bradley | Lower right reads "NOAH BRADLEY.COM" and "COPYRIGHT 2012 WIZARDS OF THE COAST". |
 | `desktops/gaming/fallout-3-flags-power-armor.jpg` | Bethesda Softworks | Lower right reads "© 2008 Bethesda Softworks LLC. All Rights Reserved." |
 | `desktops/gaming/fallout-3-power-armor-explosion.jpg` | Bethesda Softworks, via GameWallpapers | Lower edge reads "Fallout 3 developer Bethesda Softworks publisher Bethesda Softworks" and "© GameWallpapers.com". |
+| `desktops/gaming/fallout-vault-boy-tommy-gun.jpg` | Unconfirmed | Lower left reads like "Farge" in large hatched letters, which are hard to read. Whether it names the creator is unknown. |
 | `desktops/gaming/metal-gear-solid-4-rex-vs-ray.jpg` | yelansu | Lower left reads "Rex vs Ray" and "Metal Gear Solid 4", with a signature that reads like "yelansu 08.8". |
 | `desktops/gaming/turok-soldiers-fighting-dinosaur.jpg` | Propaganda Games, via GameWallpapers | Lower edge reads "Turok developer Propaganda Games publisher Buena Vista Games" and "© GameWallpapers.com". |
 | `desktops/minimal/floating-island-tree.jpg` | Vladstudio | Mark in the lower right reads "Vladstudio". |
@@ -68,6 +69,7 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/scifi/corridor-light-at-end.jpg` | Raphael Lacoste | Lower edge reads "Raphael Lacoste 2005" and "www.3dluvr.com/eirafo". |
 | `desktops/scifi/figure-before-glowing-monolith.jpg` | chriscold | Lower right reads "chriscold.deviantart.com". |
 | `desktops/scifi/floating-city-battle-sunset.jpg` | Christian Hecker, via CGWallpapers | Lower edge reads "Gates To Elysium © Christian Hecker, Germany, www.tigaer-design.com" and "CGWallpapers.com". |
+| `desktops/scifi/monochrome-ruined-skyline.jpg` | Unconfirmed | Lower left reads "VIRUS-PLAN2". Whether it names the creator or the title is unknown. Enlarged (see Modified images). |
 | `desktops/scifi/spired-city-sunrise-watcher.jpg` | Roberto Oleotto, via CGWallpapers | Lower edge reads "Points of View © Roberto Oleotto, Italy, www.onthesign.it" and "CGWallpapers.com". |
 | `desktops/scifi/wasteland-wanderer-village.jpg` | M. Allsopp | Signed "M. Allsopp" in the lower left. |
 | `desktops/space/planet-breaking-apart.jpg` | thiagochackal | Lower right reads "ORION SLEEPERS" and "thiagochackal.deviantart.com", with a signature. |

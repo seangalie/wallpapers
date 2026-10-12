@@ -56,8 +56,8 @@ section as the GitHub release notes, and refuses to publish if it is missing.
     `mobile/pop-culture`, and XCOM, Portal, and BioShock in `mobile/gaming`
   - space art, low-poly abstracts, a misty forest, and a pixel-art city at
     night
-- **419 desktop wallpapers** from an old wallpaper collection, most at
-  1920×1080 or larger:
+- **419 wallpapers** from an old wallpaper collection, 418 for desktops and
+  one square, most at 1920×1080 or larger:
   - 94 landscapes, seascapes, and nature close-ups in `desktops/outdoors`
   - 71 game wallpapers in `desktops/gaming`, including Fallout, Portal,
     BioShock, Team Fortress 2, Mario, Pokémon, Half-Life, and Mass Effect
