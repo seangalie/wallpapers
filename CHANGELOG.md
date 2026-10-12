@@ -42,6 +42,16 @@ section as the GitHub release notes, and refuses to publish if it is missing.
     Invaders, and two Star Wars posters
   - abstract light, line, and geometric designs in `mobile/abstract`
   - a tilt-shift village below a mesa and a smoking skull
+- **46 more phone wallpapers** from my older wallpaper folders, all enlarged
+  and listed under "Modified images" in [CREDITS.md](CREDITS.md):
+  - painted walker mechs, airships, and robots in `mobile/scifi`
+  - dark knights, horned creatures, and painted landscapes in `mobile/fantasy`
+  - Archer, Firefly, Evangelion, and Attack on Titan designs in
+    `mobile/pop-culture`, and XCOM, Portal, and BioShock in `mobile/gaming`
+  - space art, low-poly abstracts, a misty forest, and a pixel-art city at
+    night
+- **Credits:** Dragonhatch Productions is credited for
+  `sigantium-robed-figure`, from the copyright line on the image.
 
 ## [3.1.0] - 2026-10-11
 

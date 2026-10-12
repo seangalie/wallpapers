@@ -243,8 +243,33 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# ---------------------------------
-# Generated wallpaper ZIP archives
-# ---------------------------------
+# --------------------------------
+# .gitignore for Vim-related files
+# --------------------------------
+
+# Swap
+[._]*.s[a-v][a-z]
+# Keep vector files the swap patterns above would match; remove if unneeded.
+!*.svg
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+# -----------------------------------------------
+# .gitignore for generated wallpaper ZIP archives
+# -----------------------------------------------
 
 dist/
