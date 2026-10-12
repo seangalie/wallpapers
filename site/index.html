@@ -37,6 +37,11 @@
         <p>Try another search, or <a href="#" data-reset>show everything</a>.</p>
       </div>
 
+      <div id="no-favorites" hidden>
+        <h2>No favorites yet</h2>
+        <p>Select the heart on any wallpaper to keep it here. Favorites are saved in this browser only. <a href="#" data-reset>Show everything</a>.</p>
+      </div>
+
       <noscript>
         <div class="noscript-message">
           <h2>This gallery needs JavaScript</h2>
@@ -49,6 +54,10 @@
           <section>
             <h2>Browse</h2>
             <input type="search" id="search" placeholder="Search names, like gruvbox, nord, or moon" aria-label="Search wallpapers" autocomplete="off" />
+          </section>
+          <section>
+            <h3>Show</h3>
+            <ul class="filters" id="favorites-filters"></ul>
           </section>
           <section>
             <h3>Order</h3>
@@ -125,6 +134,7 @@
           <ul class="actions">
             <li><a class="button primary small icon solid fa-download" id="viewer-download">Download</a></li>
             <li><a class="button small" id="viewer-original" target="_blank" rel="noopener">Open full size</a></li>
+            <li><button type="button" class="button small icon fa-heart" id="viewer-favorite" aria-pressed="false">Favorite</button></li>
           </ul>
         </div>
         <button type="button" class="nav-previous" aria-label="Previous wallpaper"></button>

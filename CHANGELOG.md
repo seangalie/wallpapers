@@ -32,6 +32,12 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ### Added
 
+- **Newest first and favorites on the gallery site:** sort by **Newest**
+  under Browse to see the latest additions first, and look for the **New**
+  badge on wallpapers added in the last 30 days. Each wallpaper's details
+  now show the date it was added. Select the heart on any wallpaper to save
+  it as a favorite, then choose **Favorites** under Browse to see only those.
+  Favorites are kept in your browser, so they stay on that device.
 - **33 phone wallpapers** from my old laptop, all enlarged and listed under
   "Modified images" in [CREDITS.md](CREDITS.md):
   - graphic jokes and cartoons, including "Follow the leader", a nature

@@ -22,11 +22,17 @@
   const PREVIEW_SIZE = 1920;
   // The template's space around the viewer on larger screens.
   const VIEWER_MARGIN = 50;
+  // Wallpapers added within this many days carry a New badge.
+  const NEW_DAYS = 30;
+  const DAY = 24 * 60 * 60 * 1000;
+  const FAVORITES_KEY = 'favorites';
 
   const body = document.body;
   const main = document.getElementById('main');
   const collection = JSON.parse(document.getElementById('collection').textContent);
   const numbers = new Intl.NumberFormat('en-US');
+  // Dates are whole days in UTC, so show them in UTC to keep the same day.
+  const dates = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
   const smallScreen = window.matchMedia('(max-width: 736px)');
 
   const titleCase = (words) =>
@@ -54,17 +60,75 @@
         name,
         title: imageTitle(name),
         terms: `${format} ${category} ${name}`.replace(/[-_.]/g, ' '),
+        addedTime: Date.parse(`${image.added}T00:00:00Z`),
       };
     })
     .sort((a, b) =>
       formatOrder.indexOf(a.format) - formatOrder.indexOf(b.format)
       || a.category.localeCompare(b.category)
       || a.name.localeCompare(b.name));
+  // The sort is stable, so each day's additions stay in A to Z order.
+  const newest = images.slice().sort((a, b) => b.addedTime - a.addedTime);
+  // The archive's first upload is not news, even while it is recent.
+  const firstUpload = Math.min(...images.map((image) => image.addedTime));
+  images.forEach((image) => {
+    image.isNew = image.addedTime > firstUpload && Date.now() - image.addedTime < NEW_DAYS * DAY;
+  });
   const categories = [...new Set(images.map((image) => image.category))]
     .sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
 
   document.querySelectorAll('[data-repository-link]').forEach((link) => {
     link.href = `https://github.com/${collection.repository}${link.dataset.repositoryLink}`;
+  });
+
+  // --- Favorites ------------------------------------------------------------
+
+  // Favorites are paths kept in this browser's storage. Storage can be
+  // missing or blocked, as in some private windows; favorites then last only
+  // until the page closes.
+  function readFavorites() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
+      return new Set(Array.isArray(saved) ? saved.filter((path) => typeof path === 'string') : []);
+    } catch (error) {
+      console.warn('Favorites could not be read:', error);
+      return new Set();
+    }
+  }
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+    } catch (error) {
+      console.warn('Favorites could not be saved:', error);
+    }
+  }
+
+  let favorites = readFavorites();
+  const isFavorite = (image) => favorites.has(image.path);
+
+  function showFavorite(button, image) {
+    const favorite = isFavorite(image);
+    button.classList.toggle('solid', favorite);
+    button.setAttribute('aria-pressed', String(favorite));
+    button.title = favorite ? 'Remove from favorites' : 'Add to favorites';
+  }
+
+  function toggleFavorite(image) {
+    if (isFavorite(image)) favorites.delete(image.path); else favorites.add(image.path);
+    saveFavorites();
+    showFavorite(image.favoriteButton, image);
+    if (viewer.image === image) showFavorite(viewer.favorite, image);
+    update();
+  }
+
+  // Keep other tabs of the gallery in step.
+  window.addEventListener('storage', (event) => {
+    if (event.key !== FAVORITES_KEY) return;
+    favorites = readFavorites();
+    images.forEach((image) => showFavorite(image.favoriteButton, image));
+    if (viewer.image) showFavorite(viewer.favorite, viewer.image);
+    update();
   });
 
   // --- Grid -----------------------------------------------------------------
@@ -106,8 +170,22 @@
     const heading = document.createElement('h2');
     heading.textContent = image.title;
 
-    article.append(link, heading);
+    const favorite = document.createElement('button');
+    favorite.type = 'button';
+    favorite.className = 'favorite icon fa-heart';
+    favorite.setAttribute('aria-label', `Favorite ${image.title}`);
+    favorite.addEventListener('click', () => toggleFavorite(image));
+    showFavorite(favorite, image);
+
+    article.append(link, heading, favorite);
+    if (image.isNew) {
+      const badge = document.createElement('span');
+      badge.className = 'badge';
+      badge.textContent = 'New';
+      article.append(badge);
+    }
     image.article = article;
+    image.favoriteButton = favorite;
     fragment.append(article);
     if (thumbnails) thumbnails.observe(article); else loadThumbnail(article);
   });
@@ -117,13 +195,14 @@
 
   // An empty order follows the filters: shuffled while nothing narrows the
   // collection, so each visit opens on a different mix, and A to Z once a
-  // format, category, or search is chosen. Choosing an order overrides that
-  // until the filters change again.
+  // format, category, search, or favorites is chosen. Choosing an order
+  // overrides that until the filters change again.
   const ORDERS = [
     { id: 'shuffle', label: 'Shuffle' },
+    { id: 'newest', label: 'Newest' },
     { id: 'name', label: 'A to Z' },
   ];
-  const state = { format: '', category: '', query: '', order: '' };
+  const state = { format: '', category: '', query: '', order: '', favorites: false };
   let visible = images;
   let shuffled = shuffle(images);
   let arranged = images;
@@ -137,15 +216,18 @@
     return copy;
   }
 
-  const filtered = () => Boolean(state.format || state.category || state.query.trim());
+  const filtered = () =>
+    Boolean(state.format || state.category || state.query.trim() || state.favorites);
   const currentOrder = () => state.order || (filtered() ? 'name' : 'shuffle');
 
   const search = document.getElementById('search');
   const summary = document.getElementById('summary');
   const showResults = document.getElementById('show-results');
   const empty = document.getElementById('empty');
+  const noFavorites = document.getElementById('no-favorites');
 
   function matches(image, ignore) {
+    if (ignore !== 'favorites' && state.favorites && !isFavorite(image)) return false;
     if (ignore !== 'format' && state.format && image.format !== state.format) return false;
     if (ignore !== 'category' && state.category && image.category !== state.category) return false;
     const words = state.query.toLowerCase().split(/\s+/).filter(Boolean);
@@ -181,6 +263,27 @@
     items: categories.map((id) => ({ id, label: categoryLabel(id) })),
   });
 
+  const favoritesButtons = [
+    { id: false, label: 'Everything' },
+    { id: true, label: 'Favorites' },
+  ].map((item) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.append(item.label);
+    const count = document.createElement('span');
+    count.className = 'count';
+    button.append(count);
+    button.addEventListener('click', () => {
+      state.favorites = item.id;
+      state.order = '';
+      update({ scroll: true });
+    });
+    const entry = document.createElement('li');
+    entry.append(button);
+    document.getElementById('favorites-filters').append(entry);
+    return { id: item.id, button, count };
+  });
+
   // Shuffle again reshuffles, so it doubles as a "show me others" button.
   const orderButtons = ORDERS.map((item) => {
     const button = document.createElement('button');
@@ -207,9 +310,19 @@
     });
   }
 
+  // Favorites stays selectable with none saved, so its empty view can explain
+  // how to add some.
+  function refreshFavoritesButtons() {
+    const pool = images.filter((image) => matches(image, 'favorites'));
+    favoritesButtons.forEach(({ id, button, count }) => {
+      count.textContent = numbers.format(id ? pool.filter(isFavorite).length : pool.length);
+      button.setAttribute('aria-pressed', String(state.favorites === id));
+    });
+  }
+
   function update({ scroll = false } = {}) {
     const order = currentOrder();
-    const source = order === 'shuffle' ? shuffled : images;
+    const source = { shuffle: shuffled, newest, name: images }[order];
     // Moving the tiles is the costly part, so only do it when the order changes.
     if (arranged !== source) {
       main.append(...source.map((image) => image.article));
@@ -218,18 +331,23 @@
     visible = source.filter((image) => matches(image));
     const shown = new Set(visible);
     images.forEach((image) => { image.article.hidden = !shown.has(image); });
-    empty.hidden = visible.length > 0;
+    const noneSaved = state.favorites && favorites.size === 0;
+    noFavorites.hidden = !noneSaved;
+    empty.hidden = visible.length > 0 || noneSaved;
 
     refreshButtons(formatButtons, 'format');
     refreshButtons(categoryButtons, 'category');
+    refreshFavoritesButtons();
     orderButtons.forEach(({ id, button }) => button.setAttribute('aria-pressed', String(order === id)));
 
     const noun = visible.length === 1 ? 'wallpaper' : 'wallpapers';
     const parts = [`${numbers.format(visible.length)} ${noun}`];
+    if (state.favorites) parts.push('Favorites');
     if (state.format) parts.push(formatLabel(state.format));
     if (state.category) parts.push(categoryLabel(state.category));
     if (state.query.trim()) parts.push(`“${state.query.trim()}”`);
     if (order === 'shuffle') parts.push('Shuffled');
+    if (order === 'newest') parts.push('Newest first');
     summary.textContent = parts.join(' · ');
     showResults.textContent = `Show ${numbers.format(visible.length)} ${noun}`;
 
@@ -254,6 +372,7 @@
       state.category = '';
       state.query = '';
       state.order = '';
+      state.favorites = false;
       search.value = '';
       update({ scroll: true });
     });
@@ -262,6 +381,7 @@
   // --- Address --------------------------------------------------------------
 
   // Filters, a chosen order, and the open wallpaper live in the URL's hash,
+  // with favorites=1 for this browser's favorites,
   // such as #format=dual&category=space&view=wallpapers/dual/space/name.jpg,
   // so a view can be bookmarked or shared.
   function writeHash() {
@@ -270,6 +390,7 @@
     if (state.category) params.set('category', state.category);
     if (state.query.trim()) params.set('q', state.query.trim());
     if (state.order) params.set('order', state.order);
+    if (state.favorites) params.set('favorites', '1');
     if (viewer.image) params.set('view', viewer.image.path);
     const hash = params.toString();
     history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search);
@@ -284,6 +405,7 @@
     state.query = params.get('q') || '';
     const order = params.get('order') || '';
     state.order = ORDERS.some((item) => item.id === order) ? order : '';
+    state.favorites = params.get('favorites') === '1';
     search.value = state.query;
     return images.find((image) => image.path === params.get('view'));
   }
@@ -365,6 +487,7 @@
     details: document.getElementById('viewer-details'),
     download: document.getElementById('viewer-download'),
     original: document.getElementById('viewer-original'),
+    favorite: document.getElementById('viewer-favorite'),
     list: [],
     image: null,
     returnFocus: null,
@@ -404,7 +527,9 @@
       categoryLabel(image.category),
       `${numbers.format(image.width)} × ${numbers.format(image.height)}`,
       megabytes(image.bytes),
+      `Added ${dates.format(image.addedTime)}`,
     ].join(' · ');
+    showFavorite(viewer.favorite, image);
     viewer.download.href = mediaUrl(image);
     viewer.download.download = image.name;
     viewer.original.href = mediaUrl(image);
@@ -444,6 +569,7 @@
   }
 
   viewer.root.querySelector('.closer').addEventListener('click', closeViewer);
+  viewer.favorite.addEventListener('click', () => toggleFavorite(viewer.image));
   viewer.root.querySelector('.nav-previous').addEventListener('click', () => showImage(neighbor(-1)));
   viewer.root.querySelector('.nav-next').addEventListener('click', () => showImage(neighbor(1)));
   viewer.root.addEventListener('click', (event) => {

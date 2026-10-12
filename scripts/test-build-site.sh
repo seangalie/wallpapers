@@ -131,3 +131,49 @@ if [ "$status" -eq 0 ] || [ ! -f "${WORK}/unrelated/keep.txt" ]; then
 fi
 expect_summary 'the refusal is explained' 'is not a site build'
 pass 'a build refuses to replace a directory that is not a build'
+
+# added_on PATH prints the date the built page records for PATH.
+added_on() {
+    grep -o "\"path\":\"$1\"[^}]*" "${WORK}/site/index.html" | sed -n 's/.*"added":"\([0-9-]*\)".*/\1/p'
+}
+
+# dated DAY COMMAND... runs COMMAND with commits dated DAY.
+dated() {
+    local day="$1"
+    shift
+    GIT_AUTHOR_DATE="${day}T12:00:00Z" GIT_COMMITTER_DATE="${day}T12:00:00Z" "$@"
+}
+
+rm -rf "${WORK}/site"
+dated 2026-01-05 setup_repository
+git mv wallpapers/mobile/space/tall-sky.png wallpapers/mobile/space/tall-dusk.png
+dated 2026-02-10 commit 'Rename an image'
+image -size 64x64 xc:gray wallpapers/desktops/space/new-sky.png
+dated 2026-03-15 commit 'Add an image'
+image -size 64x64 xc:silver wallpapers/desktops/space/new-sky.png
+dated 2026-04-01 commit 'Replace an image'
+git switch --quiet -c side
+image -size 64x64 xc:navy wallpapers/desktops/space/side-sky.png
+dated 2026-04-20 commit 'Add an image on a branch'
+git switch --quiet -
+dated 2026-05-02 git -c user.name=Test -c user.email=test@example.com merge --quiet --no-ff -m 'Merge the branch' side
+image -size 64x64 xc:white wallpapers/desktops/space/staged-sky.png
+git add -A
+bash scripts/check-collection.sh --write-readme > /dev/null
+git add README.md
+build "${WORK}/site" || fail 'a build with dated history succeeds'
+[ "$(added_on wallpapers/desktops/space/wide-sky.png)" = 2026-01-05 ] || fail 'an image is dated by the commit that added it'
+[ "$(added_on wallpapers/mobile/space/tall-dusk.png)" = 2026-01-05 ] || fail 'a renamed image keeps its date'
+[ "$(added_on wallpapers/desktops/space/new-sky.png)" = 2026-03-15 ] || fail 'a replaced image keeps its date'
+[ "$(added_on wallpapers/desktops/space/side-sky.png)" = 2026-05-02 ] || fail 'a merged image is dated by its merge'
+[ "$(added_on wallpapers/desktops/space/staged-sky.png)" = "$(date -u +%Y-%m-%d)" ] || fail 'a staged image is dated today'
+pass 'a build dates each image from the first-parent history'
+
+git -c user.name=Test -c user.email=test@example.com commit --quiet -m 'Add the staged image'
+GIT_LFS_SKIP_SMUDGE=1 git clone --quiet --depth 1 "file://${WORK}/repo" "${WORK}/shallow"
+cd "${WORK}/shallow"
+status=0
+build "${WORK}/shallow-site" || status=$?
+[ "$status" -ne 0 ] || fail 'a build in a shallow clone fails'
+expect_summary 'the shallow clone is explained' 'this clone is shallow'
+pass 'a build refuses a shallow clone'
