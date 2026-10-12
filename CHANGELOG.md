@@ -56,8 +56,24 @@ section as the GitHub release notes, and refuses to publish if it is missing.
     `mobile/pop-culture`, and XCOM, Portal, and BioShock in `mobile/gaming`
   - space art, low-poly abstracts, a misty forest, and a pixel-art city at
     night
+- **419 wallpapers** from an old wallpaper collection, 418 for desktops and
+  one square, most at 1920×1080 or larger:
+  - 94 landscapes, seascapes, and nature close-ups in `desktops/outdoors`
+  - 71 game wallpapers in `desktops/gaming`, including Fallout, Portal,
+    BioShock, Team Fortress 2, Mario, Pokémon, Half-Life, and Mass Effect
+  - painted cities, ruins, and spaceships in `desktops/scifi` and
+    `desktops/fantasy`, plus art, abstract, and space wallpapers
+  - circuit boards, chips, and hard drives in `desktops/tech`, cars in
+    `desktops/cars`, and a square circuit-board close-up in a new
+    `square/tech` category
+  - four were too small for today's screens, so they were enlarged and
+    listed under "Modified images" in [CREDITS.md](CREDITS.md)
 - **Credits:** Dragonhatch Productions is credited for
-  `sigantium-robed-figure`, from the copyright line on the image.
+  `sigantium-robed-figure`, from the copyright line on the image, and 26 of
+  the new desktop wallpapers credit the artist, photographer, studio, or
+  brand whose signature or mark they carry, including Noah Bradley, Android
+  Jones, Raphael Lacoste, Digital Blasphemy, Vladstudio, and Bill Watterson.
+  [CREDITS.md](CREDITS.md) also lists the websites named in 14 watermarks.
 
 ### Changed
 
@@ -65,6 +81,9 @@ section as the GitHub release notes, and refuses to publish if it is missing.
   on a phone, and desktop wallpapers on a computer or tablet, still in a
   shuffled mix. Choose another format, or **All formats**, under Browse to
   see the rest. Links with filters in them open exactly as shared.
+- **Sharper copies of two wallpapers**, at the same paths:
+  `desktops/space/nebula-purple.jpg` and `desktops/outdoors/seascape.jpg`
+  are now 2560×1600 with more of each scene, up from 1920×1080.
 
 ## [3.1.0] - 2026-10-11
 
