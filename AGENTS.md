@@ -104,8 +104,9 @@ less. Every ZIP includes `LICENSE.txt`, and `SHA256SUMS.txt` lists their
 checksums. It rejects unresolved LFS pointers and archives of 2 GiB or more
 (GitHub's release asset limit). For 3.2.0 in October 2026 the desktop parts
 were about 1.5 GB and 1.05 GB, and the largest category ZIP, `outdoors`, about
-0.62 GB; part 1 is close to the target, so the next large desktop addition may
-move a category to part 2 or add a part 3, which changes download names.
+0.62 GB. Part 1 is close to the target, so the next large desktop addition may
+move a category to part 2, which changes which part holds it, or add a part 3,
+which adds a download; record either in the changelog.
 
 `.github/workflows/release.yml` runs the script and attaches the ZIPs to the
 release. Each run downloads the whole collection from LFS, about 3 GiB of the
