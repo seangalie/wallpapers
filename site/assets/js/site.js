@@ -553,8 +553,12 @@
     return viewer.list[(index + step + viewer.list.length) % viewer.list.length];
   }
 
+  // The viewer steps through the wallpapers shown when it opens, or only the
+  // one it opened on when that one is filtered out.
+  const viewerListFor = (image) => (visible.includes(image) ? visible : [image]);
+
   function openViewer(image) {
-    viewer.list = visible.includes(image) ? visible : [image];
+    viewer.list = viewerListFor(image);
     viewer.returnFocus = document.activeElement;
     viewer.root.hidden = false;
     body.classList.add('modal-active');
@@ -681,7 +685,14 @@
     const image = readHash();
     update();
     if (image) {
-      if (viewer.image) showImage(image); else openViewer(image);
+      // A new address can change the filters as well as the wallpaper, so
+      // the open viewer starts its steps over from what is now shown.
+      if (viewer.image) {
+        viewer.list = viewerListFor(image);
+        showImage(image);
+      } else {
+        openViewer(image);
+      }
     } else {
       closeViewer();
     }
