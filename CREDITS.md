@@ -39,13 +39,6 @@ Gruvbox palette by someone other than the creator, who is unknown.
 
 | Image | Credit | Evidence and notes |
 | --- | --- | --- |
-| `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
-| `desktops/outdoors/bear-and-deer-dawn.jpg` | Louis Coyle | Signature in the lower right, with "dribbble.com/louiscoyle" beneath it. |
-| `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
-| `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
-| `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
-| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
-| `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
 | `desktops/abstract/rainbow-spikes.jpg` | bgn | Lower left reads "© 2007 bgn". |
 | `desktops/abstract/wooden-block-tunnel.jpg` | aphaits | Lower left reads "aphaits.deviantart.com". |
 | `desktops/art/ship-in-bottle-ghost-ship.jpg` | Budai Bálint | Signed "Budai Bálint" in the lower right. |
@@ -54,28 +47,42 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/fantasy/domed-city-at-dusk.jpg` | Dmitry Zaviyalov | Lower edge reads "CGSociety.org" and "Copyright (C) Dmitry Zaviyalov, submitted 02 January 2012". |
 | `desktops/fantasy/floating-island-lighthouse.jpg` | Unconfirmed | Lower right has a deer-head logo above "RAY". Whether it names the creator is unknown. |
 | `desktops/fantasy/floating-island-waterfalls.jpg` | Stella Artois | Lower right reads "STELLAARTOIS.COM" beside the Stella Artois logo. |
+| `desktops/fantasy/floating-planets-river-valley.jpg` | Zach Bush | Lower right reads "ZACHBUSH.COM" beside a logo. |
 | `desktops/fantasy/giant-wave-storm.jpg` | Dehong He, via CGWallpapers | Lower edge reads "Marvelous Journey © Dehong He, China, www.hdhcg.com" and "CGWallpapers.com". |
 | `desktops/fantasy/golden-castle-spires.jpg` | Noah Bradley | Lower right reads "NOAH BRADLEY.COM" and "COPYRIGHT 2012 WIZARDS OF THE COAST". |
 | `desktops/gaming/fallout-3-flags-power-armor.jpg` | Bethesda Softworks | Lower right reads "© 2008 Bethesda Softworks LLC. All Rights Reserved." |
 | `desktops/gaming/fallout-3-power-armor-explosion.jpg` | Bethesda Softworks, via GameWallpapers | Lower edge reads "Fallout 3 developer Bethesda Softworks publisher Bethesda Softworks" and "© GameWallpapers.com". |
 | `desktops/gaming/fallout-vault-boy-tommy-gun.jpg` | Unconfirmed | Lower left reads like "Farge" in large hatched letters, which are hard to read. Whether it names the creator is unknown. |
+| `desktops/gaming/halo-master-chief-smoke.jpg` | Sam Spratt | Lower left reads "WWW.SAM SPRATT.COM". |
 | `desktops/gaming/metal-gear-solid-4-rex-vs-ray.jpg` | yelansu | Lower left reads "Rex vs Ray" and "Metal Gear Solid 4", with a signature that reads like "yelansu 08.8". |
 | `desktops/gaming/pokemon-trainer-phoenix.jpg` | Unconfirmed | Lower left has a doodled face signed "LOU". Whether it names the creator is unknown. |
+| `desktops/gaming/starcraft-2-jim-raynor.jpg` | Blizzard Entertainment, via GameWallpapers | Lower edge reads "Starcraft 2 developer Blizzard Entertainment publisher Blizzard Entertainment" and "© GameWallpapers.com". |
 | `desktops/gaming/turok-soldiers-fighting-dinosaur.jpg` | Propaganda Games, via GameWallpapers | Lower edge reads "Turok developer Propaganda Games publisher Buena Vista Games" and "© GameWallpapers.com". |
+| `desktops/history/course-of-empire-consummation.jpg` | Thomas Cole | Signed "T. Cole". The composition matches *The Consummation of Empire* (1836) from his series *The Course of Empire*. |
 | `desktops/minimal/floating-island-tree.jpg` | Vladstudio | Mark in the lower right reads "Vladstudio". |
+| `desktops/outdoors/bear-and-deer-dawn.jpg` | Louis Coyle | Signature in the lower right, with "dribbble.com/louiscoyle" beneath it. |
 | `desktops/outdoors/crater-lake-green-mountains.jpg` | Rasmus Hartikainen, via National Geographic | Lower left reads "NATIONAL GEOGRAPHIC" and "Photograph by Rasmus Hartikainen". |
 | `desktops/outdoors/desert-valley-road.jpg` | Lucas Janin | Lower left reads "Lucas Janin". |
 | `desktops/outdoors/golden-sea-of-clouds.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy". |
 | `desktops/outdoors/misty-autumn-forest-path.jpg` | Unconfirmed | Lower right reads "ILOIKO". Whether it names the creator is unknown. |
 | `desktops/pop-culture/calvin-and-hobbes-wagon.jpg` | Bill Watterson | Signed "WATTERSON" in the lower right. |
+| `desktops/pop-culture/deadpool-black-suit.jpg` | John Aslarona | Lower left reads "JOHN ASLARONA". Deadpool in a black suit, which looks like a recolor of the red original. hdqwalls.com lists that original as "Deadpool Digital Art 2018" and credits "_photoshopismykung-fu_" on DeviantArt; how that name relates to the signature, and who made the recolor, are unknown. |
+| `desktops/pop-culture/deadpool-explosion.jpg` | Syanart | Lower right reads "SYANART". |
+| `desktops/pop-culture/deadpool-vs-taskmaster.jpg` | Marvel | Lower right shows the MARVEL logo. |
 | `desktops/scifi/blue-light-tunnel-orb.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy.com". |
 | `desktops/scifi/corridor-light-at-end.jpg` | Raphael Lacoste | Lower edge reads "Raphael Lacoste 2005" and "www.3dluvr.com/eirafo". |
 | `desktops/scifi/figure-before-glowing-monolith.jpg` | chriscold | Lower right reads "chriscold.deviantart.com". |
 | `desktops/scifi/floating-city-battle-sunset.jpg` | Christian Hecker, via CGWallpapers | Lower edge reads "Gates To Elysium © Christian Hecker, Germany, www.tigaer-design.com" and "CGWallpapers.com". |
+| `desktops/scifi/machine-wreck-coastal-road-gruvbox-light.jpg` | Simon Stålenhag | Banner in the lower right reads "www.simonstalenhag.se". Gruvbox recolor. |
+| `desktops/scifi/machine-wreck-highway-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
 | `desktops/scifi/monochrome-ruined-skyline.jpg` | Unconfirmed | Lower left reads "VIRUS-PLAN2". Whether it names the creator or the title is unknown. Enlarged (see Modified images). |
+| `desktops/scifi/snowy-towers-village-gruvbox.jpg` | Simon Stålenhag | Signed "Simon Stålenhag 2012" in the lower left. Gruvbox recolor, enlarged (see Modified images). |
 | `desktops/scifi/spired-city-sunrise-watcher.jpg` | Roberto Oleotto, via CGWallpapers | Lower edge reads "Points of View © Roberto Oleotto, Italy, www.onthesign.it" and "CGWallpapers.com". |
 | `desktops/scifi/wasteland-wanderer-village.jpg` | M. Allsopp | Signed "M. Allsopp" in the lower left. |
+| `desktops/scifi/wrecked-machine-dunes-gruvbox-light.jpg` | Simon Stålenhag | As above, with the banner in the lower left. Gruvbox recolor. |
+| `desktops/space/astronaut-cave-portal-gruvbox.jpg` | Ahmed Mostafa, via Desktopography | Mark in the lower right reads "www.desktopography.net by Ahmed Mostafa" and "behance.net/Hamada_Darsh". Gruvbox recolor. |
 | `desktops/space/planet-breaking-apart.jpg` | thiagochackal | Lower right reads "ORION SLEEPERS" and "thiagochackal.deviantart.com", with a signature. |
+| `desktops/space/requiem-light-burst.jpg` | Unconfirmed | Lower right reads "REQUIEM", with a signature and a smaller credit that reads like "Adam P' Burn". Whether it names the creator is unknown. |
 | `desktops/tech/hard-drive-arm-macro.jpg` | Mandolux | Lower left reads "MANDOLUX". |
 | `mobile/fantasy/sigantium-robed-figure.jpg` | Dragonhatch Productions | Lower edge reads "Sigantium © Dragonhatch Productions LLC 2014 all rights reserved". Enlarged (see Modified images). |
 
@@ -121,6 +128,7 @@ website is where an image was found, not necessarily who made it.
 | Image | Source and evidence |
 | --- | --- |
 | `desktops/abstract/colorful-hexagon-cubes.jpg` | wallpaperzzz.com (lower right reads "wallpaperzzz.com") |
+| `desktops/art/skeleton-with-heart-balloons.jpg` | rom.ac (lower left reads "WWW.ROM.AC") |
 | `desktops/art/teal-tiled-tunnel.jpg` | gee.ru (lower right reads "www.gee.ru") |
 | `desktops/cars/black-supercar-cobblestones.jpg` | propergraphics.com (lower right reads "www.propergraphics.com") |
 | `desktops/gaming/bioshock-big-daddy-ink.jpg` | pickywallpapers.com (lower right reads "downloaded from pickywallpapers.com") |
@@ -131,10 +139,26 @@ website is where an image was found, not necessarily who made it.
 | `desktops/outdoors/frosted-trees-river.jpg` | glossyart.com (lower right reads "glossyart.com") |
 | `desktops/outdoors/northern-lights-landscape.jpg` | GoodFon.ru (JPEG comment) |
 | `desktops/outdoors/northern-lights-mountains.jpg` | GoodFon.ru (JPEG comment) |
+| `desktops/pop-culture/batman-cape-sunset.jpg` | artwallpapers.biz (lower right reads "artwallpapers.biz") |
 | `desktops/pop-culture/dark-side-prism-mashup.jpg` | wallchan.com (lower right reads "wallchan.com") |
+| `desktops/pop-culture/deadpool-was-here-skull.jpg` | yuiphone.com (lower right reads "yuiphone.com") |
 | `desktops/scifi/neon-city-canal.jpg` | rewalls.com (lower right reads "rewalls.com") |
+| `desktops/scifi/planets-over-mountain-valley.jpg` | wallpapershi.net (lower left reads "wallpapershi.net") |
 | `desktops/scifi/ruined-domed-memorial.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
 | `desktops/scifi/starship-bridge-view.jpg` | galacticconquest.net, zanimation.com (lower right reads "GALACTICCONQUEST.NET" and "ZANIMATION.COM") |
+| `desktops/space/bright-star-dark-clouds.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/darth-maul-red-lightsaber.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/darth-vader-helmet-dark-closeup.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/darth-vader-helmet-flames.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/darth-vader-helmet-minimal.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/darth-vader-helmet-red-glow.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/force-unleashed-starkiller.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/lego-stormtrooper-frosty-grass.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/lego-stormtroopers-clothesline.jpg` | wallpaperswide.com (lower right reads "WALLPAPERSWIDE.COM") |
+| `desktops/star-wars/painted-stormtrooper-helmet-cream.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/saga-collage-poster.jpg` | ladik.ru (lower right reads "Ладик.ru" beside a logo) |
+| `desktops/star-wars/stormtrooper-helmet-sketch-brown.jpg` | dws4.me (upper right reads "dws4.me") |
+| `desktops/star-wars/yoda-dooku-duel.jpg` | dws4.me (upper right reads "dws4.me") |
 | `desktops/tech/silicon-wafer-rainbow.jpg` | mydrivers.com (lower right reads "MyDrivers.com") |
 | `dual/urban/golden-gate-bridge.jpg` | laba.ws (EXIF description "Dual_Screen_HD_Wallpapers_laba.ws") |
 
@@ -153,6 +177,7 @@ creator is always a welcome replacement.
 | `desktops/abstract/scattered-shapes-pattern-gruvbox.png` | 1600×920 | 3840×2208 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. |
 | `desktops/abstract/swirling-wave-texture-gruvbox.png` | 901×507 | 3840×2160 | As above. |
 | `desktops/fantasy/hobbit-art.jpg` | 1024×576 | 3840×2160 | Real-ESRGAN `realesrgan-x4plus`, blended 60/40 with Lanczos resampling to keep the paper-grain texture, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/fantasy/warrior-overlooking-burning-army.jpg` | 1280×723 | 3840×2169 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/minimal/arched-window-landscapes-gruvbox.png` | 1366×768 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original to soften halos around the lines, then saved as PNG. The original's unused alpha channel was dropped. |
 | `desktops/minimal/blossom-volcano-gruvbox.png` | 1366×768 | 3840×2160 | As above. |
 | `desktops/minimal/blue-gradient.png` | 1024×768 | 4096×3072 | Gradient tones reconstructed from row averages, which removes the original's coarse dithering. Resampled in 16-bit and re-dithered to 8-bit. The original's lighter one-pixel right edge was dropped. |
@@ -174,6 +199,7 @@ creator is always a welcome replacement.
 | `desktops/star-wars/millennium-falcon-fighter-escort.jpg` | 1200×814 | 3840×2605 | As above. |
 | `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |
 | `desktops/tech/pirate-ship-logo.jpg` | 1280×768 | 3840×2304 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `desktops/urban/dark-stairway-tunnel.jpg` | 1920×1200 | 1920×1200 | Color-graded to match the archive's earlier 1600×900 copy, which was framed tighter: each channel's levels were mapped to that copy's over the area both show, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-arch-steps.jpg` | 1024×650 | 3840×2438 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original to soften invented stone texture, resized to 3840 wide with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-clock-tower.jpg` | 1024×685 | 3840×2569 | As above. |
 | `mobile/abstract/blue-purple-constellation-lines.jpg` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
