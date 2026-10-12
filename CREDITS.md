@@ -52,6 +52,7 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/art/two-faces-crumbling.jpg` | Android Jones | Mark in the lower right reads "www.androidjones.com". |
 | `desktops/cars/drift-car-street-circuit.jpg` | Linhbergh, via Speedhunters | Lower right reads "SPEEDHUNTERS.com" and "Photo: Linhbergh". |
 | `desktops/fantasy/domed-city-at-dusk.jpg` | Dmitry Zaviyalov | Lower edge reads "CGSociety.org" and "Copyright (C) Dmitry Zaviyalov, submitted 02 January 2012". |
+| `desktops/fantasy/floating-island-lighthouse.jpg` | Unconfirmed | Lower right has a deer-head logo above "RAY". Whether it names the creator is unknown. |
 | `desktops/fantasy/floating-island-waterfalls.jpg` | Stella Artois | Lower right reads "STELLAARTOIS.COM" beside the Stella Artois logo. |
 | `desktops/fantasy/giant-wave-storm.jpg` | Dehong He, via CGWallpapers | Lower edge reads "Marvelous Journey © Dehong He, China, www.hdhcg.com" and "CGWallpapers.com". |
 | `desktops/fantasy/golden-castle-spires.jpg` | Noah Bradley | Lower right reads "NOAH BRADLEY.COM" and "COPYRIGHT 2012 WIZARDS OF THE COAST". |
@@ -59,11 +60,13 @@ Gruvbox palette by someone other than the creator, who is unknown.
 | `desktops/gaming/fallout-3-power-armor-explosion.jpg` | Bethesda Softworks, via GameWallpapers | Lower edge reads "Fallout 3 developer Bethesda Softworks publisher Bethesda Softworks" and "© GameWallpapers.com". |
 | `desktops/gaming/fallout-vault-boy-tommy-gun.jpg` | Unconfirmed | Lower left reads like "Farge" in large hatched letters, which are hard to read. Whether it names the creator is unknown. |
 | `desktops/gaming/metal-gear-solid-4-rex-vs-ray.jpg` | yelansu | Lower left reads "Rex vs Ray" and "Metal Gear Solid 4", with a signature that reads like "yelansu 08.8". |
+| `desktops/gaming/pokemon-trainer-phoenix.jpg` | Unconfirmed | Lower left has a doodled face signed "LOU". Whether it names the creator is unknown. |
 | `desktops/gaming/turok-soldiers-fighting-dinosaur.jpg` | Propaganda Games, via GameWallpapers | Lower edge reads "Turok developer Propaganda Games publisher Buena Vista Games" and "© GameWallpapers.com". |
 | `desktops/minimal/floating-island-tree.jpg` | Vladstudio | Mark in the lower right reads "Vladstudio". |
 | `desktops/outdoors/crater-lake-green-mountains.jpg` | Rasmus Hartikainen, via National Geographic | Lower left reads "NATIONAL GEOGRAPHIC" and "Photograph by Rasmus Hartikainen". |
 | `desktops/outdoors/desert-valley-road.jpg` | Lucas Janin | Lower left reads "Lucas Janin". |
 | `desktops/outdoors/golden-sea-of-clouds.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy". |
+| `desktops/outdoors/misty-autumn-forest-path.jpg` | Unconfirmed | Lower right reads "ILOIKO". Whether it names the creator is unknown. |
 | `desktops/pop-culture/calvin-and-hobbes-wagon.jpg` | Bill Watterson | Signed "WATTERSON" in the lower right. |
 | `desktops/scifi/blue-light-tunnel-orb.jpg` | Digital Blasphemy | Lower right reads "digitalblasphemy.com". |
 | `desktops/scifi/corridor-light-at-end.jpg` | Raphael Lacoste | Lower edge reads "Raphael Lacoste 2005" and "www.3dluvr.com/eirafo". |
