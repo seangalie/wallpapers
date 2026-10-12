@@ -70,6 +70,9 @@ jobs:
         with:
           persist-credentials: false
           lfs: false
+          # The build dates each image from the history, which costs no LFS
+          # bandwidth because LFS content is not fetched.
+          fetch-depth: 0
 
       - name: 📦 Install ImageMagick
         run: |

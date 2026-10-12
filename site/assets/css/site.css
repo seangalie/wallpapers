@@ -55,13 +55,82 @@ button.primary:hover:active,
   outline-offset: -4px;
 }
 
+/*
+  The heart sits in a tile's corner, shown on hover or focus so the grid
+  stays clean, and always once chosen or on touch screens, which have no
+  hover.
+*/
+#main .thumb > .favorite {
+  background-color: rgba(31, 34, 36, 0.6);
+  border-radius: 50%;
+  box-shadow: none;
+  font-size: 0.9em;
+  height: 2.5em;
+  line-height: 2.5em;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  right: 0.75em;
+  top: 0.75em;
+  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+  width: 2.5em;
+  z-index: 1;
+}
+
+#main .thumb > .favorite:before {
+  margin: 0;
+}
+
+#main .thumb:hover > .favorite,
+#main .thumb > .favorite:focus-visible,
+#main .thumb > .favorite[aria-pressed="true"] {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  #main .thumb > .favorite {
+    opacity: 1;
+  }
+}
+
+#main .thumb > .favorite:hover {
+  box-shadow: none;
+}
+
+#main .thumb > .favorite:focus-visible {
+  outline: 2px solid #34a58e;
+  outline-offset: 2px;
+}
+
+#main .thumb > .favorite[aria-pressed="true"],
+#viewer .caption .button[aria-pressed="true"]:before {
+  color: #f2849e !important;
+}
+
+#main .thumb > .badge {
+  background-color: #287e6d;
+  font-size: 0.6em;
+  font-weight: 400;
+  left: 1.25em;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  padding: 0.5em 0.8em;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+  top: 1.25em;
+  z-index: 1;
+}
+
 #empty,
+#no-favorites,
 .noscript-message {
   padding: 6em 2em;
   text-align: center;
 }
 
-#empty[hidden] {
+#empty[hidden],
+#no-favorites[hidden] {
   display: none;
 }
 
@@ -215,12 +284,29 @@ button.primary:hover:active,
   margin-bottom: 1em;
 }
 
+/* Narrow portrait previews leave too little width for every button. */
 #viewer .caption .actions {
+  flex-wrap: wrap;
   margin: 0;
+  row-gap: 0.75em;
 }
 
 #viewer .caption .actions li {
   padding-bottom: 0;
+}
+
+/*
+  The viewer's button reset above would flatten its favorite button, and
+  buttons do not inherit the page font the way its links do.
+*/
+#viewer .caption .actions button.button {
+  box-shadow: inset 0 0 0 2px #36383c;
+  font-family: inherit;
+  padding: 0 2.5em 0 1.35em;
+}
+
+#viewer .caption .actions button.button:hover {
+  box-shadow: inset 0 0 0 2px #34a58e;
 }
 
 #viewer .caption .button.is-busy {

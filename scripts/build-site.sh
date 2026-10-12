@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Builds the browsing site published to GitHub Pages: the page and assets in
 # site/, the collection's metadata, and two WebP previews per image, a grid
-# thumbnail and a larger lightbox view.
+# thumbnail and a larger lightbox view. The metadata dates each image from
+# the Git history, so the build needs a full clone, not a shallow one.
 #
 # GitHub Pages cannot serve Git LFS files and limits a site to 1 GB, so the
 # site carries only previews. Its download links point at each image on
@@ -170,6 +171,23 @@ fi
 cut -f 2 "${WORK}/entries" | paste "${WORK}/pointers" - > "${WORK}/images"
 total="$(wc -l < "${WORK}/images" | tr -d ' ')"
 
+# The page can list the newest wallpapers first, so record the day each path
+# reached this branch: its first commit along the first-parent history, so a
+# merged pull request counts from its merge. Renames carry the date along, and
+# replacing an image at the same path keeps it. A shallow clone would date
+# everything to its oldest commit, so it is refused.
+if [ "$(git rev-parse --is-shallow-repository)" = true ]; then
+    fail "Dating the images needs the full Git history, but this clone is shallow; run git fetch --unshallow, or check out with fetch-depth: 0"
+fi
+# added: path, YYYY-MM-DD
+git log --first-parent --diff-merges=first-parent --reverse -M --name-status --format='@%cs' -- wallpapers \
+    | awk -F '\t' '
+        /^@/ { day = substr($0, 2); next }
+        $1 == "A" { added[$2] = day }
+        $1 ~ /^R/ { added[$3] = ($2 in added) ? added[$2] : day; delete added[$2] }
+        $1 == "D" { delete added[$2] }
+        END { for (path in added) print path "\t" added[path] }' > "${WORK}/added"
+
 # --- Reuse previews ---------------------------------------------------------
 
 if [ -n "${SITE_URL:-}" ]; then
@@ -290,18 +308,20 @@ while IFS="$(printf '\t')" read -r oid size path; do
 done < "${WORK}/images"
 
 # The page reads the collection from JSON embedded in index.html, so it works
-# without a server and needs no second request.
-awk -F '\t' -v repository="$REPOSITORY" -v ref="$REF" '
+# without a server and needs no second request. Images staged but not yet
+# committed are dated today.
+awk -F '\t' -v repository="$REPOSITORY" -v ref="$REF" -v today="$(date -u +%Y-%m-%d)" '
     FILENAME == ARGV[1] { dims[$1] = $2 "\t" $3; next }
+    FILENAME == ARGV[2] { added[$1] = $2; next }
     FNR == 1 {
         printf "{\"repository\":\"%s\",\"ref\":\"%s\",\"images\":[", repository, ref
     }
     {
         split(dims[$1], size, "\t")
-        printf "%s\n{\"path\":\"%s\",\"oid\":\"%s\",\"bytes\":%s,\"width\":%s,\"height\":%s}", \
-            (FNR > 1 ? "," : ""), $3, $1, $2, size[1], size[2]
+        printf "%s\n{\"path\":\"%s\",\"oid\":\"%s\",\"bytes\":%s,\"width\":%s,\"height\":%s,\"added\":\"%s\"}", \
+            (FNR > 1 ? "," : ""), $3, $1, $2, size[1], size[2], ($3 in added ? added[$3] : today)
     }
-    END { print "]}" }' "${WORK}/dims" "${WORK}/images" > "${WORK}/collection.json"
+    END { print "]}" }' "${WORK}/dims" "${WORK}/added" "${WORK}/images" > "${WORK}/collection.json"
 
 git ls-files -z -- site | while IFS= read -r -d '' file; do
     target="${STAGE}/${file#site/}"

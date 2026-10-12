@@ -131,6 +131,10 @@ the workflow with its tag as `seed-tag`; the workflow header has the steps.
 Avoid changing the preview settings without reason. The page reads
 the collection from JSON the build embeds in `index.html`; `site.js` replaces
 the template's jQuery and Poptrox with a viewer that reuses their styles.
+The build dates each image from the first-parent Git history and refuses a
+shallow clone, so the Pages checkout uses `fetch-depth: 0`; history carries
+no LFS content, so this costs no LFS bandwidth. Favorites live only in each
+visitor's browser storage.
 
 ## Conventions
 
