@@ -32,10 +32,16 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 
 ### Added
 
-- **6 phone wallpapers** from my old laptop, all enlarged and listed under
-  "Modified images" in [CREDITS.md](CREDITS.md): a tilt-shift village below a
-  mesa, a smoking skull, the "Follow the leader" and nature speedometer jokes,
-  a "This is Sparta" caution sign, and Matrix code.
+- **33 phone wallpapers** from my old laptop, all enlarged and listed under
+  "Modified images" in [CREDITS.md](CREDITS.md):
+  - graphic jokes and cartoons, including "Follow the leader", a nature
+    speedometer, a "This is Sparta" caution sign, the Flash getting a speeding
+    ticket, Calvin and Hobbes, Snoopy, and Homer Simpson
+  - film, TV, and game designs: Matrix code, Tron, Interstellar's TARS,
+    Breaking Bad, The Nightmare Before Christmas, Portal, Deus Ex, Space
+    Invaders, and two Star Wars posters
+  - abstract light, line, and geometric designs in `mobile/abstract`
+  - a tilt-shift village below a mesa and a smoking skull
 
 ## [3.1.0] - 2026-10-11
 

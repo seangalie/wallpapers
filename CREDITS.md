@@ -126,29 +126,54 @@ creator is always a welcome replacement.
 | `desktops/tech/apple-logo-stripes-gruvbox.png` | 1224×689 | 3840×2160 | Upscayl `digital-art-4x`, resized with Lanczos and blended 60/40 with a Lanczos enlargement of the original, then saved as PNG. The original was WebP. |
 | `desktops/urban/princeton-gothic-arch-steps.jpg` | 1024×650 | 3840×2438 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original to soften invented stone texture, resized to 3840 wide with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `desktops/urban/princeton-gothic-clock-tower.jpg` | 1024×685 | 3840×2569 | As above. |
-| `mobile/abstract/red-blue-brush-stripes.jpg` | 768×1024 | 1440×1920 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/abstract/blue-purple-constellation-lines.jpg` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/abstract/colorful-light-lines.jpg` | 480×800 | 1440×2400 | As above. |
+| `mobile/abstract/colorful-square-rods.jpg` | 640×1136 | 1440×2556 | As above. |
+| `mobile/abstract/dark-ornamental-circles.png` | 640×1136 | 1440×2556 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/abstract/glowing-triangles.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/abstract/red-blue-brush-stripes.jpg` | 768×1024 | 1440×1920 | As above. |
 | `mobile/art/bear-woodcut.jpg` | 952×1600 | 1440×2420 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `mobile/art/raccoon-road-trip-comic.jpg` | 1000×1500 | 1440×2160 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/art/cat-astronauts.jpg` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/art/raccoon-road-trip-comic.jpg` | 1000×1500 | 1440×2160 | As above. |
 | `mobile/fantasy/dragon-overgrown-castle.jpg` | 900×1263 | 1440×2021 | As above. |
 | `mobile/fantasy/floating-city-islands.png` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
 | `mobile/fantasy/smoking-skull.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/fantasy/wooden-airship.jpg` | 760×1352 | 1440×2562 | As above. |
+| `mobile/gaming/atari-joystick.png` | 640×1136 | 1440×2556 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
 | `mobile/gaming/bioshock-no-gods-or-kings.jpg` | 769×1200 | 1440×2247 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `mobile/gaming/portal-fall-icon.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/gaming/deus-ex-logo.png` | 792×1200 | 1440×2182 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/gaming/portal-aperture-science-logo.png` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/gaming/portal-fall-icon.jpg` | 720×1280 | 1440×2560 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/gaming/space-invaders-briefing.jpg` | 640×1136 | 1440×2556 | As above. |
 | `mobile/history/steam-engine-smoke.jpg` | 880×1443 | 1440×2361 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `mobile/minimal/follow-the-leader.jpg` | 720×1280 | 1440×2560 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/minimal/digital-pirate.jpg` | 640×1136 | 1440×2556 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/minimal/evolution-wtf.jpg` | 640×1136 | 1440×2556 | As above. |
+| `mobile/minimal/explosive-match.jpg` | 640×1136 | 1440×2556 | As above. |
+| `mobile/minimal/follow-the-leader.jpg` | 720×1280 | 1440×2560 | As above. |
 | `mobile/minimal/nature-speedometer.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/minimal/neon-mountains.jpg` | 600×1066 | 1440×2558 | As above. |
 | `mobile/minimal/pixel-art-dusk-moon.png` | 768×1280 | 1536×2560 | Doubled with nearest-neighbor scaling, which keeps the pixel art's hard edges. |
 | `mobile/minimal/pixel-art-sunny-sea.png` | 768×1280 | 1536×2560 | As above. |
+| `mobile/minimal/unicorn-rainbow-saw.jpg` | 640×1136 | 1440×2556 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/outdoors/palm-tree-sunset.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/outdoors/railway-tracks-summer.jpg` | 1024×1536 | 1440×2160 | As above. |
 | `mobile/outdoors/snowy-forest-red-cabin.jpg` | 720×1280 | 1440×2560 | As above. |
 | `mobile/outdoors/snowy-pine-forest-path.jpg` | 1000×1413 | 1440×2035 | As above. |
 | `mobile/outdoors/snowy-river-distant-wildfire.jpg` | 720×1043 | 1440×2086 | As above. |
 | `mobile/pop-culture/better-call-saul.jpg` | 800×1200 | 1440×2160 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/pop-culture/breaking-bad-minimal.jpg` | 500×1000 | 1440×2880 | As above. |
+| `mobile/pop-culture/calvin-and-hobbes-stargazing.jpg` | 640×1136 | 1440×2556 | As above. |
+| `mobile/pop-culture/flash-speeding-ticket.jpg` | 640×1136 | 1440×2556 | As above. |
 | `mobile/pop-culture/futurama-bender-face.jpg` | 720×1280 | 1440×2560 | As above. |
-| `mobile/pop-culture/matrix-code.jpg` | 1000×1600 | 1440×2304 | As above. |
+| `mobile/pop-culture/homer-simpson.jpg` | 640×1136 | 1440×2556 | As above. |
+| `mobile/pop-culture/in-godzilla-we-trust.jpg` | 720×1280 | 1440×2560 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/pop-culture/interstellar-tars.png` | 566×800 | 1440×2035 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as PNG. |
+| `mobile/pop-culture/matrix-code.jpg` | 1000×1600 | 1440×2304 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/pop-culture/minion-mario-brothers.jpg` | 640×960 | 1440×2160 | As above. |
+| `mobile/pop-culture/nightmare-before-christmas-hill.jpg` | 640×1136 | 1440×2556 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/pop-culture/snoopy-joe-cool.jpg` | 640×1136 | 1440×2556 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/pop-culture/this-is-sparta-caution.jpg` | 720×1280 | 1440×2560 | As above. |
+| `mobile/pop-culture/tron-light-cycle.jpg` | 480×854 | 1440×2562 | As above. |
 | `mobile/scifi/armored-ape-soldier.jpg` | 991×1370 | 1440×1991 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `mobile/scifi/massive-city-corridor.jpg` | 750×1569 | 1440×3012 | As above. |
 | `mobile/scifi/rusty-mech-gunner.jpg` | 760×1343 | 1440×2545 | As above. |
@@ -157,6 +182,8 @@ creator is always a welcome replacement.
 | `mobile/space/nebula-triangle-mosaic.jpg` | 829×1433 | 1440×2489 | As above. |
 | `mobile/space/soviet-rocket-launch-tower.jpg` | 898×1600 | 1440×2566 | As above. |
 | `mobile/star-wars/fear-and-loathing-mos-eisley.jpg` | 732×1035 | 1440×2036 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
-| `mobile/urban/tilt-shift-village-mesa.jpg` | 732×1100 | 1440×2164 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/star-wars/in-the-emperor-we-trust.jpg` | 500×714 | 1440×2056 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
+| `mobile/star-wars/sith-code-poster.jpg` | 480×720 | 1440×2160 | As above. |
+| `mobile/urban/tilt-shift-village-mesa.jpg` | 732×1100 | 1440×2164 | As above. |
 | `ultrawide/gaming/firewatch-wide-wilderness-green.jpg` | 1920×804 | 3440×1441 | Upscayl `digital-art-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
 | `ultrawide/star-wars/first-order-rally.jpg` | 1919×811 | 3440×1454 | Upscayl `high-fidelity-4x`, blended 60/40 with a Lanczos enlargement of the original, resized with Lanczos, then saved as JPEG at quality 95 with 4:4:4 chroma. |
