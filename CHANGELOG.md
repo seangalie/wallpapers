@@ -59,6 +59,13 @@ section as the GitHub release notes, and refuses to publish if it is missing.
 - **Credits:** Dragonhatch Productions is credited for
   `sigantium-robed-figure`, from the copyright line on the image.
 
+### Changed
+
+- **The gallery site opens on wallpapers for your device:** phone wallpapers
+  on a phone, and desktop wallpapers on a computer or tablet, still in a
+  shuffled mix. Choose another format, or **All formats**, under Browse to
+  see the rest. Links with filters in them open exactly as shared.
+
 ## [3.1.0] - 2026-10-11
 
 67 wallpapers from my old laptop join the archive, bringing it to 1,608

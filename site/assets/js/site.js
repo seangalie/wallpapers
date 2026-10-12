@@ -77,6 +77,15 @@
   const categories = [...new Set(images.map((image) => image.category))]
     .sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
 
+  // A plain visit opens on the wallpapers that suit the device: Mobile on a
+  // phone, Desktops everywhere else. A phone is a touch-first screen whose
+  // short side is under 600 CSS pixels, which leaves out tablets and narrow
+  // desktop windows.
+  const phone = window.matchMedia('(pointer: coarse)').matches
+    && Math.min(window.screen.width, window.screen.height) < 600;
+  const deviceFormat = [phone ? 'mobile' : 'desktops']
+    .find((id) => images.some((image) => image.format === id)) || '';
+
   document.querySelectorAll('[data-repository-link]').forEach((link) => {
     link.href = `https://github.com/${collection.repository}${link.dataset.repositoryLink}`;
   });
@@ -195,14 +204,17 @@
 
   // An empty order follows the filters: shuffled while nothing narrows the
   // collection, so each visit opens on a different mix, and A to Z once a
-  // format, category, search, or favorites is chosen. Choosing an order
-  // overrides that until the filters change again.
+  // format, category, search, or favorites is chosen. The device's format
+  // does not count as chosen until the visitor picks a format. Choosing an
+  // order overrides that until the filters change again.
   const ORDERS = [
     { id: 'shuffle', label: 'Shuffle' },
     { id: 'newest', label: 'Newest' },
     { id: 'name', label: 'A to Z' },
   ];
-  const state = { format: '', category: '', query: '', order: '', favorites: false };
+  const state = {
+    format: '', formatDefault: false, category: '', query: '', order: '', favorites: false,
+  };
   let visible = images;
   let shuffled = shuffle(images);
   let arranged = images;
@@ -216,8 +228,8 @@
     return copy;
   }
 
-  const filtered = () =>
-    Boolean(state.format || state.category || state.query.trim() || state.favorites);
+  const filtered = () => Boolean((state.format && !state.formatDefault)
+    || state.category || state.query.trim() || state.favorites);
   const currentOrder = () => state.order || (filtered() ? 'name' : 'shuffle');
 
   const search = document.getElementById('search');
@@ -244,6 +256,7 @@
       button.append(count);
       button.addEventListener('click', () => {
         state[key] = item.id;
+        if (key === 'format') state.formatDefault = false;
         state.order = '';
         update({ scroll: true });
       });
@@ -370,6 +383,7 @@
     link.addEventListener('click', (event) => {
       event.preventDefault();
       state.format = '';
+      state.formatDefault = false;
       state.category = '';
       state.query = '';
       state.order = '';
@@ -385,15 +399,24 @@
   // with favorites=1 for this browser's favorites,
   // such as #format=dual&category=space&view=wallpapers/dual/space/name.jpg,
   // so a view can be bookmarked or shared.
+  //
+  // Only a plain address, with nothing in its hash, opens on the device's
+  // format. So the device's format stays out of the address until something
+  // else joins it, and then it is written like any chosen format, so that
+  // a shared link opens the same view anywhere. A plain address that shows
+  // every format says format=all, so a reload does not narrow it again.
   function writeHash() {
     const params = new URLSearchParams();
-    if (state.format) params.set('format', state.format);
     if (state.category) params.set('category', state.category);
     if (state.query.trim()) params.set('q', state.query.trim());
     if (state.order) params.set('order', state.order);
     if (state.favorites) params.set('favorites', '1');
     if (viewer.image) params.set('view', viewer.image.path);
-    const hash = params.toString();
+    const others = params.toString();
+    let format = state.format;
+    if (format && state.formatDefault && !others) format = '';
+    else if (!format && !others && deviceFormat) format = 'all';
+    const hash = [format && `format=${format}`, others].filter(Boolean).join('&');
     history.replaceState(null, '', hash ? `#${hash}` : location.pathname + location.search);
   }
 
@@ -401,7 +424,9 @@
     const params = new URLSearchParams(location.hash.slice(1));
     const format = params.get('format') || '';
     const category = params.get('category') || '';
-    state.format = formatOrder.includes(format) ? format : '';
+    state.formatDefault = !params.toString() && Boolean(deviceFormat);
+    if (state.formatDefault) state.format = deviceFormat;
+    else state.format = formatOrder.includes(format) ? format : '';
     state.category = categories.includes(category) ? category : '';
     state.query = params.get('q') || '';
     const order = params.get('order') || '';
