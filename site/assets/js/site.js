@@ -351,6 +351,7 @@
     summary.textContent = parts.join(' · ');
     showResults.textContent = `Show ${numbers.format(visible.length)} ${noun}`;
 
+    if (viewer.image) trimViewerList();
     writeHash();
     if (scroll) window.scrollTo(0, 0);
   }
@@ -508,10 +509,18 @@
     viewer.picture.style.height = `${Math.round(height * scale * fit)}px`;
   }
 
+  // Stepping through the viewer skips wallpapers that stop matching while it
+  // is open, such as a removed favorite, but keeps the one on screen until
+  // the viewer moves on.
+  function trimViewerList() {
+    viewer.list = viewer.list.filter((image) => image === viewer.image || matches(image));
+    viewer.popup.classList.toggle('single', viewer.list.length < 2);
+  }
+
   function showImage(image) {
     viewer.image = image;
+    trimViewerList();
     viewer.popup.classList.add('loading');
-    viewer.popup.classList.toggle('single', viewer.list.length < 2);
     fitViewer();
 
     const source = `previews/${image.oid}.webp`;
@@ -562,10 +571,29 @@
     writeHash();
     // A viewer opened from the address has nothing to return focus to.
     if (viewer.returnFocus && viewer.returnFocus !== body) {
-      viewer.returnFocus.focus({ preventScroll: true });
+      returnFocusFromViewer(viewer.returnFocus);
     } else {
       document.activeElement.blur();
     }
+  }
+
+  // The opening tile can be hidden while the viewer is open, such as after
+  // removing a favorite, so focus the nearest tile still shown, or Browse.
+  function returnFocusFromViewer(opener) {
+    if (opener.isConnected && opener.getClientRects().length > 0) {
+      opener.focus({ preventScroll: true });
+      return;
+    }
+    const tile = opener.closest('.thumb');
+    let near = null;
+    for (let next = tile && tile.nextElementSibling; next && !near; next = next.nextElementSibling) {
+      if (!next.hidden) near = next;
+    }
+    for (let previous = tile && tile.previousElementSibling; previous && !near;
+      previous = previous.previousElementSibling) {
+      if (!previous.hidden) near = previous;
+    }
+    (near ? near.querySelector('.image') : document.querySelector('#header a[href="#browse"]')).focus();
   }
 
   viewer.root.querySelector('.closer').addEventListener('click', closeViewer);
